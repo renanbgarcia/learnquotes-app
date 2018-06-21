@@ -1,0 +1,18 @@
+:host ::ng-deep li {
+    list-style: none;
+    font-size: 1.5em;
+    /* font-family: cursive */
+}
+
+:host ::ng-deep i {
+    color: blueviolet
+}
+
+:host ::ng-deep a {
+    color: rgb(71, 32, 107);
+    text-decoration: none;
+}
+
+.btn-margin-bottom {
+    margin: 10px
+}

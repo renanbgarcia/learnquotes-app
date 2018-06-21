@@ -1,10 +1,27 @@
 import { Component } from '@angular/core';
+import { RandomquoteService } from './randomquote.service'
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
+
 export class AppComponent {
-  title = 'app';
+  title = 'LearnQuotes';
+
+  quotes = ''
+
+  constructor(private randomservice: RandomquoteService){}
+
+  getAnotherQuote() {
+    this.randomservice.getRes()
+  }
+
+  changeLanguage(lang) {
+    console.log(lang)
+    this.randomservice.changeLanguage(lang)
+  }
+
 }
+
