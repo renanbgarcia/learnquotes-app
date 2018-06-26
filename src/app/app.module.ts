@@ -5,11 +5,13 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { AppComponent } from './app.component';
 import { RandomquoteComponent } from './randomquote/randomquote.component';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RandomquoteComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,

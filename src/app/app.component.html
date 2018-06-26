@@ -1,18 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
+<div class="app-container" style="text-align:center">
   <header class="navbar navbar-light bg-light">
     <span class="navbar-brand">LearnQuotes!</span>
   </header>
   <main class="container-fluid">
-    <button class="btn btn-primary btn-margin-bottom" (click)="getAnotherQuote()">Get Another Quote</button>
+    <button class="btn btn-primary btn-margin-bottom" (click)="getAnotherQuote()">Outra citação</button>
     <div class="btn-group btn-margin-bottom" dropdown>
       <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle"
-              aria-controls="dropdown-basic"> Language <span class="caret"></span>
+              aria-controls="dropdown-basic"> Língua <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu"
           role="menu" aria-labelledby="button-basic">
-        <button role="menuitem" class="dropdown-item" (click)="changeLanguage('en')">English</button>
-        <button role="menuitem" class="dropdown-item" (click)="changeLanguage('fr')">Français</button>
+        <button role="menuitem" class="dropdown-item" (click)="changeLanguage('en')">Inglês</button>
+        <button role="menuitem" class="dropdown-item" (click)="changeLanguage('fr')">Francês</button>
       </ul>
     </div>
     <app-randomquote></app-randomquote>

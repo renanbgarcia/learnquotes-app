@@ -19,7 +19,6 @@ export class AppComponent {
   }
 
   changeLanguage(lang) {
-    console.log(lang)
     this.randomservice.changeLanguage(lang)
   }
 

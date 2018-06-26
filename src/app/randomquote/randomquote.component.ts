@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {RandomquoteService} from '../randomquote.service'
+import {RandomquoteService} from '../randomquote.service';
+
 
 @Component({
   selector: 'app-randomquote',
@@ -10,29 +11,42 @@ export class RandomquoteComponent implements OnInit {
 
   constructor(private randomservice: RandomquoteService) { }
 
-  quoteText = this.randomservice.quote.getValue().text
-  quoteSource = ''
-  usingLang = this.randomservice.lang.getValue()
+  quoteText: string = this.randomservice.quote.getValue().text
+  quoteSource: string = ''
+  usingLang: string = this.randomservice.lang.getValue()
+  showSpin: boolean = true;
+  showQuote: boolean = false;
 
   ngOnInit() {
     this.randomservice.getRes()
     let that = this
-    let reg = new RegExp(/Quotes|H2|headline|toctext/)
+    let reg: RegExp = new RegExp(/Quotes|H2|headline|toctext/)
     this.randomservice.quote.subscribe(
       function (x) {
         if (!reg.test(x.text) && x.text.length > 4) {
           that.quoteText = x.text;
-          that.quoteSource = x.source
+          that.quoteSource = x.source;
         } else {
           console.log('deu ruim')
           that.randomservice.getRes()
         }
+        that.doToggleSpin()
       }
     )
     this.getLang()
   }
 
-  getLang() {
+  doToggleSpin(): void {
+    if(this.quoteText !== 'carregando') {
+      this.showSpin = false;
+      this.showQuote = true;
+    } else {
+      this.showSpin = true;
+      this.showQuote = false;
+    }
+  }
+
+  getLang(): void {
     const that = this;
     this.randomservice.lang.subscribe(
       lang => that.usingLang = lang

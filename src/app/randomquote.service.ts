@@ -16,7 +16,7 @@ export class RandomquoteService {
   }
 
   requestWord(){
-    console.log(this.lang.getValue())
+    this.quote.next({ text: 'carregando', source: '' })
     return this.http.get(`https://${this.lang.getValue()}.wikiquote.org/w/api.php?action=query&list=random&&rnlimit=50&rnnamespace=0&format=json&origin=*`)
   }
 
@@ -27,7 +27,6 @@ export class RandomquoteService {
   getQuoteBySection(item) {
     console.log(item.parse.pageid)
     let page = item.parse.pageid
-    // let section = item.parse.sections[0].index
     return this.http.get(`https://${this.lang.getValue()}.wikiquote.org/w/api.php?action=parse&pageid=${page}&section=1&format=json&origin=*`)
   }
 
@@ -48,6 +47,8 @@ export class RandomquoteService {
       return this.extractStringEn(param)
     } else if (this.lang.getValue() === 'fr') {
       return this.extractStringFr(param)
+    } else {
+      return this.extractStringEn(param)
     }
   }
 
@@ -57,25 +58,21 @@ export class RandomquoteService {
   }
 
   extractStringEn(str) {
-    // let ix1 = str.search('<ul><li>')
-    // let ix2 = str.search('</li></ul>')
-    console.log(str)
-    let ix1 = str.search('<ul><li>')
-    let ix2 = str.search(/<\/li>/)
+    const ix1 = str.search('<ul><li>')
+    const ix2 = str.search(/<\/li>/)
 
-    let nstr = str.substring(ix1, ix2)
-    let ix3 = nstr.lastIndexOf('<ul><li>')
-    let nstr2 = nstr.substring(0, ix3) //nstr2 é so a quote
+    const nstr = str.substring(ix1, ix2)
+    const ix3 = nstr.lastIndexOf('<ul><li>')
+    const nstr2 = nstr.substring(0, ix3) //nstr2 é so a quote
 
     let src = nstr.substr(ix3)
     src = this.cleanTags(src)
-    let nstr3 = this.cleanTags(nstr2)
+    const nstr3 = this.cleanTags(nstr2)
     return ({text:nstr3, source:src})
   }
 
   testString(str) {
     const reg = new RegExp(/Quote|Citazioni|Citação|Frases|Atribuídas|Citations/)
-    // console.log(reg.test(str))
     return reg.test(str)
   }
 
