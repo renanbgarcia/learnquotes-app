@@ -1,12 +1,12 @@
 # LearnQuotes
 
-Esse é um projeto que eu fiz para começar a aprender Angular e typescript.
-É um web aplicativo que gera uma citações aleatórias. Eu deixei disponível
-duas opções de linguas para as citações, inglês e francês.
+Esse Ã© um projeto que eu fiz para comeÃ§ar a aprender Angular e typescript.
+Ã‰ um web aplicativo que gera uma citaÃ§Ãµes aleatÃ³rias. Eu deixei disponÃ­vel
+duas opÃ§Ãµes de linguas para as citaÃ§Ãµes, inglÃªs e francÃªs.
 
 Eu usei a API do MediaWiki para obter dados do WikiQuotes.
-Os dados retornados da API, assim como é referenciado na documentação dela, não
-são semânticos. Ou seja, foi bem complicado conseguir obter os dados necessário corretamente
-para poder chegar à uma citação formatada. Mas eu consegui chegar a um resultado razoável
-com os dados vindos da API em inglês e francês. Ainda é possível conseguir o mesmo com outras
-línguas.
+Os dados retornados da API, assim como Ã© referenciado na documentaÃ§Ã£o dela, nÃ£o
+sÃ£o semÃ¢nticos. Ou seja, foi bem complicado conseguir obter os dados necessÃ¡rio corretamente
+para poder chegar Ã  uma citaÃ§Ã£o formatada. Mas eu consegui chegar a um resultado razoÃ¡vel
+com os dados vindos da API em InglÃªs e FrancÃªs. Ainda Ã© possÃ­vel conseguir o mesmo com outras
+lÃ­nguas.
