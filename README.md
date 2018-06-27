@@ -13,15 +13,19 @@ línguas.
 
 ## Como rodar
 
-Para ver o app em funcionamento baixe ou clone o repositório.
+Acesse online no endereço: https://renanbgarcia.github.io/learnquotes/
 
-Você vai precisar ter o NPM, gerenciador de pacotes do Node.js instalado.
+Ou rode localmente:
 
-Instale o angularCLI com `npm install @angular/cli`
+- Baixe ou clone o repositório.
 
-Instale as dependências do projecto com `npm install`
+- Você vai precisar ter o NPM, gerenciador de pacotes do Node.js instalado.
 
-E rode a aplicação com `ng serve` ou `npm start`
+- Instale o angularCLI com `npm install @angular/cli`
+
+- Instale as dependências do projecto com `npm install`
+
+- E rode a aplicação com `ng serve` ou `npm start`
 
 Por padrão a aplicação estará rodando na porta 4200. Para acessar abra no navegador o endereço:
 
