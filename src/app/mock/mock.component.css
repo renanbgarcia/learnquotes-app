@@ -1,0 +1,65 @@
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100%;
+}
+
+.app-container {
+  min-height: calc(100vh - 70px);
+}
+
+:host ::ng-deep li {
+  list-style: none;
+  font-size: 1.5em;
+  /* font-family: cursive */
+}
+
+:host ::ng-deep i {
+  color: blueviolet
+}
+
+:host ::ng-deep a {
+  color: rgb(71, 32, 107);
+  text-decoration: none;
+}
+
+.fa-1x {
+  font-size: 1.5rem;
+}
+
+.navbar-toggler {
+  cursor: pointer;
+}
+
+#collapseEvent {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    position: absolute;
+    z-index: 10;
+    width: 300px;
+}
+
+.img-thumb {
+    width: 100px;
+    border-radius: 50%;
+    display: inline-block;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.navbar-brand {
+    z-index: 20;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.nav-item {
+    padding: 5px;
+    color: white;
+}

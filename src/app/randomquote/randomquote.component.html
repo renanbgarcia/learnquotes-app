@@ -1,15 +1,28 @@
-<div class="container-fluid">
-  
-  <div class="card">
-    <div class="card-header">
-      <h3> Citação! <span class="badge badge-secondary">{{ usingLang }}</span> </h3>
-    </div>
-    <app-spinner *ngIf="showSpin" ></app-spinner>
-    <div *ngIf="showQuote" class="card-body">
-      <div class="blockquote mb-0" innerHTML="{{ quoteText }}"></div><br>
-      <div class="blockquote-footer" innerHTML="{{ quoteSource }}"></div>
-    </div>
+<main class="container-fluid">
+<button class="btn btn-primary btn-margin-bottom" (@buttonAtt.done)="bounce()" [@buttonAtt]="this.bState" (click)="getAnotherQuote()">Citação</button>
+  <div class="btn-group btn-margin-bottom" dropdown>
+    <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+      Língua
+      <span class="caret"></span>
+    </button>
+    <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+      <button role="menuitem" class="dropdown-item" (click)="changeLanguage('en')">Inglês</button>
+      <button role="menuitem" class="dropdown-item" (click)="changeLanguage('fr')">Francês</button>
+    </ul>
   </div>
-  
-</div>
-
+<!-- (@buttonAtt.done)="bounce()" -->
+  <div class="container-fluid">
+    
+    <div class="card">
+      <div class="card-header">
+        <h3> Citação! <span class="badge badge-secondary">{{ usingLang }}</span> </h3>
+      </div>
+      <app-spinner *ngIf="showSpin" ></app-spinner>
+      <div *ngIf="showQuote" class="card-body">
+        <div class="blockquote mb-0" innerHTML="{{ quoteText }}"></div><br>
+        <div class="blockquote-footer" innerHTML="{{ quoteSource }}"></div>
+      </div>
+    </div>
+    
+  </div>
+</main>
