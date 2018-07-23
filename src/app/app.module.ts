@@ -8,6 +8,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuardService } from './services/authguard.service';
+import { GetUserInfo } from './services/getUserInfo.service';
 
 import { AppComponent } from './app.component';
 import { RandomquoteComponent } from './randomquote/randomquote.component';
@@ -16,13 +17,18 @@ import { LoginComponent } from './login/login.component';
 import { MockComponent } from './mock/mock.component';
 import { UserprofileComponent } from './userprofile/userprofile.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { AuthorizerComponent } from './authorizer/authorizer.component';
+import { ModalContentComponent } from './modal/lOutmodal';
+import { UserinfoComponent } from './userprofile/userinfo/userinfo.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'authorizer', component: AuthorizerComponent},
   { path: '401', component: UnauthorizedComponent},
-  { path: 'home', component: MockComponent ,
+  {
+    path: 'home', component: MockComponent, canActivate: [AuthGuardService],
     children: [
-      { path: 'profile', component: UserprofileComponent, canActivate: [AuthGuardService]},
+      { path: 'profile', component: UserprofileComponent},
       { path: 'randomquote', component: RandomquoteComponent }
     ]
 }
@@ -36,7 +42,10 @@ const appRoutes: Routes = [
     LoginComponent,
     MockComponent,
     UserprofileComponent,
-    UnauthorizedComponent
+    UnauthorizedComponent,
+    AuthorizerComponent,
+    ModalContentComponent,
+    UserinfoComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +57,10 @@ const appRoutes: Routes = [
     ModalModule.forRoot(),
     CollapseModule.forRoot()
   ],
-  providers: [AuthGuardService],
-  bootstrap: [AppComponent]
+  providers: [AuthGuardService, AuthorizerComponent],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ModalContentComponent,
+  ],
 })
 export class AppModule { }

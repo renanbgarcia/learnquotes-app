@@ -2,8 +2,16 @@ var mongoose = require('mongoose');
 
 var userSchema = mongoose.Schema({
     name: String,
+    email: String,
+    photo: String,
     googleUser_id: String,
-    score: Number
+    level: String,
+    score: Number,
+    resources: {words: [String], quote: [{
+      quote: String,
+      source: String
+    }]},
+    
 });
 
 var userModel = mongoose.model('userModel', userSchema);

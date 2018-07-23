@@ -1,5 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import {RandomquoteService} from '../randomquote.service';
+import { RandomquoteService } from '../randomquote.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 
@@ -10,10 +11,12 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
   animations: [
     trigger('buttonAtt', [
       state('inactive', style({
-        transform: 'scale(1)'
+        // transform: 'scale(1)',
+        backgroundColor: 'red'
       })),
       state('active', style({
-        transform: 'scale(1.2)'
+        // transform: 'scale(1.2)',
+        backgroundColor: 'orange'
       })),
       transition('inactive => active', animate('300ms ease-in')),
       transition('active => inactive', animate('300ms ease-out'))
@@ -22,7 +25,7 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class RandomquoteComponent implements OnInit {
 
-  constructor(private randomservice: RandomquoteService) { }
+  constructor(private randomservice: RandomquoteService, private http: HttpClient) { }
 
   quoteText: string = this.randomservice.quote.getValue().text
   quoteSource: string = '';
@@ -96,4 +99,11 @@ export class RandomquoteComponent implements OnInit {
       }
     }
   }
+
+  insertQuote() {
+    if (this.quoteText !== 'Quer uma citação?') {
+      this.http.post('/api/save/quote', { id: localStorage.getItem('user'), quote: this.quoteText, source: this.quoteSource }).subscribe((res) => console.log(res));
+    }
+  }
+
 }

@@ -1,26 +1,31 @@
 <div class="app-container" style="text-align:center">
   <header class="navbar navbar-light bg-light">
-    
-<!-- Collapse button -->
+
 <button class="navbar-toggler" type="button" (click)="toggleState()">
   <span class="dark-blue-text">
     <i class="fa fa-bars fa-1x"></i>
   </span>
 </button>
 
-<!-- Collapsible content -->
-
-    <span class="navbar-brand align-left">LearnQuotes!</span>
+    <!-- <span class="navbar-brand align-left">LearnQuotes!</span> -->
     <div>Bem vindo {{userName.getValue()}}</div>
   </header>
 
   <div id="collapseEvent" class="nav navbar bg-dark align-left" [@menuState]="this.state">
     <img class="img-thumb" src="{{ userPhoto.getValue() }}"/>
+    <h3>{{userName.getValue()}}</h3>
+    <p>Nível: colocar niveis</p>
+    <p>Pontos: colocar niveis</p>
     <div>
-      <li>Home</li>
+      <li class="nav-item" [routerLink]="['/home']">Home</li>
       <li class="nav-item" [routerLink]="['profile']">Perfil</li>
       <li class="nav-item" [routerLink]="['randomquote']"><a>Random</a></li>
+      <li class="nav-item" (click)="openConfirmDialog()">Logout</li>
     </div>
   </div>
   <router-outlet></router-outlet>
+  <footer>
+    Desenvolvido por Renan Garcia -
+    <a href="http://www.github.com/renanbgarcia/learnquotes">http://www.github.com/renanbgarcia/learnquotes</a>
+  </footer>
 </div>

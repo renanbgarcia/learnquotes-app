@@ -1,8 +1,8 @@
+import { Router, NavigationEnd, NavigationStart, Event } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../services/auth.service';
-import { MockComponent } from '../mock/mock.component'
+import { AuthorizerComponent } from '../authorizer/authorizer.component'
 
 @Component({
   selector: 'app-userprofile',
@@ -11,21 +11,15 @@ import { MockComponent } from '../mock/mock.component'
 })
 export class UserprofileComponent implements OnInit {
 
-  constructor(private http: HttpClient, private authservice: AuthService, private mock: MockComponent) { }
+  constructor(private http: HttpClient, private authorizer: AuthorizerComponent, private router: Router) { 
+
+   }
 
   ngOnInit() {
-    console.log(this.mock.token.getValue());
+    console.log(this.authorizer.token.getValue());
     if (localStorage.length == 0 || localStorage.getItem('token') == 'undefined') {
       console.log('fui chamado');
-      localStorage.setItem('token', this.mock.token.getValue());
+      localStorage.setItem('token', this.authorizer.token.getValue());
     }
-    // const httpOptions = {
-    //   headers: new HttpHeaders({
-    //     'Authorization': 'Bearer ' + localStorage.getItem('token')
-    //   })
-    // };
-    // this.http.get('/home/teste', httpOptions).subscribe((res) => console.log(res));
-    // this.authservice.isAuthenticated().subscribe((res) => console.log(res));
   }
-
 }

@@ -1,7 +1,9 @@
 <main class="container-fluid">
-<button class="btn btn-primary btn-margin-bottom" (@buttonAtt.done)="bounce()" [@buttonAtt]="this.bState" (click)="getAnotherQuote()">Citação</button>
-  <div class="btn-group btn-margin-bottom" dropdown>
-    <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+
+<div class="pagination-centered">
+  <div class="btn-group" dropdown>
+    <button class="btn btn-primary btn-margin" (@buttonAtt.done)="bounce()" [@buttonAtt]="this.bState" (click)="getAnotherQuote()">Citação</button>
+    <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle btn-margin" aria-controls="dropdown-basic">
       Língua
       <span class="caret"></span>
     </button>
@@ -9,8 +11,9 @@
       <button role="menuitem" class="dropdown-item" (click)="changeLanguage('en')">Inglês</button>
       <button role="menuitem" class="dropdown-item" (click)="changeLanguage('fr')">Francês</button>
     </ul>
+    <button class="btn btn-primary btn-margin" (click)="insertQuote()">Salvar citação</button>
   </div>
-<!-- (@buttonAtt.done)="bounce()" -->
+</div>
   <div class="container-fluid">
     
     <div class="card">

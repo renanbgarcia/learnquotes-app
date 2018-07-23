@@ -1,11 +1,13 @@
+import { GetUserInfo } from './../services/getUserInfo.service';
 import { Component, OnInit } from '@angular/core';
-import { RandomquoteService } from '../randomquote.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject, ObjectUnsubscribedError, Observable } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service'
-import { nextTick } from '../../../node_modules/@types/q';
+import { NavigationEnd, Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { BsModalService } from 'ngx-bootstrap/modal';
+//import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { ModalContentComponent } from '../modal/lOutmodal'
 
 @Component({
   selector: 'app-mock',
@@ -29,65 +31,50 @@ export class MockComponent implements OnInit {
   isCollapsed = false;
   state = 'inactive';
   userName = new BehaviorSubject('User');
-  userPhoto = new BehaviorSubject('https://lh3.googleusercontent.com/-DXYA5kcy7Rw/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7pLWsK3YRuyMInFqx3P6tamKmJtog/mo/photo.jpg?sz=50');
-  token = new BehaviorSubject('inicial');
-  user: any;
-  first: boolean;
+  userPhoto = new BehaviorSubject('');
+  modalRef: any;
+  
+  constructor( private http: HttpClient,
+    private getuserinfo: GetUserInfo,
+    private modalService: BsModalService,
+    private router: Router) { 
 
-  constructor(private randomservice: RandomquoteService, private http: HttpClient, private route: ActivatedRoute, private router: Router, private auth: AuthService) { 
-
+    router.events.subscribe((val: any) => {
+      switch (val.url){
+        case "/home/randomquote":
+          document.body.style.background = '#FEDFBF';
+          break;
+        case "/home":
+          document.body.style.background = '#BFF6FE';
+          break;
+        case "/home/profile":
+          document.body.style.background = '#FEBFF2';
+          break;
+      }
+    });
   }
 
   ngOnInit() {
-    console.log('iniciado')
-    if (localStorage.length === 0) {
-      this.getToken();
-    } else {
-      console.log(this.token);
-    }
-  }
-
-  getUser() {
-    this.http.get('/api/user').subscribe((res: any) => {
-      //localStorage.setItem('user', JSON.stringify(res.user));
-      //localStorage.setItem('token', res.token);
-      this.userName.next(res.user.displayName);
-      this.userPhoto.next(res.user.photos[0].value);
-    });
+    this.getuserinfo.getUserPhoto().subscribe((photo) => this.userPhoto.next(photo));
+    this.getuserinfo.getUserName().subscribe((name) => this.userName.next(name));
+    console.log('mock chamado');
   }
 
   toggleState() {
     this.state = this.state === 'active' ? 'inactive' : 'active';
   }
 
-  getToken() {
-    return this.route.queryParams.map((params) => {
-      console.log(params['token']);
-      this.first = true; 
-      if (this.token.getValue() == 'inicial') {
-        this.token.next(params['token']); 
-      }
-      return params['token']
-    }).map((token) => {
+  openConfirmDialog() {
+    this.modalRef = this.modalService.show(ModalContentComponent);
+    this.modalRef.content.onClose.subscribe(result => {
+      console.log('results', result);
+    })
+  }
 
-      const httpOptions = {
-       headers: new HttpHeaders({
-         'Authorization': 'Bearer ' + this.token.getValue()
-       })
-     };
-     return this.http.get('/api/auth', httpOptions);
-
-    }).subscribe((auth) => auth.subscribe((res: any) => {
-    console.log(res);
-    if (res.auth == 'Authenticated') {
-      //this.token = res.token;
-      console.log(this.token.getValue());
-      localStorage.setItem('token', this.token.getValue());
-      this.getUser();
-      this.router.navigate(['/home/profile'])
-    }
-    }));
+  closeDialog() {
+    this.modalRef.close();
   }
 
 }
+
 

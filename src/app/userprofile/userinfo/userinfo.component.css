@@ -1,0 +1,14 @@
+.img-circle {
+  border-radius: 50%;
+}
+
+.img-thumb {
+    width: 100px;
+    margin: auto;
+}
+
+.head {
+    padding: 20px;
+    width: 75%;
+    margin: auto;
+}
