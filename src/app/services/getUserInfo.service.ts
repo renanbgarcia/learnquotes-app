@@ -30,4 +30,12 @@ export class GetUserInfo {
     getUserScore() {
         return this.getUser().map((res: any) => res.user.score);
     }
+
+    // getUserWords() {
+    //     //
+    // }
+
+    setUserScore(score: number) {
+        return this.http.post('/api/setuserinfo', { id: localStorage.getItem('user'), type: 'score', info: score });
+    }
 }

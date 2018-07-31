@@ -152,6 +152,27 @@ app.post('/api/userinfo', function(req, res) {
   })
 })
 
+app.post('/api/setuserinfo', function(req, res) {
+  console.log(req.body);
+  switch(req.body.type) {
+    case 'score':
+        userModel.findOneAndUpdate({googleUser_id: req.body.id},{score: req.body.info}, function (err, success) {
+        if (err) { 
+          res.send(err) ;
+        } else {
+          res.send(success);
+        }
+      });
+        console.log('aehooo');
+        break;
+  }
+  // userModel.findOne({googleUser_id: req.body.id}, function(err, user) {
+  //   if (err) {console.log(err);}
+  //   console.log('sucesso');
+  //   res.send('sucessoooo');
+  // })
+})
+
 app.route('*').get((req, res) => {
   res.sendFile(__dirname + '/dist/learnquotes/index.html');
 });

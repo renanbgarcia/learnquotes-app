@@ -3,5 +3,20 @@
   <h4>{{userName.getValue()}}</h4>
   <p>Nível: {{ userLevel.getValue() }}</p>
   <p>Pontos: {{ userScore.getValue() }}</p>
+  <button (click)="putScore()"></button>
+  <accordion>
+    <accordion-group heading="Static Header, initially expanded">
+      This content is straight in the template.
+    </accordion-group>
+    <accordion-group heading="Another group">
+      <p>Some content</p>
+    </accordion-group>
+    <accordion-group heading="Another group">
+      <p>Some content</p>
+    </accordion-group>
+    <accordion-group heading="Another group">
+      <p>Some content</p>
+    </accordion-group>
+  </accordion>
 </div>
 
