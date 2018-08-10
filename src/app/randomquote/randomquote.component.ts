@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { RandomquoteService } from '../randomquote.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import * as textVersion from "textversionjs";
 
 
 @Component({
@@ -25,9 +26,11 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 })
 export class RandomquoteComponent implements OnInit {
 
-  constructor(private randomservice: RandomquoteService, private http: HttpClient) { }
+  constructor(private randomservice: RandomquoteService, private http: HttpClient, private el: ElementRef) { }
 
-  quoteText: string = this.randomservice.quote.getValue().text
+  quoteText: string = this.randomservice.quote.getValue().text;
+  rawQuoteText: string = '';
+  words: string[];
   quoteSource: string = '';
   usingLang: string = this.randomservice.lang.getValue()
   showSpin: boolean = false;
@@ -35,15 +38,17 @@ export class RandomquoteComponent implements OnInit {
   quotes = '';
   bState = 'active';
   toBounce = true;
+  isTextNew = false;
 
   ngOnInit() {
     let that = this;
     this.randomservice.quote.subscribe(
       function (x) {
         if (x.text.length > 4) {
-          that.quoteText = x.text;
+          that.rawQuoteText = x.text;
           that.quoteSource = x.source;
           that.doToggleSpin();
+          that.treatQuote();
         } else {
           console.log('deu ruim');
           //console.log(reg.test(x.text));
@@ -57,6 +62,16 @@ export class RandomquoteComponent implements OnInit {
     this.getLang();
     console.log("mudou");
   }
+
+  treatQuote() {
+    let text = textVersion(this.rawQuoteText);
+    let words = text.split(' ');
+    let newText = '';
+    // for (let word of words) {
+    //   newText = newText.concat(`<span appHighlightText (click)="console.log('hello its me')">${word} </span>`);
+    // }
+    this.words = words;
+  } 
 
   doToggleSpin(): void {
     if (this.quoteText === 'carregando') {
@@ -106,4 +121,11 @@ export class RandomquoteComponent implements OnInit {
     }
   }
 
+  highlightText() {
+    let text = "";
+    if (window.getSelection) {
+      text = window.getSelection().toString();
+    console.log(text);
+    }
+  }
 }

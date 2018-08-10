@@ -22,7 +22,10 @@
       </div>
       <app-spinner *ngIf="showSpin" ></app-spinner>
       <div *ngIf="showQuote" class="card-body">
-        <div class="blockquote mb-0" innerHTML="{{ quoteText }}"></div><br>
+        <div class="blockquote mb-0" >
+          <span appHighlightText *ngFor="let word of words">{{ word }} </span>
+        </div>
+        <br>
         <div class="blockquote-footer" innerHTML="{{ quoteSource }}"></div>
       </div>
     </div>

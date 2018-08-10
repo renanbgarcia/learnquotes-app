@@ -6,6 +6,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { AccordionModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { PopoverModule } from 'ngx-bootstrap';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuardService } from './services/authguard.service';
@@ -21,6 +22,9 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AuthorizerComponent } from './authorizer/authorizer.component';
 import { ModalContentComponent } from './modal/lOutmodal';
 import { UserinfoComponent } from './userprofile/userinfo/userinfo.component';
+import { HighlightTextDirective } from './directives/highlight-text.directive';
+import { SplitWordsDirective } from './directives/split-words.directive';
+import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -46,7 +50,10 @@ const appRoutes: Routes = [
     UnauthorizedComponent,
     AuthorizerComponent,
     ModalContentComponent,
-    UserinfoComponent
+    UserinfoComponent,
+    HighlightTextDirective,
+    SplitWordsDirective,
+    EscapeHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -57,7 +64,8 @@ const appRoutes: Routes = [
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     CollapseModule.forRoot(),
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    PopoverModule.forRoot()
   ],
   providers: [AuthGuardService, AuthorizerComponent],
   bootstrap: [AppComponent],

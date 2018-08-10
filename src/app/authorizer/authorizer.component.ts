@@ -33,7 +33,7 @@ export class AuthorizerComponent implements OnInit {
       this.route.queryParams.subscribe((params) => {
         console.log(params['token']);
         if (!params['token']) {
-          this.router.navigate(['/401']);
+          //this.router.navigate(['/401']); COmentado durante desenvolvimento
         }
         this.getToken();
       })
@@ -52,7 +52,7 @@ export class AuthorizerComponent implements OnInit {
     return this.route.queryParams.map((params) => {
       console.log(params['token']);
       if (!params['token']) {
-        this.router.navigate(['/401']);
+        //this.router.navigate(['/401']);   Comentado durante desenvolvimento
       }
       if (this.token.getValue() == 'inicial') {
         this.token.next(params['token']);

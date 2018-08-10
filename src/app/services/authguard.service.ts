@@ -11,18 +11,6 @@ export class AuthGuardService implements CanActivate {
     canActivate(): any {
         console.log('AuthGuard#canActivate called');
         this.auth.isAuthenticated().subscribe((res: any) => {
-            // if (res instanceof Observable) {
-            //     res.subscribe((res) => {
-            //         if (res.auth !== 'Authenticated') {
-            //             console.log('not authenticated');
-            //             this.router.navigate(['/']);
-            //             return false;
-            //         } else {
-            //             console.log(res)
-            //             console.log("Authenticated!!!");
-            //             return true
-            //         }
-            //     }) } else
              if ( res.auth !== 'Authenticated' ) {
                 console.log(res);
                 return false;
@@ -31,7 +19,7 @@ export class AuthGuardService implements CanActivate {
             } else {
                 console.log('authenticated mode 2');
             }
-        }, (error) => { console.log(error); this.router.navigate(['/401'])})
+        }, (error) => { console.log(error); this.router.navigate(['/401'])})  // Comentado durante desenvolvimento
         return true;
     }
 }

@@ -14,7 +14,9 @@ export class UserinfoComponent implements OnInit {
   userPhoto = new BehaviorSubject('');
   userName = new BehaviorSubject('Loading');
   userLevel = new BehaviorSubject('loading');
-  userScore = new BehaviorSubject('loading');
+  userScore = new BehaviorSubject(0);
+  userQuotes = new BehaviorSubject(['loading']);
+  quoteCount = new BehaviorSubject(0);
 
   constructor(private http: HttpClient, private getuserinfo: GetUserInfo, private router: Router) { }
 
@@ -23,6 +25,8 @@ export class UserinfoComponent implements OnInit {
     this.getuserinfo.getUserName().subscribe((name) => this.userName.next(name));
     this.getuserinfo.getUseLevel().subscribe((level) => this.userLevel.next(level));
     this.getuserinfo.getUserScore().subscribe((score) => this.userScore.next(score));
+    this.getuserinfo.getUserQuotes().subscribe((quotes) => { console.log(quotes); this.userQuotes.next(quotes)});
+    this.getuserinfo.getUserQuotesCount().subscribe((length) => this.quoteCount.next(length.count));
   }
 
   putScore() {

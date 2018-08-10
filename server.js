@@ -166,12 +166,19 @@ app.post('/api/setuserinfo', function(req, res) {
         console.log('aehooo');
         break;
   }
-  // userModel.findOne({googleUser_id: req.body.id}, function(err, user) {
-  //   if (err) {console.log(err);}
-  //   console.log('sucesso');
-  //   res.send('sucessoooo');
-  // })
 })
+
+app.post('/api/countquotes', function (req, res) {
+  console.log(req.body);
+      userModel.findOne({ googleUser_id: req.body.id }, function (err, doc) {
+        if (err) {
+          res.send(err);
+        } else {
+          console.log("     fuuuuuuuuunfoooooooooouuuuuuuuuu!!!!!!!!!")
+          res.send({count: doc.resources.quote.length});
+        }
+      });
+});
 
 app.route('*').get((req, res) => {
   res.sendFile(__dirname + '/dist/learnquotes/index.html');
