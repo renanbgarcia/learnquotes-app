@@ -1,5 +1,7 @@
 <main class="container-fluid">
 
+<alert class="alert" type="success" *ngIf="showAlert">Sucesso!</alert>
+
 <div class="pagination-centered">
   <div class="btn-group" dropdown>
     <button class="btn btn-primary btn-margin" (@buttonAtt.done)="bounce()" [@buttonAtt]="this.bState" (click)="getAnotherQuote()">Citação</button>
@@ -15,16 +17,37 @@
   </div>
 </div>
   <div class="container-fluid">
-    
+  <!-- template do contextmenu -->
+  <context-menu>
+    <ng-template contextMenuItem>
+      <div>
+        <label (click)="dontClose($event)">
+          Tradução:
+        </label>
+        <input class="form-control" (keyup)="saveKeys($event);" (click)="dontClose($event)" type="text" name="meaning" placeholder="insira a tradução da palavra"><br>
+        <select (click)="dontClose($event)" class="form-control" id="howKnown">
+          <option value="1">1-Desconhecida</option>
+          <option value="2">2-Já vista</option>
+          <option value="3">3-Familiar</option>
+          <option value="4">4-Conhecida</option>
+          <option value="5">5-Aprendida</option>
+        </select>
+        <button class="btn btn-success btn-save" (click)='insertWord()'>Salvar</button>
+      </div>
+    </ng-template>
+  </context-menu>
+  <!-- -->
     <div class="card">
       <div class="card-header">
         <h3> Citação! <span class="badge badge-secondary">{{ usingLang }}</span> </h3>
       </div>
       <app-spinner *ngIf="showSpin" ></app-spinner>
       <div *ngIf="showQuote" class="card-body">
+        <i class="fas fa-quote-left fa-2x align-left"></i><br>
         <div class="blockquote mb-0" >
-          <span appHighlightText *ngFor="let word of words">{{ word }} </span>
+        <span appHighlightText (click)="onContextMenu($event, item)" *ngFor="let word of words">{{ word }} </span>
         </div>
+        <i class="fas fa-quote-right fa-2x align-right"></i>
         <br>
         <div class="blockquote-footer" innerHTML="{{ quoteSource }}"></div>
       </div>

@@ -8,12 +8,15 @@ export class HighlightTextDirective {
   constructor(private el: ElementRef) { }
 
   @HostListener('mouseenter') onMouseEnter() {
-    this.highlight('yellow');
-    console.log(this.el.nativeElement.textContent);
+    this.highlight('plum');
   }
 
   @HostListener('mouseleave') onMouseLeave() {
     this.highlight(null);
+  }
+
+  @HostListener('click') onmousedown() {
+    this.highlight('yellow');
   }
 
   private highlight(color: string) {

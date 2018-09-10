@@ -1,8 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { RandomquoteService } from '../randomquote.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
+import { AlertModule  } from 'ngx-bootstrap/alert';
 import * as textVersion from "textversionjs";
+import { ContextMenuComponent } from '../../../node_modules/ngx-contextmenu';
+import { ContextMenuService } from 'ngx-contextmenu';
 
 
 @Component({
@@ -26,10 +29,9 @@ import * as textVersion from "textversionjs";
 })
 export class RandomquoteComponent implements OnInit {
 
-  constructor(private randomservice: RandomquoteService, private http: HttpClient, private el: ElementRef) { }
+  constructor(private randomservice: RandomquoteService, private http: HttpClient, private el: ElementRef, private contextMenuService: ContextMenuService) { }
 
   quoteText: string = this.randomservice.quote.getValue().text;
-  rawQuoteText: string = '';
   words: string[];
   quoteSource: string = '';
   usingLang: string = this.randomservice.lang.getValue()
@@ -39,16 +41,20 @@ export class RandomquoteComponent implements OnInit {
   bState = 'active';
   toBounce = true;
   isTextNew = false;
+  showAlert: boolean = false;
+  clickedWord: any;
+  meaning: String;
+  howKnown: any;
 
   ngOnInit() {
     let that = this;
     this.randomservice.quote.subscribe(
       function (x) {
         if (x.text.length > 4) {
-          that.rawQuoteText = x.text;
+          that.quoteText = x.text;
           that.quoteSource = x.source;
-          that.doToggleSpin();
           that.treatQuote();
+          that.doToggleSpin();
         } else {
           console.log('deu ruim');
           //console.log(reg.test(x.text));
@@ -64,12 +70,8 @@ export class RandomquoteComponent implements OnInit {
   }
 
   treatQuote() {
-    let text = textVersion(this.rawQuoteText);
+    let text = textVersion(this.quoteText);
     let words = text.split(' ');
-    let newText = '';
-    // for (let word of words) {
-    //   newText = newText.concat(`<span appHighlightText (click)="console.log('hello its me')">${word} </span>`);
-    // }
     this.words = words;
   } 
 
@@ -117,15 +119,48 @@ export class RandomquoteComponent implements OnInit {
 
   insertQuote() {
     if (this.quoteText !== 'Quer uma citação?') {
-      this.http.post('/api/save/quote', { id: localStorage.getItem('user'), quote: this.quoteText, source: this.quoteSource }).subscribe((res) => console.log(res));
+      this.http.post('/api/save/quote', { id: localStorage.getItem('user'), quote: this.quoteText, source: this.quoteSource }).subscribe((res: any) => {
+      if (res.response == 'success') { this.confirmationAlert(); }
+      });
     }
   }
 
-  highlightText() {
-    let text = "";
-    if (window.getSelection) {
-      text = window.getSelection().toString();
-    console.log(text);
-    }
+  insertWord() {
+    let el:any = document.getElementById("howKnown");
+    let hk = el.options[el.selectedIndex].value;
+    //this.howKnown = document.getElementById('howKnown').Value;
+    this.http.post('api/save/word', { id: localStorage.getItem('user'), word: this.clickedWord, meaning: this.meaning, howKnown: hk }).subscribe((res: any) => { 
+      if (res.response === 'success') { this.confirmationAlert();}
+    });
   }
+
+  saveKeys(event: any) {
+    this.meaning = event.target.value;
+  }
+
+  dontClose(ev) {
+    ev.stopPropagation();
+    ev.preventDefault();
+  }
+
+  confirmationAlert() {
+    this.showAlert = true;
+    window.setTimeout(() => this.showAlert = false, 2000);
+  }
+
+  @ViewChild(ContextMenuComponent) public wordsave: ContextMenuComponent;
+
+  @Input() contextMenu: ContextMenuComponent;
+
+  public onContextMenu($event: any, item: any): void {
+    this.contextMenuService.show.next({
+      contextMenu: this.contextMenu,
+      event: $event,
+      item: item,
+    });
+    $event.preventDefault();
+    $event.stopPropagation();
+    this.clickedWord = $event.target.innerText;
+  }
+
 }

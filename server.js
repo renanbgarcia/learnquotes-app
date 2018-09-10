@@ -138,7 +138,21 @@ app.post('/api/save/quote', function(req, res) {
         if (err) { 
           res.send(err) ;
         } else {
-          res.send(success);
+          res.send({response: 'success'});
+        }
+      })
+    });
+
+      // Salva uma palavra na conta do usuário
+app.post('/api/save/word', function(req, res) {
+  console.log(req.body.howKnown);
+  userModel.findOneAndUpdate({
+        googleUser_id: req.body.id
+      }, {$push: { "resources.words": { word: req.body.word, meaning: req.body.meaning, howKnown: req.body.howKnown}  }}, function (err, success) {
+        if (err) { 
+          res.send(err) ;
+        } else {
+          res.send({response: 'success'});
         }
       })
     });

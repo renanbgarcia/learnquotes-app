@@ -11,21 +11,26 @@
     <div>Bem vindo {{userName.getValue()}}</div>
   </header>
 
-  <div id="collapseEvent" class="nav navbar bg-dark align-left" [@menuState]="this.state">
+  <div id="collapseEvent" class="nav navbar align-left" [@menuState]="this.state">
     <img class="img-thumb" src="{{ userPhoto.getValue() }}"/>
     <h3>{{userName.getValue()}}</h3>
     <p>Nível: colocar niveis</p>
     <p>Pontos: colocar niveis</p>
-    <div>
-      <li class="nav-item" [routerLink]="['/home']">Home</li>
-      <li class="nav-item" [routerLink]="['profile']">Perfil</li>
-      <li class="nav-item" [routerLink]="['randomquote']"><a>Random</a></li>
-      <li class="nav-item" (click)="openConfirmDialog()">Logout</li>
+    <div class="item-box">
+      <li class="nav-item" [routerLink]="['/home']">
+        <i class="far fa-star fa-spin"></i> Home</li>
+      <li class="nav-item" [routerLink]="['profile']">
+        <i class="far fa-star fa-spin"></i> Perfil</li>
+      <li class="nav-item" [routerLink]="['randomquote']">
+        <i class="far fa-star fa-spin"></i> Random</li>
+      <li class="nav-item" (click)="openConfirmDialog()">
+        <i class="far fa-star fa-spin"></i> Logout</li>
     </div>
   </div>
   <router-outlet></router-outlet>
   <footer>
-    Desenvolvido por Renan Garcia -
-    <a href="http://www.github.com/renanbgarcia/learnquotes">http://www.github.com/renanbgarcia/learnquotes</a>
+    <div [routerLink]="['/home/vocabulario']"><i class="fas fa-2x fa-book-reader"></i><br>Vocabulário</div>
+    <div [routerLink]="['/home/randomquote']"><i class="fas fa-2x fa-quote-right"></i><br>Citações</div>
+    <div [routerLink]="['/home/profile']"><i class="far fa-2x fa-smile"></i><br>Perfil</div>
   </footer>
 </div>

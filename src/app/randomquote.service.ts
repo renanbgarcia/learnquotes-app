@@ -9,7 +9,7 @@ export class RandomquoteService {
   constructor(private http: HttpClient) { }
 
   lang = new BehaviorSubject('en')
-  quote = new BehaviorSubject({text: 'Quer uma citação?', source: ''})
+  quote = new BehaviorSubject({text: 'Quer uma citação?', source: 'Um homem sábio'})
 
   changeLanguage(lang) {
     this.lang.next(lang)

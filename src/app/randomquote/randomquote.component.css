@@ -2,4 +2,39 @@
   margin-right: 5px;
   margin-left: 5px;
   margin-bottom: 10px;
+  outline: none;
+}
+
+.alert {
+  position: absolute;
+  top: 10px;
+  left: 0;
+  z-index: 5;
+  width: 100%;
+}
+main {
+  margin-top: 10px;
+}
+
+.align-right {
+  float: right;
+}
+
+.align-left {
+  display: block;
+  float: left;
+}
+
+/deep/ .ngx-contextmenu .dropdown-menu {
+  background-color: rgb(216, 215, 247);
+  padding: 7px;
+  text-align: center;
+}
+
+.btn-save {
+  width: 70%;
+}
+
+/deep/ .ngx-contextmenu li:first-child {
+  border-top: none;
 }

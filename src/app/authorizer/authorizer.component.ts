@@ -25,7 +25,7 @@ export class AuthorizerComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('iniciado')
+    console.log('iniciado');
     if (localStorage.length === 0) {
       this.getToken();
     } else {

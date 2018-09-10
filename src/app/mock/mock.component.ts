@@ -58,11 +58,18 @@ export class MockComponent implements OnInit {
     this.getuserinfo.getUserPhoto().subscribe((photo) => this.userPhoto.next(photo));
     this.getuserinfo.getUserName().subscribe((name) => this.userName.next(name));
     console.log('mock chamado');
+    const that = this;
+    document.addEventListener('click', function(e: any) {
+      if (that.state === 'active' && e.target.id !== 'collapseEvent' && e.target.tagName !== 'BUTTON' && e.target.tagName !== 'I' && e.target.tagName !== 'LI') {
+        that.state = 'inactive';
+      }
+    });
   }
 
   toggleState() {
     this.state = this.state === 'active' ? 'inactive' : 'active';
   }
+
 
   openConfirmDialog() {
     this.modalRef = this.modalService.show(ModalContentComponent);

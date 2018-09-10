@@ -1,0 +1,47 @@
+h2 {
+    margin: 10px;
+}
+
+.container {
+    padding: 0 !important;
+    height: 25vh;
+    width: 90%;
+    border-radius: 10px;
+    background-color: #fff;
+    overflow: auto;
+}
+
+>>>table {
+    width: 100% !important;
+    border-radius: 10px;
+}
+
+>>>table tr {
+    width: 100% !important;
+    height: 50px !important;
+    border: solid 2px rgb(180, 147, 231);
+    /* overflow-y: scroll */
+}
+
+>>> table td,
+table th {
+    display: inline-block;
+
+    overflow-y: auto !important;
+    width: 30%;
+    max-height: 50px !important;
+    word-wrap: break-word;
+}
+
+>>> .table td {
+    overflow: scroll !important;
+    width: 25vw !important;
+    height: 30px;
+    outline: rgb(180, 147, 231);
+    line-height: 100%;
+}
+
+.close-btn {
+    width: 9% !important;
+    padding-right: 4px;
+}

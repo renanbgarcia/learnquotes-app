@@ -6,24 +6,5 @@
   <p>Citações: {{ quoteCount.getValue() }}</p>
   <button (click)="putScore()"></button>
 
-  <accordion>
-    <accordion-group heading="Static Header, initially expanded">
-      VAmos ver the template.  wwwwwwwwwwwwwwwwww
-    </accordion-group>
-    <accordion-group heading="Minhas Citações">
-      <table class="table">
-        <tr *ngFor="let quote of userQuotes.getValue(); let i = index">
-          <td>{{ i }}</td>
-          <td>{{ quote.quote }}</td>
-        </tr>
-      </table>
-    </accordion-group>
-    <accordion-group heading="Another group">
-      <p>Some content</p>
-    </accordion-group>
-    <accordion-group heading="Another group">
-      <p>Some content</p>
-    </accordion-group>
-  </accordion>
 </div>
 

@@ -35,6 +35,10 @@ export class GetUserInfo {
         return this.getUser().map((res: any) => {console.log(res); return res.user.resources.quote});
     }
 
+    getUserWords() {
+        return this.getUser().map((res: any) => { console.log(res); return res.user.resources.words });
+    }
+
     getUserQuotesCount() {
         return this.http.post('/api/countquotes', { id: localStorage.getItem('user') }).map((res: any) => res );
     }

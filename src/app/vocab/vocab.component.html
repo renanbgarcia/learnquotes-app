@@ -1,0 +1,43 @@
+<main>
+  <h2>Palavras</h2>
+  <label>Buscar:</label>
+  <input (keyup)="registerWordK($event)" type="text" name="keywords">
+  <div class="container">
+    <table>
+      <thead>
+        <tr>
+          <th scope="col">Palavra</th>
+          <th scope="col">Significado</th>
+          <th scope="col">Estado</th>
+          <th class="close-btn">  </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr [hidden]="!word.show" *ngFor="let word of userWords.getValue()">
+          <td>{{ word.word }}</td><td>{{word.meaning}}</td>
+          <td [ngSwitch]="word.howKnown">
+            <span *ngSwitchCase="4" class="badge badge-primary">Aprendida  </span>
+            <span *ngSwitchCase="1" class="badge badge-secondary">Desconhecida  </span>
+            <span *ngSwitchCase="5" class="badge badge-success">Conhecida  </span>
+            <span *ngSwitchCase="2" class="badge badge-danger">Já vista  </span>
+            <span *ngSwitchCase="3"class="badge badge-warning">Familiar  </span>
+          </td>
+          <td class="close-btn">
+            <i class="fas fa-times-circle close-btn"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <h2>Citações</h2>
+  <label>Buscar:</label>
+  <input (keyup)="registerQuoteK($event)" type="text">
+  <div class="container">
+    <div *ngFor="let quote of userQuotes.getValue()">
+      <p *ngIf="quote.show">{{ quote.quote }}</p>
+      <hr *ngIf="quote.show">
+    </div>
+  </div>
+</main>
+
