@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { GetUserInfo } from './../services/getUserInfo.service';
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
@@ -12,8 +13,9 @@ export class VocabComponent implements OnInit {
   userQuotes = new BehaviorSubject([{quote: 'loading', source:'loading', show:true}]);
   userWords = new BehaviorSubject(['loading']);
   keyword = new BehaviorSubject(' ');
+  filterState = new BehaviorSubject("0");
 
-  constructor(private getInfo: GetUserInfo) { }
+  constructor(private getInfo: GetUserInfo, private http: HttpClient) { }
 
   ngOnInit() {
     this.getQuotes();
@@ -40,6 +42,13 @@ export class VocabComponent implements OnInit {
   registerWordK(e) {
     this.keyword.next(e.target.value);
     this.verifyWords();
+  }
+
+  verifyWordFilter() {
+    console.log('ativouxa');
+    let el: any = document.getElementById("filter-estados");
+    let wf = el.options[el.selectedIndex].value;
+    this.filterState.next(wf);
   }
 
   verifyQuotes() {
@@ -70,4 +79,11 @@ export class VocabComponent implements OnInit {
       word.show = true;
     }
   }
+
+  deleteWord(word) {
+    if (window.confirm("Realmente quer deletar essa palavra?")) {
+      this.http.post('/api/delete/word', { id: localStorage.getItem('user'), word_id: word._id }).subscribe((res) => { console.log(res); this.getWords(); });
+    }
+  }
+
 }

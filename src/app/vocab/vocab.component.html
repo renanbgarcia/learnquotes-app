@@ -1,7 +1,20 @@
 <main>
   <h2>Palavras</h2>
-  <label>Buscar:</label>
-  <input (keyup)="registerWordK($event)" type="text" name="keywords">
+  <div class="container-form">
+    <div class="form-group" id="search-area">
+      <label><i class="fas fa-search"></i>: </label>
+      <input class="form-control search-input" (keyup)="registerWordK($event)" type="text" name="keywords">
+    <select class="form-control" (change)="verifyWordFilter()" id="filter-estados">
+      <option value="0" selected>Todos estados</option>
+      <option value="1">Descohecida</option>
+      <option value="2">Já vista</option>
+      <option value="3">Familiar</option>
+      <option value="4">Conhecida</option>
+      <option value="5">Aprendida</option>
+    </select>
+    </div>
+  </div>
+
   <div class="container">
     <table>
       <thead>
@@ -13,7 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr [hidden]="!word.show" *ngFor="let word of userWords.getValue()">
+        <tr [hidden]="!word.show || word.howKnown != filterState.getValue() && filterState.getValue() != '0'" *ngFor="let word of userWords.getValue()">
           <td>{{ word.word }}</td><td>{{word.meaning}}</td>
           <td [ngSwitch]="word.howKnown">
             <span *ngSwitchCase="4" class="badge badge-primary">Aprendida  </span>
@@ -23,7 +36,7 @@
             <span *ngSwitchCase="3"class="badge badge-warning">Familiar  </span>
           </td>
           <td class="close-btn">
-            <i class="fas fa-times-circle close-btn"></i>
+            <i (click)="deleteWord(word)" class="fas fa-times-circle close-btn"></i>
           </td>
         </tr>
       </tbody>

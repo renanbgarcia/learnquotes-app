@@ -157,6 +157,22 @@ app.post('/api/save/word', function(req, res) {
       })
     });
 
+  // Deleta uma palavra na conta do usuário
+app.post('/api/delete/word', function(req, res) {
+  console.log('essa é a palavra ' + req.body.word_id);
+  console.log('essa é a palavra ' + req.body.id);
+  userModel.findOneAndUpdate({
+        googleUser_id: req.body.id
+      }, {$pull: { "resources.words": { "_id": req.body.word_id.toString() }}}, {'new': true},function (err, success) {
+        if (err) { 
+          res.send(err) ;
+        } else {
+          res.send({response: success});
+        }
+      })
+    });
+
+
 app.post('/api/userinfo', function(req, res) {
   console.log(req.body);
   userModel.findOne({googleUser_id: req.body.id}, function(err, user) {

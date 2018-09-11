@@ -6,21 +6,25 @@ h2 {
     padding: 0 !important;
     height: 25vh;
     width: 90%;
-    border-radius: 10px;
     background-color: #fff;
     overflow: auto;
+    box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.445);
+}
+
+.container-form {
+  margin: auto;
+  padding: 0 !important;
+  width: 90%;
 }
 
 >>>table {
     width: 100% !important;
-    border-radius: 10px;
 }
 
 >>>table tr {
     width: 100% !important;
     height: 50px !important;
     border: solid 2px rgb(180, 147, 231);
-    /* overflow-y: scroll */
 }
 
 >>> table td,
@@ -33,15 +37,23 @@ table th {
     word-wrap: break-word;
 }
 
->>> .table td {
-    overflow: scroll !important;
-    width: 25vw !important;
-    height: 30px;
-    outline: rgb(180, 147, 231);
-    line-height: 100%;
-}
-
 .close-btn {
     width: 9% !important;
     padding-right: 4px;
+}
+
+#filter-estados {
+    display: inline-block !important;
+    width: 35%;
+    margin-left: 4px;
+}
+
+/* #search-area {
+    width: 60%;
+} */
+
+.search-input {
+    display: inline-block !important;
+    width: 55%;
+    margin-left: 4px;
 }
