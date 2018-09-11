@@ -145,10 +145,13 @@ app.post('/api/save/quote', function(req, res) {
 
       // Salva uma palavra na conta do usuário
 app.post('/api/save/word', function(req, res) {
-  console.log(req.body.howKnown);
+
+  //Tira pontuação que pode ter ficado anexado na palavra
+  let wordToSave = req.body.word.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"").replace(/\s{2,}/g," ");
+
   userModel.findOneAndUpdate({
         googleUser_id: req.body.id
-      }, {$push: { "resources.words": { word: req.body.word, meaning: req.body.meaning, howKnown: req.body.howKnown}  }}, function (err, success) {
+      }, {$push: { "resources.words": { word: wordToSave, meaning: req.body.meaning, howKnown: req.body.howKnown}  }}, function (err, success) {
         if (err) { 
           res.send(err) ;
         } else {

@@ -70,7 +70,18 @@ export class RandomquoteComponent implements OnInit {
   }
 
   treatQuote() {
-    let text = textVersion(this.quoteText);
+
+    let config = {
+      linkProcess: function(href, linkText){
+          return linkText;
+      }
+    };
+    
+    let text = textVersion(this.quoteText, config);
+
+    text = text.replace(/&#160;/g, ''); //Tira esse negócio que aparece as vezes na citação
+    console.log('textoo = '+text);
+
     let words = text.split(' ');
     this.words = words;
   } 
