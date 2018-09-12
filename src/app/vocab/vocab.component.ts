@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 export class VocabComponent implements OnInit {
 
   userQuotes = new BehaviorSubject([{quote: 'loading', source:'loading', show:true}]);
-  userWords = new BehaviorSubject(['loading']);
+  userWords = new BehaviorSubject([]);
   keyword = new BehaviorSubject(' ');
   filterState = new BehaviorSubject("0");
 
@@ -85,5 +85,8 @@ export class VocabComponent implements OnInit {
       this.http.post('/api/delete/word', { id: localStorage.getItem('user'), word_id: word._id }).subscribe((res) => { console.log(res); this.getWords(); });
     }
   }
+}
 
+interface Word {
+  word: {word: String, show: Boolean};
 }

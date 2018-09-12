@@ -29,14 +29,15 @@
         <tr [hidden]="!word.show || word.howKnown != filterState.getValue() && filterState.getValue() != '0'" *ngFor="let word of userWords.getValue()">
           <td>{{ word.word }}</td><td>{{word.meaning}}</td>
           <td [ngSwitch]="word.howKnown">
-            <span *ngSwitchCase="4" class="badge badge-primary">Aprendida  </span>
+            <span *ngSwitchCase="5" class="badge badge-primary">Aprendida  </span>
             <span *ngSwitchCase="1" class="badge badge-secondary">Desconhecida  </span>
-            <span *ngSwitchCase="5" class="badge badge-success">Conhecida  </span>
+            <span *ngSwitchCase="4" class="badge badge-success">Conhecida  </span>
             <span *ngSwitchCase="2" class="badge badge-danger">Já vista  </span>
             <span *ngSwitchCase="3"class="badge badge-warning">Familiar  </span>
           </td>
           <td class="close-btn">
             <i (click)="deleteWord(word)" class="fas fa-times-circle close-btn"></i>
+            <i class="fas fa-edit close-btn"></i>
           </td>
         </tr>
       </tbody>
