@@ -36,8 +36,8 @@
             <span *ngSwitchCase="3"class="badge badge-warning">Familiar  </span>
           </td>
           <td class="close-btn">
-            <i (click)="deleteWord(word)" class="fas fa-times-circle close-btn"></i>
-            <i class="fas fa-edit close-btn"></i>
+            <!-- <i (click)="deleteWord(word)" class="fas fa-times-circle close-btn"></i> -->
+            <i (click)="openOptions(word)" class="fas fa-2x fa-pen-square"></i>
           </td>
         </tr>
       </tbody>

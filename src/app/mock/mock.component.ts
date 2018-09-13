@@ -6,7 +6,6 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
 import { NavigationEnd, Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { BsModalService } from 'ngx-bootstrap/modal';
-//import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { ModalContentComponent } from '../modal/lOutmodal'
 
 @Component({

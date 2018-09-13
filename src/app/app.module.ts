@@ -1,3 +1,4 @@
+import { ModalWordOptionComponent } from './modal/modalWordOption';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -9,7 +10,6 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuardService } from './services/authguard.service';
-import { GetUserInfo } from './services/getUserInfo.service';
 import { ContextMenuModule } from 'ngx-contextmenu'
 
 import { AppComponent } from './app.component';
@@ -51,6 +51,7 @@ const appRoutes: Routes = [
     UnauthorizedComponent,
     AuthorizerComponent,
     ModalContentComponent,
+    ModalWordOptionComponent,
     UserinfoComponent,
     HighlightTextDirective,
     EscapeHtmlPipe,
@@ -69,10 +70,11 @@ const appRoutes: Routes = [
     AlertModule.forRoot(),
     ContextMenuModule.forRoot()
   ],
-  providers: [AuthGuardService, AuthorizerComponent],
+  providers: [AuthGuardService, AuthorizerComponent, VocabComponent],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalContentComponent,
+    ModalWordOptionComponent
   ],
 })
 export class AppModule { }

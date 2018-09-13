@@ -1,4 +1,3 @@
-import { MockComponent } from '../mock/mock.component';
 import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';

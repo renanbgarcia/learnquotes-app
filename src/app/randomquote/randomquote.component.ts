@@ -139,7 +139,6 @@ export class RandomquoteComponent implements OnInit {
   insertWord() {
     let el:any = document.getElementById("howKnown");
     let hk = el.options[el.selectedIndex].value;
-    //this.howKnown = document.getElementById('howKnown').Value;
     this.http.post('api/save/word', { id: localStorage.getItem('user'), word: this.clickedWord, meaning: this.meaning, howKnown: hk }).subscribe((res: any) => { 
       if (res.response === 'success') { this.confirmationAlert();}
     });

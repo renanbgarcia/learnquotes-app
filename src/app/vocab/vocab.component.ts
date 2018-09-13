@@ -2,20 +2,25 @@ import { HttpClient } from '@angular/common/http';
 import { GetUserInfo } from './../services/getUserInfo.service';
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { ModalWordOptionComponent } from '../modal/modalWordOption';
 
 @Component({
   selector: 'app-vocab',
   templateUrl: './vocab.component.html',
   styleUrls: ['./vocab.component.css']
 })
+
 export class VocabComponent implements OnInit {
 
   userQuotes = new BehaviorSubject([{quote: 'loading', source:'loading', show:true}]);
   userWords = new BehaviorSubject([]);
   keyword = new BehaviorSubject(' ');
   filterState = new BehaviorSubject("0");
+  showAlert: boolean = false;
+  modalRef: any;
 
-  constructor(private getInfo: GetUserInfo, private http: HttpClient) { }
+  constructor(private getInfo: GetUserInfo, private http: HttpClient, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.getQuotes();
@@ -30,8 +35,10 @@ export class VocabComponent implements OnInit {
 
   getWords() {
     this.getInfo.getUserWords().subscribe((word) => { console.log(word);
+      this.userWords.next(word);
+      console.log(this.userWords.getValue)
       this.preShowWords(word);
-      this.userWords.next(word) });
+      });
   }
 
   registerQuoteK(e) {
@@ -45,7 +52,6 @@ export class VocabComponent implements OnInit {
   }
 
   verifyWordFilter() {
-    console.log('ativouxa');
     let el: any = document.getElementById("filter-estados");
     let wf = el.options[el.selectedIndex].value;
     this.filterState.next(wf);
@@ -80,13 +86,15 @@ export class VocabComponent implements OnInit {
     }
   }
 
-  deleteWord(word) {
+  openOptions(word) {
+    const initialState = { word: word }
+    this.modalRef = this.modalService.show(ModalWordOptionComponent, { initialState });
+  }
+
+  deleteWord(word, modalref, resetList) {
     if (window.confirm("Realmente quer deletar essa palavra?")) {
-      this.http.post('/api/delete/word', { id: localStorage.getItem('user'), word_id: word._id }).subscribe((res) => { console.log(res); this.getWords(); });
+      this.http.post('/api/delete/word', { id: localStorage.getItem('user'), word_id: word._id }).subscribe((res) => { console.log(res); resetList(); });
+      modalref.hide();
     }
   }
-}
-
-interface Word {
-  word: {word: String, show: Boolean};
 }
