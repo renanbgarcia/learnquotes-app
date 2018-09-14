@@ -164,6 +164,7 @@ export class RandomquoteComponent implements OnInit {
 
   public onContextMenu($event: any, item: any): void {
     this.contextMenuService.show.next({
+      anchorElement: document.getElementById('barra-topo'),
       contextMenu: this.contextMenu,
       event: $event,
       item: item,
