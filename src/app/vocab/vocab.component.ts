@@ -91,10 +91,10 @@ export class VocabComponent implements OnInit {
     this.modalRef = this.modalService.show(ModalWordOptionComponent, { initialState });
   }
 
-  deleteWord(word, modalref, resetList) {
-    if (window.confirm("Realmente quer deletar essa palavra?")) {
-      this.http.post('/api/delete/word', { id: localStorage.getItem('user'), word_id: word._id }).subscribe((res) => { console.log(res); resetList(); });
-      modalref.hide();
-    }
-  }
+  // deleteWord(word, modalref, resetList) {
+  //   if (window.confirm("Realmente quer deletar essa palavra?")) {
+  //     this.http.post('/api/delete/word', { id: localStorage.getItem('user'), word_id: word._id }).subscribe((res) => { console.log(res); resetList(); });
+  //     modalref.hide();
+  //   }
+  // }
 }

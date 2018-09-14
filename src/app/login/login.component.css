@@ -28,7 +28,7 @@ a:hover {
 #login-box {
     margin: auto;
     padding: 5px;
-    background-color: aliceblue;
+    /* background-color: aliceblue; */
     border-radius: 30px;
 }
 

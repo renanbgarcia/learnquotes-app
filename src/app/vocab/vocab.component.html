@@ -26,7 +26,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr [hidden]="!word.show || word.howKnown != filterState.getValue() && filterState.getValue() != '0'" *ngFor="let word of userWords.getValue()">
+        <tr [hidden]="!word.show || word.howKnown != filterState.getValue() && filterState.getValue() != '0'" *ngFor="let word of this.userWords.getValue()">
           <td>{{ word.word }}</td><td>{{word.meaning}}</td>
           <td [ngSwitch]="word.howKnown">
             <span *ngSwitchCase="5" class="badge badge-primary">Aprendida  </span>
