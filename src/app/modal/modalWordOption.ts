@@ -1,7 +1,7 @@
 import { VocabComponent } from './../vocab/vocab.component';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Component } from '@angular/core';
+import { Component, ApplicationRef, EventEmitter, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { GetUserInfo } from '../services/getUserInfo.service';
 
@@ -19,17 +19,20 @@ import { GetUserInfo } from '../services/getUserInfo.service';
     </div>
   `
 })
+
 export class ModalWordOptionComponent {
     public title: string;
     public list: any[] = [];
     word: {_id: String};
 
-    constructor(private router: Router,
-                private modalref: BsModalRef,
+    @Output() action = new EventEmitter();
+
+    constructor(private modalref: BsModalRef,
                 private vocab: VocabComponent,
                 private http: HttpClient,
-                private getInfo: GetUserInfo) { }
-
+                private getInfo: GetUserInfo,
+                private appRef: ApplicationRef) { }
+  
   deleteWord() {
     // this.vocab.deleteWord(this.word, this.modalref, this.vocab.getWords)
     if (window.confirm("Realmente quer deletar essa palavra?")) {
@@ -40,9 +43,7 @@ export class ModalWordOptionComponent {
 
   getWords() {
     this.getInfo.getUserWords().subscribe((word) => { console.log(word);
-      this.vocab.userWords.next(word);
-      console.log(this.vocab.userWords.getValue())
-      this.vocab.preShowWords(word);
+      this.action.emit(word);
       });
   }
 }

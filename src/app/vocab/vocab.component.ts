@@ -20,7 +20,9 @@ export class VocabComponent implements OnInit {
   showAlert: boolean = false;
   modalRef: any;
 
-  constructor(private getInfo: GetUserInfo, private http: HttpClient, private modalService: BsModalService) { }
+  constructor(private getInfo: GetUserInfo, 
+    private http: HttpClient, 
+    private modalService: BsModalService) { }
 
   ngOnInit() {
     this.getQuotes();
@@ -36,7 +38,6 @@ export class VocabComponent implements OnInit {
   getWords() {
     this.getInfo.getUserWords().subscribe((word) => { console.log(word);
       this.userWords.next(word);
-      console.log(this.userWords.getValue)
       this.preShowWords(word);
       });
   }
@@ -89,12 +90,9 @@ export class VocabComponent implements OnInit {
   openOptions(word) {
     const initialState = { word: word }
     this.modalRef = this.modalService.show(ModalWordOptionComponent, { initialState });
+    this.modalRef.content.action.take(1).subscribe((value) => {
+      console.log(value); this.userWords.next(value); this.preShowWords(value);
+      });
   }
 
-  // deleteWord(word, modalref, resetList) {
-  //   if (window.confirm("Realmente quer deletar essa palavra?")) {
-  //     this.http.post('/api/delete/word', { id: localStorage.getItem('user'), word_id: word._id }).subscribe((res) => { console.log(res); resetList(); });
-  //     modalref.hide();
-  //   }
-  // }
 }
