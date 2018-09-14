@@ -1,5 +1,5 @@
 <div class="app-container" style="text-align:center">
-  <header class="navbar navbar-light bg-light">
+  <header id="barra-topo" class="navbar navbar-light bg-light">
 
 <button class="navbar-toggler" type="button" (click)="toggleState()">
   <span class="dark-blue-text">
@@ -29,8 +29,10 @@
   </div>
   <router-outlet></router-outlet>
   <footer>
-    <div [routerLink]="['/home/vocabulario']"><i class="fas fa-2x fa-book-reader"></i><br>Vocabulário</div>
+    <div [routerLink]="['/home/vocabulario']"><i class="fas fa-2x fa-book-reader"></i><br>Palavras</div>
     <div [routerLink]="['/home/randomquote']"><i class="fas fa-2x fa-quote-right"></i><br>Citações</div>
+    <div [routerLink]="['/home']"><i class="fas fa-2x fa-home"></i><br>Home</div>
     <div [routerLink]="['/home/profile']"><i class="far fa-2x fa-smile"></i><br>Perfil</div>
+    <div [routerLink]="['/home']"><i class="fas fa-2x fa-dumbbell"></i><br>Exercitar</div>
   </footer>
 </div>

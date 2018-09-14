@@ -25,6 +25,11 @@ main {
   float: left;
 }
 
+.card-body {
+  max-height: 60vh;
+  overflow: scroll;
+}
+
 /deep/ .ngx-contextmenu .dropdown-menu {
   background-color: rgb(216, 215, 247);
   padding: 7px;
