@@ -94,5 +94,4 @@ export class VocabComponent implements OnInit {
       console.log(value); this.userWords.next(value); this.preShowWords(value);
       });
   }
-
 }
