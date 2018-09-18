@@ -17,15 +17,25 @@ import { GetUserInfo } from '../services/getUserInfo.service';
     <form class="form">
       <div class="form-group">
         <label>Palavra: </label>
-        <input class="form-control" type="text">
+        <input class="form-control" type="text" (keyup)="getWordEdit($event)" id="word-edit">
       </div>
       <div class="form-group">
         <label>Significado: </label>
-        <input class="form-control" type="text">
+        <input class="form-control" type="text" (keyup)="getMeaningEdit($event)" id="meaning-edit">
+      </div>
+      <div class="form-group">
+        <label>Estado: </label>
+        <select class="form-control" id="howKnown" (change)="getStateEdit()" id="state-edit">
+          <option value="1">1-Desconhecida</option>
+          <option value="2">2-Já vista</option>
+          <option value="3">3-Familiar</option>
+          <option value="4">4-Conhecida</option>
+          <option value="5">5-Aprendida</option>
+        </select>
       </div>
     </form>
       <button class="btn btn-warning" (click)="deleteWord()">Deletar Palavra</button>
-      <button class="btn btn-success" >Confirmar</button>
+      <button class="btn btn-success" (click)="updateWord()">Confirmar</button>
     </div>
     </div>
   `
@@ -35,6 +45,9 @@ export class ModalWordOptionComponent {
     public title: string;
     public list: any[] = [];
     word: {_id: String};
+    wordEdit: String;
+    meaningEdit: String;
+    stateEdit;
 
     @Output() action = new EventEmitter();
 
@@ -53,5 +66,21 @@ export class ModalWordOptionComponent {
     this.getInfo.getUserWords().subscribe((word) => { console.log(word);
       this.action.emit(word);
       });
+  }
+
+  getWordEdit(e) {
+    this.wordEdit = e.target.value;
+  }
+
+  getMeaningEdit(e) {
+    this.meaningEdit = e.target.value;
+  }
+
+  getStateEdit(e) {
+    this.stateEdit = e.target.value;
+  }
+
+  updateWord() {
+
   }
 }

@@ -160,10 +160,22 @@ app.post('/api/save/word', function(req, res) {
       })
     });
 
+      //Atualiza os dados da palavra
+app.post('/api/update/word', function(req, res) {
+  //usermodel.findOne({googleUser_id: req.body.id})
+  userModel.findOneAndUpdate({
+        googleUser_id: req.body.id
+      }, { "resources.words.$": { "_id": req.body.word_id.toString() }}, {'new': true}, function (err, success) {
+        if (err) { 
+          res.send(err) ;
+        } else {
+          res.send({response: 'success'});
+        }
+      })
+    });
+
   // Deleta uma palavra na conta do usuário
 app.post('/api/delete/word', function(req, res) {
-  console.log('essa é a palavra ' + req.body.word_id);
-  console.log('essa é a palavra ' + req.body.id);
   userModel.findOneAndUpdate({
         googleUser_id: req.body.id
       }, {$pull: { "resources.words": { "_id": req.body.word_id.toString() }}}, {'new': true},function (err, success) {
