@@ -11,17 +11,17 @@ Atualmente já foi criado:
 
 1. Login utilizando a estratégia Google OAuth do Passport.js.
 2. Geração de citações aleatórias em Inglês e Francês.
-3. Roteamento das páginas. (o roteamento do front-end é feito usando o Angular).
-4. Conexão com banco de dados(MongoDB)para gerenciamento de usuários (algumas rotas da API já estão funcionando).
+3. Algumas Rotas da API.
+4. Capacidade de slavar citações na conta do usuário.
+5. Capacidade de salvar palavras das citações na conta do usuário, podendo adicionar significado e nível de conhecimento da palavra.
 
 TODO:
 
 1. Construir perfil do usuário.
 2. Adicionar um dicionário usando Wiktionary.
-3. Criar funcionalidade para facilmente marcar palavras aprendidas.
-4. Adicionar métodos de estudo/revisão de citações/palavras aprendidas.
-5. Consertar toda a parte de typescript :<
-6. etc etc etc
+3. Adicionar métodos de estudo/revisão de citações/palavras aprendidas.
+4. Consertar toda a parte de typescript :<
+5. etc etc etc
 
 Eu usei a API do MediaWiki para obter dados do WikiQuotes.
 Os dados retornados da API, assim como é referenciado na documentação dela, não
@@ -31,11 +31,6 @@ com os dados vindos da API em inglês e francês. Ainda é possível conseguir o mes
 línguas.
 
 ## Como rodar
-
-(só a geração de citações)
-Acesse online no endereço: https://renanbgarcia.github.io/learnquotes/
-
-Ou rode localmente:
 
 - Baixe ou clone o repositório.
 
