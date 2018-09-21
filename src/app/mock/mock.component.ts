@@ -41,14 +41,16 @@ export class MockComponent implements OnInit {
     router.events.subscribe((val: any) => {
       switch (val.url){
         case "/home/randomquote":
-          document.body.style.background = '#FEDFBF';
+          document.body.style.background = '#DFBFFE';
           break;
         case "/home":
-          document.body.style.background = '#BFF6FE';
+          document.body.style.background = '#bfdffe';
           break;
         case "/home/profile":
           document.body.style.background = '#FEBFF2';
           break;
+        case "/home/vocabulario":
+          document.body.style.background = '#DFFEBF';
       }
     });
   }

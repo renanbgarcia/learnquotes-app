@@ -2,32 +2,42 @@ h2 {
     margin: 10px;
 }
 
+main {
+    height: 40vh;
+}
+
 .container {
-    padding: 0 !important;
-    height: 25vh;
+    padding: 0;
+    height: calc(100vh - 280px);
     width: 90%;
     background-color: #fff;
     overflow: auto;
+    border: solid rgb(180, 147, 231) 2px;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.445);
 }
 
 .container-form {
   margin: auto;
+  margin-top: 15px;
   padding: 0 !important;
   width: 90%;
 }
 
->>>table {
+.quote-container {
+  padding: 15px;
+}
+
+:host /deep/ table {
     width: 100% !important;
 }
 
->>>table tr {
+:host /deep/ table tr {
     width: 100% !important;
     height: 50px !important;
     border: solid 2px rgb(180, 147, 231);
 }
 
->>> table td,
+:host /deep/ table td,
 table th {
     display: inline-block;
     overflow-y: auto !important;
@@ -39,6 +49,11 @@ table th {
 .close-btn {
     width: 9% !important;
     padding-right: 4px;
+    cursor: pointer;
+}
+
+.option-btn:hover, .close-btn:hover {
+    color: #41aed1;
 }
 
 #filter-estados {
@@ -51,4 +66,22 @@ table th {
     display: inline-block !important;
     width: 55%;
     margin-left: 4px;
+}
+
+#search-area-quotes {
+  margin-top: 15px;
+}
+
+:host /deep/ a.nav-link.active {
+    background-color: #DFFEBF;
+    color: rgb(180, 147, 231);
+}
+
+:host /deep/ a.nav-link {
+    background-color: #fff;
+    color: rgb(124, 160, 87);
+}
+
+:host /deep/ .tab-container {
+    height: 100%;
 }

@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ModalWordOptionComponent } from '../modal/modalWordOption';
+import { TabsModule } from 'ngx-bootstrap/tabs';
 
 @Component({
   selector: 'app-vocab',
@@ -20,8 +21,8 @@ export class VocabComponent implements OnInit {
   showAlert: boolean = false;
   modalRef: any;
 
-  constructor(private getInfo: GetUserInfo, 
-    private http: HttpClient, 
+  constructor(private getInfo: GetUserInfo,
+    private http: HttpClient,
     private modalService: BsModalService) { }
 
   ngOnInit() {
@@ -60,7 +61,7 @@ export class VocabComponent implements OnInit {
 
   verifyQuotes() {
     for (let quote of this.userQuotes.getValue()) {
-      let re = RegExp(this.keyword.getValue(), 'g');
+      let re = RegExp(this.keyword.getValue(), 'i');
       let shouldShow = re.test(quote.quote);
       quote.show = shouldShow;
     }
@@ -93,5 +94,12 @@ export class VocabComponent implements OnInit {
     this.modalRef.content.action.take(1).subscribe((value) => {
       console.log(value); this.userWords.next(value); this.preShowWords(value);
       });
+  }
+
+  deleteQuote(quote) {
+    console.log(quote);
+    if (window.confirm("Realmente quer deletar essa citação?")) {
+      this.http.post('/api/delete/quote', { id: localStorage.getItem('user'), quote_id: quote._id }).subscribe((res) => { console.log(res); this.getQuotes(); });
+    }
   }
 }

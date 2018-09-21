@@ -135,7 +135,7 @@ app.post('/api/save/quote', function(req, res) {
   userModel.findOneAndUpdate({
         googleUser_id: req.body.id
       }, {$push: { "resources.quote": {quote: req.body.quote, source: req.body.source}  }}, function (err, success) {
-        if (err) { 
+        if (err) {
           res.send(err) ;
         } else {
           res.send({response: 'success'});
@@ -152,7 +152,7 @@ app.post('/api/save/word', function(req, res) {
   userModel.findOneAndUpdate({
         googleUser_id: req.body.id
       }, {$push: { "resources.words": { word: wordToSave, meaning: req.body.meaning, howKnown: req.body.howKnown}  }}, function (err, success) {
-        if (err) { 
+        if (err) {
           res.send(err) ;
         } else {
           res.send({response: 'success'});
@@ -163,30 +163,68 @@ app.post('/api/save/word', function(req, res) {
       //Atualiza os dados da palavra
 app.post('/api/update/word', function(req, res) {
   //usermodel.findOne({googleUser_id: req.body.id})
-  userModel.findOneAndUpdate({
-        googleUser_id: req.body.id
-      }, { "resources.words.$": { "_id": req.body.word_id.toString() }}, {'new': true}, function (err, success) {
-        if (err) { 
-          res.send(err) ;
-        } else {
-          res.send({response: 'success'});
-        }
-      })
-    });
+  //resources.words.$.word: ${req.body.word}
+  var objForUpdate = {};
+
+  if (req.body.word !== '') {
+    userModel.findOneAndUpdate({
+          "resources.words._id": req.body.word_id.toString()
+        }, {$set: { "resources.words.$.word": req.body.word }}, function (err, success) {
+          if (err) {
+            res.send(err) ;
+          } else {
+            res.send({response: success});
+          }
+        })
+      }
+  if (req.body.meaning !== '') {
+    userModel.findOneAndUpdate({
+          "resources.words._id": req.body.word_id.toString()
+        }, {$set: { "resources.words.$.meaning": req.body.meaning }}, function (err, success) {
+          if (err) {
+            res.send(err) ;
+          } else {
+            //res.send({response: success});
+          }
+        })
+      }
+  if (req.body.howKnown !== '') {
+    userModel.findOneAndUpdate({
+          "resources.words._id": req.body.word_id.toString()
+        }, {$set: { "resources.words.$.howKnown": req.body.howKnown }}, function (err, success) {
+          if (err) {
+            res.send(err) ;
+          } else {
+            //res.send({response: success});
+          }
+        })
+      }
+});
 
   // Deleta uma palavra na conta do usuário
 app.post('/api/delete/word', function(req, res) {
   userModel.findOneAndUpdate({
         googleUser_id: req.body.id
       }, {$pull: { "resources.words": { "_id": req.body.word_id.toString() }}}, {'new': true},function (err, success) {
-        if (err) { 
+        if (err) {
+          res.send(err) ;
+        } else {
+          //res.send({response: success});
+        }
+      })
+    });
+
+app.post('/api/delete/quote', function(req, res) {
+  userModel.findOneAndUpdate({
+        googleUser_id: req.body.id
+      }, {$pull: { "resources.quote": { "_id": req.body.quote_id.toString() }}}, {'new': true},function (err, success) {
+        if (err) {
           res.send(err) ;
         } else {
           res.send({response: success});
         }
       })
     });
-
 
 app.post('/api/userinfo', function(req, res) {
   console.log(req.body);
@@ -202,7 +240,7 @@ app.post('/api/setuserinfo', function(req, res) {
   switch(req.body.type) {
     case 'score':
         userModel.findOneAndUpdate({googleUser_id: req.body.id},{score: req.body.info}, function (err, success) {
-        if (err) { 
+        if (err) {
           res.send(err) ;
         } else {
           res.send(success);

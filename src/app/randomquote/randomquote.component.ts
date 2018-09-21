@@ -32,6 +32,7 @@ export class RandomquoteComponent implements OnInit {
   constructor(private randomservice: RandomquoteService, private http: HttpClient, private el: ElementRef, private contextMenuService: ContextMenuService) { }
 
   quoteText: string = this.randomservice.quote.getValue().text;
+  treatedQuoteText: String;
   words: string[];
   quoteSource: string = '';
   usingLang: string = this.randomservice.lang.getValue()
@@ -76,15 +77,16 @@ export class RandomquoteComponent implements OnInit {
           return linkText;
       }
     };
-    
+
     let text = textVersion(this.quoteText, config);
 
     text = text.replace(/&#160;/g, ''); //Tira esse negócio que aparece as vezes na citação
-    console.log('textoo = '+text);
+    console.log('textoo = '+ text);
+    this.treatedQuoteText = text;
 
     let words = text.split(' ');
     this.words = words;
-  } 
+  }
 
   doToggleSpin(): void {
     if (this.quoteText === 'carregando') {
@@ -130,7 +132,7 @@ export class RandomquoteComponent implements OnInit {
 
   insertQuote() {
     if (this.quoteText !== 'Quer uma citação?') {
-      this.http.post('/api/save/quote', { id: localStorage.getItem('user'), quote: this.quoteText, source: this.quoteSource }).subscribe((res: any) => {
+      this.http.post('/api/save/quote', { id: localStorage.getItem('user'), quote: this.treatedQuoteText, source: this.quoteSource }).subscribe((res: any) => {
       if (res.response == 'success') { this.confirmationAlert(); }
       });
     }
@@ -139,7 +141,7 @@ export class RandomquoteComponent implements OnInit {
   insertWord() {
     let el:any = document.getElementById("howKnown");
     let hk = el.options[el.selectedIndex].value;
-    this.http.post('api/save/word', { id: localStorage.getItem('user'), word: this.clickedWord, meaning: this.meaning, howKnown: hk }).subscribe((res: any) => { 
+    this.http.post('api/save/word', { id: localStorage.getItem('user'), word: this.clickedWord, meaning: this.meaning, howKnown: hk }).subscribe((res: any) => {
       if (res.response === 'success') { this.confirmationAlert();}
     });
   }

@@ -25,7 +25,7 @@ import { GetUserInfo } from '../services/getUserInfo.service';
       </div>
       <div class="form-group">
         <label>Estado: </label>
-        <select class="form-control" id="howKnown" (change)="getStateEdit()" id="state-edit">
+        <select class="form-control" id="howKnown" (change)="getStateEdit($event)" id="state-edit">
           <option value="1">1-Desconhecida</option>
           <option value="2">2-Já vista</option>
           <option value="3">3-Familiar</option>
@@ -54,7 +54,7 @@ export class ModalWordOptionComponent {
     constructor(private modalref: BsModalRef,
                 private http: HttpClient,
                 private getInfo: GetUserInfo,) { }
-  
+
   deleteWord() {
     if (window.confirm("Realmente quer deletar essa palavra?")) {
       this.http.post('/api/delete/word', { id: localStorage.getItem('user'), word_id: this.word._id }).subscribe((res) => { console.log(res); this.getWords(); });
@@ -81,6 +81,6 @@ export class ModalWordOptionComponent {
   }
 
   updateWord() {
-
+    this.http.post('/api/update/word',  { word_id: this.word._id, word: this.wordEdit, meaning: this.meaningEdit, state: this.stateEdit }). subscribe((res) => { console.log(res); });
   }
 }
