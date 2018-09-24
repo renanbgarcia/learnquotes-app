@@ -17,20 +17,20 @@ import { GetUserInfo } from '../services/getUserInfo.service';
     <form class="form">
       <div class="form-group">
         <label>Palavra: </label>
-        <input class="form-control" type="text" (keyup)="getWordEdit($event)" id="word-edit">
+        <input class="form-control" type="text" value="{{word.word}}" id="word-edit">
       </div>
       <div class="form-group">
         <label>Significado: </label>
-        <input class="form-control" type="text" (keyup)="getMeaningEdit($event)" id="meaning-edit">
+        <input class="form-control" type="text"  value="{{word.meaning}}" id="meaning-edit">
       </div>
       <div class="form-group">
         <label>Estado: </label>
-        <select class="form-control" id="howKnown" (change)="getStateEdit($event)" id="state-edit">
-          <option value="1">1-Desconhecida</option>
-          <option value="2">2-Já vista</option>
-          <option value="3">3-Familiar</option>
-          <option value="4">4-Conhecida</option>
-          <option value="5">5-Aprendida</option>
+        <select class="form-control" id="state-edit">
+          <option [selected]="word.howKnown == 1" value="1">1-Desconhecida</option>
+          <option [selected]="word.howKnown == 2" value="2">2-Já vista</option>
+          <option [selected]="word.howKnown == 3" value="3">3-Familiar</option>
+          <option [selected]="word.howKnown == 4" value="4">4-Conhecida</option>
+          <option [selected]="word.howKnown == 5" value="5">5-Aprendida</option>
         </select>
       </div>
     </form>
@@ -47,7 +47,7 @@ export class ModalWordOptionComponent {
     word: {_id: String};
     wordEdit: String;
     meaningEdit: String;
-    stateEdit;
+    stateEdit: String;
 
     @Output() action = new EventEmitter();
 
@@ -55,10 +55,18 @@ export class ModalWordOptionComponent {
                 private http: HttpClient,
                 private getInfo: GetUserInfo,) { }
 
+
+  getFirstTime() {
+    this.wordEdit = (<HTMLInputElement>document.getElementById("word-edit")).value;
+    this.meaningEdit = (<HTMLInputElement>document.getElementById("meaning-edit")).value;
+    this.stateEdit = (<HTMLInputElement>document.getElementById("state-edit")).value;
+  }
+
   deleteWord() {
     if (window.confirm("Realmente quer deletar essa palavra?")) {
-      this.http.post('/api/delete/word', { id: localStorage.getItem('user'), word_id: this.word._id }).subscribe((res) => { console.log(res); this.getWords(); });
+      this.http.post('/api/delete/word', { id: localStorage.getItem('user'), word_id: this.word._id }).subscribe((res) => { console.log(res); this.getWords()});
       this.modalref.hide();
+      this.getWords();
     }
   }
 
@@ -68,19 +76,9 @@ export class ModalWordOptionComponent {
       });
   }
 
-  getWordEdit(e) {
-    this.wordEdit = e.target.value;
-  }
-
-  getMeaningEdit(e) {
-    this.meaningEdit = e.target.value;
-  }
-
-  getStateEdit(e) {
-    this.stateEdit = e.target.value;
-  }
-
-  updateWord() {
-    this.http.post('/api/update/word',  { word_id: this.word._id, word: this.wordEdit, meaning: this.meaningEdit, state: this.stateEdit }). subscribe((res) => { console.log(res); });
+  updateWord(e) {
+    this.getFirstTime();
+    this.http.post('/api/update/word',  { word_id: this.word._id, word: this.wordEdit, meaning: this.meaningEdit, state: this.stateEdit }).subscribe((res) => { console.log(res); this.getWords()});
+    this.modalref.hide();
   }
 }

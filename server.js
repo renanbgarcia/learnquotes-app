@@ -189,9 +189,10 @@ app.post('/api/update/word', function(req, res) {
         })
       }
   if (req.body.howKnown !== '') {
+    console.log(req.body.state);
     userModel.findOneAndUpdate({
           "resources.words._id": req.body.word_id.toString()
-        }, {$set: { "resources.words.$.howKnown": req.body.howKnown }}, function (err, success) {
+        }, {$set: { "resources.words.$.howKnown": req.body.state }}, function (err, success) {
           if (err) {
             res.send(err) ;
           } else {
