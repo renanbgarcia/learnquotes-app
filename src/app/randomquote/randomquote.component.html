@@ -39,7 +39,11 @@
   <!-- -->
     <div class="card">
       <div class="card-header">
-        <h3> Citação! <span class="badge badge-secondary">{{ usingLang }}</span> </h3>
+        <h3> Citação! <span class="badge badge-secondary">{{ usingLang }}</span> <ng-template #popTemplate>{{this.quoteTranslation.getValue()}}</ng-template>
+          <button (click)="getTranslation()" type="button" class="btn btn-round btn-margin"
+                  [popover]="popTemplate" containerClass="translationPopover">Trad
+          </button>
+        </h3>
       </div>
       <app-spinner *ngIf="showSpin" ></app-spinner>
       <div *ngIf="showQuote" class="card-body">
@@ -52,6 +56,6 @@
         <div class="blockquote-footer" innerHTML="{{ quoteSource }}"></div>
       </div>
     </div>
-    
+
   </div>
 </main>

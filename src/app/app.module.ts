@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { PopoverModule } from 'ngx-bootstrap/popover'
 import { AccordionModule, AlertModule, TabsModule } from 'ngx-bootstrap';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
@@ -69,7 +70,8 @@ const appRoutes: Routes = [
     AccordionModule.forRoot(),
     AlertModule.forRoot(),
     ContextMenuModule.forRoot(),
-    TabsModule.forRoot()
+    TabsModule.forRoot(),
+    PopoverModule.forRoot()
   ],
   providers: [AuthGuardService, AuthorizerComponent, VocabComponent],
   bootstrap: [AppComponent],

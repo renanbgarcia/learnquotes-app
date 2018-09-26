@@ -6,12 +6,22 @@ import { AlertModule  } from 'ngx-bootstrap/alert';
 import * as textVersion from "textversionjs";
 import { ContextMenuComponent } from '../../../node_modules/ngx-contextmenu';
 import { ContextMenuService } from 'ngx-contextmenu';
+import { BehaviorSubject } from 'rxjs';
+import { PopoverConfig } from 'ngx-bootstrap/popover';
 
+export function getPopoverConfig(): PopoverConfig {
+  return Object.assign(new PopoverConfig(), {
+    placement: 'left',
+    container: 'body',
+    triggers: 'focus'
+  });
+}
 
 @Component({
   selector: 'app-randomquote',
   templateUrl: './randomquote.component.html',
   styleUrls: ['./randomquote.component.css'],
+  providers: [{ provide: PopoverConfig, useFactory: getPopoverConfig }],
   animations: [
     trigger('buttonAtt', [
       state('inactive', style({
@@ -33,6 +43,7 @@ export class RandomquoteComponent implements OnInit {
 
   quoteText: string = this.randomservice.quote.getValue().text;
   treatedQuoteText: String;
+  quoteTranslation = new BehaviorSubject('Loading...');
   words: string[];
   quoteSource: string = '';
   usingLang: string = this.randomservice.lang.getValue()
@@ -46,6 +57,7 @@ export class RandomquoteComponent implements OnInit {
   clickedWord: any;
   meaning: String;
   howKnown: any;
+
 
   ngOnInit() {
     let that = this;
@@ -144,6 +156,11 @@ export class RandomquoteComponent implements OnInit {
     this.http.post('api/save/word', { id: localStorage.getItem('user'), word: this.clickedWord, meaning: this.meaning, howKnown: hk }).subscribe((res: any) => {
       if (res.response === 'success') { this.confirmationAlert();}
     });
+  }
+
+  getTranslation() {
+      this.quoteTranslation.next('Carregando...') //reseta texto do popover
+      this.http.post('/api/translate', { word: this.treatedQuoteText }).subscribe((res) => this.quoteTranslation.next(res.transl));
   }
 
   saveKeys(event: any) {

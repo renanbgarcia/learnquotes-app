@@ -6,6 +6,7 @@ var userModel = require('./server/models/user.js');
 require('./server/auth/jwt.js');
 var genToken = require('./server/auth/token.js');
 var ensure = require('connect-ensure-login');
+const {Translate} = require('@google-cloud/translate');
 
 
 // Configuração do Google Strategy do Passport
@@ -251,6 +252,42 @@ app.post('/api/setuserinfo', function(req, res) {
         break;
   }
 })
+
+app.post('/api/translate', function(req, res) {
+  // Imports the Google Cloud client library
+
+  console.log(Translate);
+  // Your Google Cloud Platform project ID
+  const projectId = 'deft-seat-209823';
+
+  // Instantiates a client
+  const translate = new Translate({
+    projectId: projectId,
+  });
+
+  // The text to translate
+  const text = req.body.word;
+  console.log(req.body.word);
+  // The target language
+  const target = 'pt';
+
+  // Translates some text into Russian
+  translate
+    .translate(text, target)
+    .then(results => {
+      const translation = results[0];
+
+      console.log(`Text: ${text}`);
+      console.log(`Translation: ${translation}`);
+      res.send({text: text, transl: translation});
+    })
+    .catch(err => {
+      console.error('ERROR:', err);
+      res.send(err);
+    });
+
+
+});
 
 app.post('/api/countquotes', function (req, res) {
   console.log(req.body);

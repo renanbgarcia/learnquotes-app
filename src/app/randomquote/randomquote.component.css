@@ -9,6 +9,16 @@
   border: none;
 }
 
+.btn-round {
+  width: 50px;
+  height: 35px;
+  border-radius: 10px;
+  background-color: #909090;
+  color: #fff;
+  float: right;
+  padding: .275rem .35rem;
+}
+
 .alert {
   position: absolute;
   top: 10px;
@@ -28,6 +38,13 @@ main {
 .align-left {
   display: block;
   float: left;
+}
+
+/deep/ .translationPopover {
+  height: 140px;
+  width: 200px;
+  margin: auto;
+  overflow: auto;
 }
 
 .card-body {
