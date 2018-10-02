@@ -81,4 +81,5 @@ export class ModalWordOptionComponent {
     this.http.post('/api/update/word',  { word_id: this.word._id, word: this.wordEdit, meaning: this.meaningEdit, state: this.stateEdit }).subscribe((res) => { console.log(res); this.getWords()});
     this.modalref.hide();
   }
+
 }

@@ -7,6 +7,11 @@ require('./server/auth/jwt.js');
 var genToken = require('./server/auth/token.js');
 var ensure = require('connect-ensure-login');
 const {Translate} = require('@google-cloud/translate');
+const textToSpeech = require('@google-cloud/text-to-speech');
+const os = require('os');
+const fs = require('fs');
+var shortid = require('shortid');
+
 
 
 // Configuração do Google Strategy do Passport
@@ -65,6 +70,8 @@ passport.deserializeUser(function(obj, cb) {
 
 // cria a aplicação
 var app = express();
+app.use(express.static('public'));
+
 
 //Import de pacotes necessários
 app.use(require('morgan')('combined'));
@@ -287,6 +294,78 @@ app.post('/api/translate', function(req, res) {
     });
 
 
+});
+
+app.get('/api/talk', function(req, res) {
+
+  console.log(req.query.text);
+  const fs = require('fs');
+
+  // Imports the Google Cloud client library
+
+  // Creates a client
+  const client = new textToSpeech.TextToSpeechClient();
+
+  const text = req.query.text;
+  const language = req.query.lang
+  const tempDir = os.tmpdir();
+  const fileName = shortid.generate();
+  const outputFile = `${tempDir}/${fileName}.mp3`;
+
+  const request = {
+    input: {text: text},
+    voice: {languageCode: language, ssmlGender: 'FEMALE'},
+    audioConfig: {audioEncoding: 'MP3'},
+  };
+
+  client.synthesizeSpeech(request, (err, response) => {
+    if (err) {
+      console.error('ERROR:', err);
+      return;
+    }
+
+    fs.writeFile(outputFile, response.audioContent, 'binary', err => {
+      if (err) {
+        console.error('ERROR:', err);
+        return;
+      }
+    console.log(`Audio content written to file: ${outputFile}`);
+    const stat = fs.statSync(outputFile);
+    const fileSize = stat.size
+    const range = req.headers.range;
+
+    if (range) {
+      const parts = range.replace(/bytes=/, "").split("-")
+      const start = parseInt(parts[0], 10)
+      const end = parts[1]
+        ? parseInt(parts[1], 10)
+        : fileSize-1
+      const chunksize = (end-start)+1
+      //console.log(stat);
+      const stream = fs.createReadStream(outputFile, {start});
+      // informações sobre o tipo do conteúdo e o tamanho do arquivo
+      res.writeHead(206, {
+          'Content-Type': 'audio/mp3',
+          'Content-Length': stat.size,
+          'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+          'Accept-Ranges': 'bytes',
+      });
+
+        // só exibe quando terminar de enviar tudo
+        stream.on('end', () => console.log('acabou'));
+        // faz streaming do audio
+        stream.pipe(res);
+    } else {
+      const head = {
+      'Content-Length': fileSize,
+      'Content-Type': 'video/mp4',
+      }
+      res.writeHead(200, head);
+      fs.createReadStream(outputFile).pipe(res);
+    }
+
+    });
+  });
 });
 
 app.post('/api/countquotes', function (req, res) {

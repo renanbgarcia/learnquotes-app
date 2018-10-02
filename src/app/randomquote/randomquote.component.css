@@ -27,6 +27,19 @@
   width: 100%;
 }
 
+#quoteAudio {
+  width: 100%;
+}
+
+#titulo {
+  display: inline-block;
+  font-family: Mali, cursive;
+}
+
+.btn-listen {
+  /* width: 15%; */
+}
+
 main {
   margin-top: 10px;
 }

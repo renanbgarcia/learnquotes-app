@@ -4,7 +4,8 @@
 
 <div class="pagination-centered">
   <div class="btn-group" dropdown>
-    <button class="btn btn-primary btn-margin" (@buttonAtt.done)="bounce()" [@buttonAtt]="this.bState" (click)="getAnotherQuote()">Citação</button>
+    <!-- <button class="btn btn-primary btn-margin" (@buttonAtt.done)="bounce()" [@buttonAtt]="this.bState" (click)="getAnotherQuote()">Citação</button> -->
+    <button class="btn btn-primary btn-margin" (click)="getAnotherQuote()">Citação</button>
     <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle btn-margin" aria-controls="dropdown-basic">
       Língua
       <span class="caret"></span>
@@ -21,10 +22,12 @@
   <context-menu>
     <ng-template contextMenuItem>
       <div>
+        <h4>{{ this.clickedWord }}</h4>
         <label (click)="dontClose($event)">
           Tradução:
         </label>
-        <input class="form-control" (keyup)="saveKeys($event);" (click)="dontClose($event)" type="text" name="meaning" placeholder="insira a tradução da palavra"><br>
+        <input class="form-control" (keyup)="saveKeys($event);" (click)="dontClose($event)" type="text" name="meaning" placeholder="insira a tradução da palavra">
+        <p><em>Sugestão: {{ this.wordTranslation.getValue() }}</em></p>
         <select (click)="dontClose($event)" class="form-control" id="howKnown">
           <option value="1">1-Desconhecida</option>
           <option value="2">2-Já vista</option>
@@ -32,6 +35,7 @@
           <option value="4">4-Conhecida</option>
           <option value="5">5-Aprendida</option>
         </select>
+        <br>
         <button class="btn btn-success btn-save" (click)='insertWord()'>Salvar</button>
       </div>
     </ng-template>
@@ -39,11 +43,17 @@
   <!-- -->
     <div class="card">
       <div class="card-header">
-        <h3> Citação! <span class="badge badge-secondary">{{ usingLang }}</span> <ng-template #popTemplate>{{this.quoteTranslation.getValue()}}</ng-template>
+        <h3 id="titulo">Citação!</h3><span class="badge badge-secondary">{{ usingLang }}</span> <ng-template #popTemplate>{{this.quoteTranslation.getValue()}}</ng-template>
           <button (click)="getTranslation()" type="button" class="btn btn-round btn-margin"
                   [popover]="popTemplate" containerClass="translationPopover">Trad
           </button>
-        </h3>
+          <!-- Controle do audio -->
+            <button class="btn btn-round" (click)="getQuoteAudio()">Ouvir</button>
+            <audio controls id="quoteAudio" *ngIf="isAudioVidible.getValue()">
+              <source src="{{audioSource.getValue()}}" type="audio/mp3">
+            </audio>
+          <!-- Fim controle do audio -->
+
       </div>
       <app-spinner *ngIf="showSpin" ></app-spinner>
       <div *ngIf="showQuote" class="card-body">

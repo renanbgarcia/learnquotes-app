@@ -75,11 +75,13 @@ table th {
 :host /deep/ a.nav-link.active {
     background-color: #DFFEBF;
     color: rgb(180, 147, 231);
+    font-family: Mali, cursive;
 }
 
 :host /deep/ a.nav-link {
     background-color: #fff;
     color: rgb(124, 160, 87);
+    font-family: Mali, cursive;
 }
 
 :host /deep/ .tab-container {

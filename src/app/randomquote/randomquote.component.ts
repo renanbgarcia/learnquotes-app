@@ -44,6 +44,8 @@ export class RandomquoteComponent implements OnInit {
   quoteText: string = this.randomservice.quote.getValue().text;
   treatedQuoteText: String;
   quoteTranslation = new BehaviorSubject('Loading...');
+  wordTranslation =  new BehaviorSubject('Carregando...');
+  audioSource = new BehaviorSubject('');
   words: string[];
   quoteSource: string = '';
   usingLang: string = this.randomservice.lang.getValue()
@@ -126,6 +128,7 @@ export class RandomquoteComponent implements OnInit {
       this.bState ='inactive';
       this.randomservice.getRes()
     }
+    this.audioSource.next('');
   }
 
   changeLanguage(lang): void {
@@ -160,7 +163,18 @@ export class RandomquoteComponent implements OnInit {
 
   getTranslation() {
       this.quoteTranslation.next('Carregando...') //reseta texto do popover
-      this.http.post('/api/translate', { word: this.treatedQuoteText }).subscribe((res) => this.quoteTranslation.next(res.transl));
+      this.http.post('/api/translate', { word: this.treatedQuoteText }).subscribe((res: {transl: string}) => this.quoteTranslation.next(res.transl));
+  }
+
+  getWordTranslation() {
+    this.http.post('/api/translate', { word: this.clickedWord }).subscribe((res: {transl: string}) => this.wordTranslation.next(res.transl));
+  }
+
+  getQuoteAudio() {
+    this.audioSource.next(`/api/talk?text=${this.treatedQuoteText}&lang=${this.usingLang}`);
+    const audiop: any = document.getElementById("quoteAudio");
+    audiop.autoplay = true;
+    audiop.load();
   }
 
   saveKeys(event: any) {
@@ -191,6 +205,7 @@ export class RandomquoteComponent implements OnInit {
     $event.preventDefault();
     $event.stopPropagation();
     this.clickedWord = $event.target.innerText;
+    this.getWordTranslation();
   }
 
 }
