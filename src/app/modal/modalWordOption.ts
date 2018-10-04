@@ -26,25 +26,26 @@ import { GetUserInfo } from '../services/getUserInfo.service';
       <div class="form-group">
         <label>Estado: </label>
         <select class="form-control" id="state-edit">
-          <option [selected]="word.howKnown == 1" value="1">1-Desconhecida</option>
-          <option [selected]="word.howKnown == 2" value="2">2-Já vista</option>
-          <option [selected]="word.howKnown == 3" value="3">3-Familiar</option>
-          <option [selected]="word.howKnown == 4" value="4">4-Conhecida</option>
-          <option [selected]="word.howKnown == 5" value="5">5-Aprendida</option>
+          <option [selected]="word.howKnown == '1'" value="1">1-Desconhecida</option>
+          <option [selected]="word.howKnown == '2'" value="2">2-Já vista</option>
+          <option [selected]="word.howKnown == '3'" value="3">3-Familiar</option>
+          <option [selected]="word.howKnown == '4'" value="4">4-Conhecida</option>
+          <option [selected]="word.howKnown == '5'" value="5">5-Aprendida</option>
         </select>
       </div>
     </form>
       <button class="btn btn-warning" (click)="deleteWord()">Deletar Palavra</button>
-      <button class="btn btn-success" (click)="updateWord()">Confirmar</button>
+      <button class="btn btn-success btn-margin" (click)="updateWord()">Confirmar</button>
     </div>
     </div>
-  `
+  `,
+  styles: ['.btn-margin { margin-left: 5px; }']
 })
 
 export class ModalWordOptionComponent {
     public title: string;
     public list: any[] = [];
-    word: {_id: String};
+    word: {_id: String, word: String, meaning: String, howKnown: String};
     wordEdit: String;
     meaningEdit: String;
     stateEdit: String;
@@ -76,7 +77,7 @@ export class ModalWordOptionComponent {
       });
   }
 
-  updateWord(e) {
+  updateWord() {
     this.getFirstTime();
     this.http.post('/api/update/word',  { word_id: this.word._id, word: this.wordEdit, meaning: this.meaningEdit, state: this.stateEdit }).subscribe((res) => { console.log(res); this.getWords()});
     this.modalref.hide();

@@ -8,21 +8,23 @@
 </button>
 
     <!-- <span class="navbar-brand align-left">LearnQuotes!</span> -->
-    <div>Bem vindo {{userName.getValue()}}</div>
+    <div>Bem vindo(a) {{userName.getValue()}}</div>
   </header>
 
   <div id="collapseEvent" class="nav navbar align-left" [@menuState]="this.state">
     <img class="img-thumb" src="{{ userPhoto.getValue() }}"/>
     <h3>{{userName.getValue()}}</h3>
     <p>Nível: colocar niveis</p>
-    <p>Pontos: colocar niveis</p>
+    <p>Pontos: colocar pontos</p>
     <div class="item-box">
       <li class="nav-item" [routerLink]="['/home']">
         <i class="far fa-star fa-spin"></i> Home</li>
       <li class="nav-item" [routerLink]="['profile']">
         <i class="far fa-star fa-spin"></i> Perfil</li>
       <li class="nav-item" [routerLink]="['randomquote']">
-        <i class="far fa-star fa-spin"></i> Random</li>
+        <i class="far fa-star fa-spin"></i> Citações</li>
+      <li class="nav-item" [routerLink]="['vocabulario']">
+        <i class="far fa-star fa-spin"></i> Vocabulário</li>
       <li class="nav-item" (click)="openConfirmDialog()">
         <i class="far fa-star fa-spin"></i> Logout</li>
     </div>
