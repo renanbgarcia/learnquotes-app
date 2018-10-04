@@ -17,8 +17,10 @@ var shortid = require('shortid');
 // Configuração do Google Strategy do Passport
 
 passport.use(new Strategy({
-    clientID: '736982925792-h2vvuqse3ob51tcqgknfrqscjvlejipq.apps.googleusercontent.com',
-    clientSecret: 'F0rU8bx9idwP0AdJoQaBR9k6',
+    // clientID: '736982925792-h2vvuqse3ob51tcqgknfrqscjvlejipq.apps.googleusercontent.com',
+    clientID: '215402490334-nb2ti6j79hki1p8dr7nbms0mqqe6jn42.apps.googleusercontent.com',
+    //clientSecret: 'F0rU8bx9idwP0AdJoQaBR9k6',
+    clientSecret: 'urH9VjicSoSD_jCyp0tCbMlj',
     callbackURL: 'http://localhost:3000/auth/google/callback'
   },
   function(accessToken, refreshToken, profile, cb) {
