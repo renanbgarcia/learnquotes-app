@@ -3,6 +3,9 @@
 Esse é um projeto que eu fiz para começar a aprender Angular e typescript, além de fundamentos de Back-End com
 Node.js e express.js, criando uma REST API que serve o back-end do aplicativo.
 
+Rodando no Google App Engine:
+https://treno-218217.appspot.com/
+
 Eu comecei tentando fazer um web aplicativo que gera citações aleatórias, agora estou tentando
 expandir as funcionalidades para fazer um aplicativo de aprendizagem de idiomas usando a geração de
 citaçõe sem diversas línguas.
@@ -12,13 +15,15 @@ Atualmente já foi criado:
 1. Login utilizando a estratégia Google OAuth do Passport.js.
 2. Geração de citações aleatórias em Inglês e Francês.
 3. Algumas Rotas da API.
-4. Capacidade de slavar citações na conta do usuário.
+4. Capacidade de salvar citações na conta do usuário.
 5. Capacidade de salvar palavras das citações na conta do usuário, podendo adicionar significado e nível de conhecimento da palavra.
+6. Ouvir o audio da citação.
+7. Tradução da citação e sujestão de tradução de palavras.
 
 TODO:
 
 1. Construir perfil do usuário.
-2. Adicionar um dicionário usando Wiktionary.
+2. ...
 3. Adicionar métodos de estudo/revisão de citações/palavras aprendidas.
 4. Consertar toda a parte de typescript :<
 5. etc etc etc
