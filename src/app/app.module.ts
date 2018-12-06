@@ -25,8 +25,9 @@ import { ModalContentComponent } from './modal/lOutmodal';
 import { UserinfoComponent } from './userprofile/userinfo/userinfo.component';
 import { HighlightTextDirective } from './directives/highlight-text.directive';
 import { SplitWordsDirective } from './directives/split-words.directive'
-import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
+//import { EscapeHtmlPipe } from './pipes/keep-html.pipe';
 import { VocabComponent } from './vocab/vocab.component';
+import { TrainingComponent } from './training/training.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     children: [
       { path: 'profile', component: UserprofileComponent},
       { path: 'randomquote', component: RandomquoteComponent },
-      { path: 'vocabulario', component: VocabComponent }
+      { path: 'vocabulario', component: VocabComponent },
+      { path: 'training', component: TrainingComponent }
     ]
 }
 ];
@@ -57,8 +59,9 @@ const appRoutes: Routes = [
     UserinfoComponent,
     HighlightTextDirective,
     SplitWordsDirective,
-    EscapeHtmlPipe,
-    VocabComponent
+    //EscapeHtmlPipe,
+    VocabComponent,
+    TrainingComponent
   ],
   imports: [
     BrowserModule,
