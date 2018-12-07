@@ -1,0 +1,15 @@
+main {
+    display: flex;
+    height: calc(100vh - 120px);
+    flex-direction: column;
+}
+
+.card {
+    display: flex;
+    width: 80%;
+    margin: auto;
+}
+
+button {
+    margin: 5px;
+}

@@ -30,6 +30,11 @@ export class VocabComponent implements OnInit {
     this.getWords();
   }
 
+  /**
+   * Get the quotes registered for the user and assign it to
+   * the quotes variable.
+   * @author Renan Garcia
+   **/
   getQuotes() {
     this.getInfo.getUserQuotes().subscribe((quotes) => { console.log(quotes);
       this.preShowQuotes(quotes);
