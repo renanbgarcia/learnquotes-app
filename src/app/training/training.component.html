@@ -2,16 +2,17 @@
   <p>Número de palavras:</p>
   <div class="card">
     <div class="card-body">
+        <button class="btn btn-secondary">Significado</button>
+        <button class="btn btn-secondary">Tradução</button>
         <h5 class="card-title">Palavra</h5>
-        <h1>TESTE</h1>
-        <button class="btn btn-primary">Significado</button>
-        <button class="btn btn-primary">Tradução</button>
+        <h1>{{ this.currentCard.word }}</h1>
     </div>
     <div class="card-header">
-      <button class="btn btn-primary">opt</button>
-      <button class="btn btn-primary">opt</button>
-      <button class="btn btn-primary">opt</button>
-      <button class="btn btn-primary">opt</button>
+      <button class="btn btn-primary" (click)="chooseWordState(2)">Já vista</button>
+      <button class="btn btn-primary" (click)="chooseWordState(3)">Familiar</button>
+      <button class="btn btn-primary" (click)="chooseWordState(4)">Conhecida</button>
+      <button class="btn btn-primary" (click)="chooseWordState(5)">Aprendida</button>
     </div>
+    <button class="btn btn-danger">Finalizar</button>
   </div>
 </main>
