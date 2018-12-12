@@ -27,6 +27,7 @@ import { HighlightTextDirective } from './directives/highlight-text.directive';
 import { SplitWordsDirective } from './directives/split-words.directive'
 import { VocabComponent } from './vocab/vocab.component';
 import { TrainingComponent } from './training/training.component';
+import { StartComponent } from './start/start.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -38,7 +39,9 @@ const appRoutes: Routes = [
       { path: 'profile', component: UserprofileComponent},
       { path: 'randomquote', component: RandomquoteComponent },
       { path: 'vocabulario', component: VocabComponent },
-      { path: 'training', component: TrainingComponent }
+      { path: 'training', component: TrainingComponent },
+      { path: 'start', component: StartComponent },
+      { path: '',   redirectTo: 'start', pathMatch: 'full' },
     ]
 }
 ];
@@ -59,7 +62,8 @@ const appRoutes: Routes = [
     HighlightTextDirective,
     SplitWordsDirective,
     VocabComponent,
-    TrainingComponent
+    TrainingComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,
