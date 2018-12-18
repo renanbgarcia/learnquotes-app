@@ -11,7 +11,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuardService } from './services/authguard.service';
-import { ContextMenuModule } from 'ngx-contextmenu'
+import { ContextMenuModule } from 'ngx-contextmenu';
 
 import { AppComponent } from './app.component';
 import { RandomquoteComponent } from './randomquote/randomquote.component';
@@ -79,6 +79,7 @@ const appRoutes: Routes = [
     ContextMenuModule.forRoot(),
     TabsModule.forRoot(),
     PopoverModule.forRoot(),
+
   ],
   providers: [AuthGuardService, AuthorizerComponent, VocabComponent],
   bootstrap: [AppComponent],

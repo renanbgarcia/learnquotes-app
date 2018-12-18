@@ -8,6 +8,7 @@ import { ContextMenuComponent } from '../../../node_modules/ngx-contextmenu';
 import { ContextMenuService } from 'ngx-contextmenu';
 import { BehaviorSubject } from 'rxjs';
 import { PopoverConfig } from 'ngx-bootstrap/popover';
+import { environment } from 'src/environments/environment';
 
 export function getPopoverConfig(): PopoverConfig {
   return Object.assign(new PopoverConfig(), {
@@ -72,7 +73,6 @@ export class RandomquoteComponent implements OnInit {
           that.doToggleSpin();
         } else {
           console.log('deu ruim');
-          //console.log(reg.test(x.text));
           console.log(x.text);
           if (that.randomservice.quote.getValue().text !== 'carregando') {
             that.randomservice.getRes()
@@ -147,7 +147,7 @@ export class RandomquoteComponent implements OnInit {
 
   insertQuote() {
     if (this.quoteText !== 'Quer uma citação?') {
-      this.http.post('/api/save/quote', { id: localStorage.getItem('user'), quote: this.treatedQuoteText, source: this.quoteSource }).subscribe((res: any) => {
+      this.http.post(`${environment.ENDPOINT}/api/save/quote`, { id: localStorage.getItem('user'), quote: this.treatedQuoteText, source: this.quoteSource }).subscribe((res: any) => {
       if (res.response == 'success') { this.confirmationAlert(); }
       });
     }
@@ -156,22 +156,22 @@ export class RandomquoteComponent implements OnInit {
   insertWord() {
     let el:any = document.getElementById("howKnown");
     let hk = el.options[el.selectedIndex].value;
-    this.http.post('api/save/word', { id: localStorage.getItem('user'), word: this.clickedWord, meaning: this.meaning, howKnown: hk }).subscribe((res: any) => {
+    this.http.post(`${environment.ENDPOINT}api/save/word`, { id: localStorage.getItem('user'), word: this.clickedWord, meaning: this.meaning, howKnown: hk }).subscribe((res: any) => {
       if (res.response === 'success') { this.confirmationAlert();}
     });
   }
 
   getTranslation() {
       this.quoteTranslation.next('Carregando...') //reseta texto do popover
-      this.http.post('/api/translate', { word: this.treatedQuoteText }).subscribe((res: {transl: string}) => this.quoteTranslation.next(res.transl));
+      this.http.post(`${environment.ENDPOINT}/api/translate`, { word: this.treatedQuoteText }).subscribe((res: {transl: string}) => this.quoteTranslation.next(res.transl));
   }
 
   getWordTranslation() {
-    this.http.post('/api/translate', { word: this.clickedWord }).subscribe((res: {transl: string}) => this.wordTranslation.next(res.transl));
+    this.http.post(`${environment.ENDPOINT}/api/translate`, { word: this.clickedWord }).subscribe((res: {transl: string}) => this.wordTranslation.next(res.transl));
   }
 
   getQuoteAudio() {
-    this.audioSource.next(`/api/talk?text=${this.treatedQuoteText}&lang=${this.usingLang}`);
+    this.audioSource.next(`${environment.ENDPOINT}/api/talk?text=${this.treatedQuoteText}&lang=${this.usingLang}`);
     const audiop: any = document.getElementById("quoteAudio");
     audiop.autoplay = true;
     audiop.load();

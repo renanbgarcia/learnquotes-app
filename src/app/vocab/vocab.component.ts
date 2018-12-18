@@ -5,6 +5,7 @@ import { BehaviorSubject } from 'rxjs';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ModalWordOptionComponent } from '../modal/modalWordOption';
 import { TabsModule } from 'ngx-bootstrap/tabs';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-vocab',
@@ -104,7 +105,7 @@ export class VocabComponent implements OnInit {
   deleteQuote(quote) {
     console.log(quote);
     if (window.confirm("Realmente quer deletar essa citação?")) {
-      this.http.post('/api/delete/quote', { id: localStorage.getItem('user'), quote_id: quote._id }).subscribe((res) => { console.log(res); this.getQuotes(); });
+      this.http.post(environment.ENDPOINT + '/api/delete/quote', { id: localStorage.getItem('user'), quote_id: quote._id }).subscribe((res) => { console.log(res); this.getQuotes(); });
     }
   }
 }

@@ -1,7 +1,5 @@
-.btn-margin {
-  margin-right: 5px;
-  margin-left: 5px;
-  margin-bottom: 10px;
+.card {
+  width: 100%;
 }
 
 .btn-margin:focus {
@@ -9,14 +7,17 @@
   border: none;
 }
 
-.btn-round {
-  width: 50px;
-  height: 35px;
-  border-radius: 10px;
-  background-color: #909090;
-  color: #fff;
+.btn-right {
   float: right;
-  padding: .275rem .35rem;
+}
+
+.btn-group {
+  display: flex;
+}
+
+.btn-top {
+  flex-grow: 2;
+  height: 70px;
 }
 
 .alert {
@@ -34,10 +35,6 @@
 #titulo {
   display: inline-block;
   font-family: Mali, cursive;
-}
-
-main {
-  margin-top: 10px;
 }
 
 .align-right {
@@ -67,10 +64,27 @@ main {
   text-align: center;
 }
 
-.btn-save {
+/* .btn-save {
   width: 70%;
-}
+} */
 
 /deep/ .ngx-contextmenu li:first-child {
   border-top: none;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.margin-bot {
+  margin-bottom: 5px;
+}
+
+.blockquote {
+  clear: both;
+}
+.blockquote-footer {
+  clear: both;
 }

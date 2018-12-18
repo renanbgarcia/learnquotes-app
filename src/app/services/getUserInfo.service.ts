@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import 'rxjs-compat';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -12,11 +13,13 @@ export class GetUserInfo {
     constructor(private http: HttpClient) { }
 
     getUser() {
-        return this.http.post('/api/userinfo', {id: localStorage.getItem('user')});
+        console.log( localStorage.getItem('user'));
+        return this.http.post(`${environment.ENDPOINT}/api/userinfo`, {id: localStorage.getItem('user')});
     }
 
     getUserPhoto() {
-        return this.getUser().map((res: any) => res.user.photo);
+        console.log('getuser photo l21')
+        return this.getUser().map((res: any) => {console.log(res); return res.user.photo});
     }
 
     getUserName() {
@@ -40,10 +43,10 @@ export class GetUserInfo {
     }
 
     getUserQuotesCount() {
-        return this.http.post('/api/countquotes', { id: localStorage.getItem('user') }).map((res: any) => res );
+        return this.http.post(`${environment.ENDPOINT}/api/countquotes`, { id: localStorage.getItem('user') }).map((res: any) => res );
     }
 
     setUserScore(score: number) {
-        return this.http.post('/api/setuserinfo', { id: localStorage.getItem('user'), type: 'score', info: score });
+        return this.http.post(`${environment.ENDPOINT}/api/setuserinfo`, { id: localStorage.getItem('user'), type: 'score', info: score });
     }
 }

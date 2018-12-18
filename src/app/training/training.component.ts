@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Flashcards } from '../games/flashcards/flashcards';
 import { GetUserInfo } from './../services/getUserInfo.service';
 import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-training',
@@ -68,7 +69,7 @@ export class TrainingComponent implements OnInit {
 
   updateWordState(state) {
     console.log(this.currentCard.word_id);
-    this.http.post('/api/update/word',  { word_id: this.currentCard.word_id, state: state }).subscribe((res) => { console.log(res); res});
+    this.http.post(`${environment.ENDPOINT}/api/update/word`,  { word_id: this.currentCard.word_id, state: state }).subscribe((res) => { console.log(res); res});
   }
 
 }

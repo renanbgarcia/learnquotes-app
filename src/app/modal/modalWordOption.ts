@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Component, ApplicationRef, EventEmitter, Output } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { GetUserInfo } from '../services/getUserInfo.service';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -65,7 +66,7 @@ export class ModalWordOptionComponent {
 
   deleteWord() {
     if (window.confirm("Realmente quer deletar essa palavra?")) {
-      this.http.post('/api/delete/word', { id: localStorage.getItem('user'), word_id: this.word._id }).subscribe((res) => { console.log(res); this.getWords()});
+      this.http.post(`${environment.ENDPOINT}/api/delete/word`, { id: localStorage.getItem('user'), word_id: this.word._id }).subscribe((res) => { console.log(res); this.getWords()});
       this.modalref.hide();
       this.getWords();
     }
@@ -79,7 +80,7 @@ export class ModalWordOptionComponent {
 
   updateWord() {
     this.getFirstTime();
-    this.http.post('/api/update/word',  { word_id: this.word._id, word: this.wordEdit, meaning: this.meaningEdit, state: this.stateEdit }).subscribe((res) => { console.log(res); this.getWords()});
+    this.http.post(`${environment.ENDPOINT}/api/update/word`,  { word_id: this.word._id, word: this.wordEdit, meaning: this.meaningEdit, state: this.stateEdit }).subscribe((res) => { console.log(res); this.getWords()});
     this.modalref.hide();
   }
 

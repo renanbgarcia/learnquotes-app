@@ -13,8 +13,10 @@ export class AuthGuardService implements CanActivate {
         this.auth.isAuthenticated().subscribe((res: any) => {
              if ( res.auth !== 'Authenticated' ) {
                 console.log(res);
+                console.log('is not authenticated');
                 return false;
             } else if (!res.auth) {
+                console.log('No response!');
                 return false
             } else {
                 console.log('authenticated mode 2');

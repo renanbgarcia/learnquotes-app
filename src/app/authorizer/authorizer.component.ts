@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs-compat';
 import { RandomquoteService } from '../randomquote.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-authorizer',
@@ -41,11 +42,19 @@ export class AuthorizerComponent implements OnInit {
   }
 
   getUser() {
-    return this.http.get('/api/user').map((res: any) => {
-      localStorage.setItem('user', res.user);
-      console.log(res);
-      return res;
-    });
+    // return this.http.get(`${environment.ENDPOINT}/api/user`).map((res: any) => {
+    //   localStorage.setItem('user', res.user);
+    //   console.log(res);
+    //   return res;
+    // });
+
+    return this.route.queryParams.map((params) => {
+      console.log(params['user']);
+      localStorage.setItem('user', params['user']);
+      console.log(localStorage.getItem('user'));
+      return params['user']
+    })
+
   }
 
   getToken() {

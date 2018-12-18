@@ -1,12 +1,12 @@
-<main class="container-fluid">
+<main class="">
 
 <alert class="alert" type="success" *ngIf="showAlert">Sucesso!</alert>
 
-<div class="pagination-centered">
+<div class="">
   <div class="btn-group" dropdown>
     <!-- <button class="btn btn-primary btn-margin" (@buttonAtt.done)="bounce()" [@buttonAtt]="this.bState" (click)="getAnotherQuote()">Citação</button> -->
-    <button class="btn btn-primary btn-margin" (click)="getAnotherQuote()">Citação</button>
-    <button id="button-basic" dropdownToggle type="button" class="btn btn-primary dropdown-toggle btn-margin" aria-controls="dropdown-basic">
+    <button class="btn btn-top btn-primary" (click)="getAnotherQuote()">Citação</button>
+    <button id="button-basic" dropdownToggle type="button" class="btn btn-top btn-primary dropdown-toggle" aria-controls="dropdown-basic">
       Língua
       <span class="caret"></span>
     </button>
@@ -14,10 +14,10 @@
       <button role="menuitem" class="dropdown-item" (click)="changeLanguage('en')">Inglês</button>
       <button role="menuitem" class="dropdown-item" (click)="changeLanguage('fr')">Francês</button>
     </ul>
-    <button class="btn btn-primary btn-margin" (click)="insertQuote()">Salvar citação</button>
+    <button class="btn btn-top btn-primary" (click)="insertQuote()">Salvar citação</button>
   </div>
 </div>
-  <div class="container-fluid">
+  <div class="">
   <!-- template do contextmenu -->
   <context-menu>
     <ng-template contextMenuItem>
@@ -43,17 +43,20 @@
   <!-- -->
     <div class="card">
       <div class="card-header">
-        <h3 id="titulo">Citação!</h3><span class="badge badge-secondary">{{ usingLang }}</span> <ng-template #popTemplate>{{this.quoteTranslation.getValue()}}</ng-template>
-          <button (click)="getTranslation()" type="button" class="btn btn-round btn-margin"
+        <div class="flex margin-bot">
+          <h3 id="titulo">Citação!</h3><span class="badge badge-secondary">{{ usingLang }}</span> <ng-template #popTemplate>{{this.quoteTranslation.getValue()}}</ng-template>
+          <button (click)="getTranslation()" type="button" class="btn btn-right btn-margin"
                   [popover]="popTemplate" containerClass="translationPopover">Trad
           </button>
+          <button class="btn btn-right" (click)="getQuoteAudio()">Ouvir</button>
+        </div>
+        <div>
           <!-- Controle do audio -->
-            <button class="btn btn-round" (click)="getQuoteAudio()">Ouvir</button>
-            <audio controls id="quoteAudio">
-              <source src="{{audioSource.getValue()}}" type="audio/mp3">
-            </audio>
-          <!-- Fim controle do audio -->
-
+          <audio controls id="quoteAudio">
+            <source src="{{ audioSource.getValue() }}" type="audio/mp3">
+          </audio>
+        <!-- Fim controle do audio -->
+        </div>
       </div>
       <app-spinner *ngIf="showSpin" ></app-spinner>
       <div *ngIf="showQuote" class="card-body">

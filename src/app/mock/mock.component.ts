@@ -26,7 +26,7 @@ import { ModalContentComponent } from '../modal/lOutmodal'
   ]
 })
 export class MockComponent implements OnInit {
-  title = 'LearnQuotes';
+  title = 'LingoTreno';
   isCollapsed = false;
   state = 'inactive';
   userName = new BehaviorSubject('User');
