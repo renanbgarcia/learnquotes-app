@@ -1,8 +1,8 @@
-import { GetUserInfo } from './../../services/getUserInfo.service';
+import { GetUserInfo } from './../../../services/getUserInfo.service';
 import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '../../../../node_modules/@angular/router';
+import { Router } from '../../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-userinfo',

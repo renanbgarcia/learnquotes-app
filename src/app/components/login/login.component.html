@@ -1,15 +1,11 @@
 <main>
-  <header class="container-fluid">
-    <h1>LingoTreno</h1>
-    <h2>Acesse com o Google!</h2>
-    <div id="login-box" class="btn-login">
-      <div [innerHTML]="urlHTML"></div>
-      <!-- <button class="btn btn-login"> -->
-        <!-- <a href={ this.url }>
-          <span class="fa fa-google"></span>
-          | Entrar com o Google!
-        </a> -->
-      <!-- </button> -->
+  <header id="login-box" class="container-fluid">
+    <div id="title">
+      <h1>LingoTreno</h1>
+      <h2>Acesse com o Google!</h2>
+    </div>
+    <div class="">
+      <button class="btn btn-login" [innerHTML]="urlHTML"></button>
     </div>
   </header>
 

@@ -1,8 +1,7 @@
-import { Router, NavigationEnd, NavigationStart, Event } from '@angular/router';
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { AuthService } from '../services/auth.service';
-import { AuthorizerComponent } from '../authorizer/authorizer.component'
+import { HttpClient } from '@angular/common/http';
+import { AuthorizerComponent } from '../../authorizer/authorizer.component'
 
 @Component({
   selector: 'app-userprofile',

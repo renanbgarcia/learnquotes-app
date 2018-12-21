@@ -1,10 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { GetUserInfo } from './../services/getUserInfo.service';
+import { GetUserInfo } from './../../services/getUserInfo.service';
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { ModalWordOptionComponent } from '../modal/modalWordOption';
-import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ModalWordOptionComponent } from '../../modal/modalWordOption';
 import { environment } from 'src/environments/environment';
 
 @Component({

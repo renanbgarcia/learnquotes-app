@@ -1,12 +1,11 @@
-import { GetUserInfo } from './../services/getUserInfo.service';
+import { GetUserInfo } from './../../services/getUserInfo.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { NavigationEnd, Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
-import { ModalContentComponent } from '../modal/lOutmodal'
+import { ModalContentComponent } from '../../modal/lOutmodal'
 
 @Component({
   selector: 'app-mock',
