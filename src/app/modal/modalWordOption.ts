@@ -1,4 +1,4 @@
-import { VocabComponent } from './../vocab/vocab.component';
+import { VocabComponent } from '../components/vocab/vocab.component';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, ApplicationRef, EventEmitter, Output } from '@angular/core';
