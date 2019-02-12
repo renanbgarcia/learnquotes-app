@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Flashcards } from '../games/flashcards/flashcards';
-import { GetUserInfo } from './../services/getUserInfo.service';
+import { Flashcards } from '../../games/flashcards/flashcards';
+import { GetUserInfo } from './../../services/getUserInfo.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 

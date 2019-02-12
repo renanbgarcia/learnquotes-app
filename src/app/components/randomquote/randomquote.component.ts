@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
-import { RandomquoteService } from '../randomquote.service';
+import { RandomquoteService } from '../../services/randomquote.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AlertModule  } from 'ngx-bootstrap/alert';
 import * as textVersion from "textversionjs";
-import { ContextMenuComponent } from '../../../node_modules/ngx-contextmenu';
+import { ContextMenuComponent } from '../../../../node_modules/ngx-contextmenu';
 import { ContextMenuService } from 'ngx-contextmenu';
 import { BehaviorSubject } from 'rxjs';
 import { PopoverConfig } from 'ngx-bootstrap/popover';
