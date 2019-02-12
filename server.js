@@ -173,33 +173,33 @@ app.post('/api/save/word', function(req, res) {
 
       //Atualiza os dados da palavra
 app.post('/api/update/word', function(req, res) {
-  //usermodel.findOne({googleUser_id: req.body.id})
-  //resources.words.$.word: ${req.body.word}
-  var objForUpdate = {};
 
-  if (req.body.word !== '') {
+  var objForUpdate = {};
+  var message = 'Word fields updatedwith no errors';
+
+  if (req.body.word !== '' && req.body.word !== undefined) {
     userModel.findOneAndUpdate({
           "resources.words._id": req.body.word_id.toString()
         }, {$set: { "resources.words.$.word": req.body.word }}, function (err, success) {
           if (err) {
             res.send(err) ;
           } else {
-            res.send({response: success});
+            message = message + ' word';
           }
         })
       }
-  if (req.body.meaning !== '') {
+  if (req.body.meaning !== '' && req.body.meaning !== undefined) {
     userModel.findOneAndUpdate({
           "resources.words._id": req.body.word_id.toString()
         }, {$set: { "resources.words.$.meaning": req.body.meaning }}, function (err, success) {
           if (err) {
             res.send(err) ;
           } else {
-            //res.send({response: success});
+            message = message + ' meaning';
           }
         })
       }
-  if (req.body.howKnown !== '') {
+  if (req.body.state !== '' && req.body.state !== undefined) {
     console.log(req.body.state);
     userModel.findOneAndUpdate({
           "resources.words._id": req.body.word_id.toString()
@@ -207,10 +207,12 @@ app.post('/api/update/word', function(req, res) {
           if (err) {
             res.send(err) ;
           } else {
-            //res.send({response: success});
+            message = message + ' state';
           }
         })
       }
+
+  res.send({response: message});
 });
 
   // Deleta uma palavra na conta do usuário
@@ -377,7 +379,6 @@ app.post('/api/countquotes', function (req, res) {
         if (err) {
           res.send(err);
         } else {
-          console.log("     fuuuuuuuuunfoooooooooouuuuuuuuuu!!!!!!!!!")
           res.send({count: doc.resources.quote.length});
         }
       });

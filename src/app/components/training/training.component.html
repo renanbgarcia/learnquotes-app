@@ -2,10 +2,12 @@
   <p>Número de palavras:</p>
   <div class="card">
     <div class="card-body">
-        <button class="btn btn-secondary">Significado</button>
-        <button class="btn btn-secondary">Tradução</button>
+        <button class="btn btn-secondary" (click)="this.showMeaning()" >Significado</button>
+        <button class="btn btn-secondary" (click)="this.showTranslation()" >Tradução</button>
         <h5 class="card-title">Palavra</h5>
         <h1>{{ this.currentCard.word }}</h1>
+        <h3 *ngIf="this.doShowMeaning">{{ this.currentCard.meaning }}</h3>
+        <h3 *ngIf="this.doShowTranslation">{{ this.wordTranslation }}</h3>
     </div>
     <div class="card-header">
       <button class="btn btn-primary" (click)="chooseWordState(2)">Já vista</button>

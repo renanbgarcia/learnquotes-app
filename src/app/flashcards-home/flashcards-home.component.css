@@ -1,0 +1,12 @@
+main {
+    display: flex;
+    height: calc(100vh - 120px);
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    flex-direction: unset;
+    width: 80%;
+    padding: 20px;
+}

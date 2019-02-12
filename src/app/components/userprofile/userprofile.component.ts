@@ -15,6 +15,7 @@ export class UserprofileComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.http.post('localhost:8080/api/test', ({'Access-Control-Allow-Origin': '*'})).subscribe((res) => console.log(res));
     console.log(this.authorizer.token.getValue());
     if (localStorage.length == 0 || localStorage.getItem('token') == 'undefined') {
       console.log('fui chamado');
