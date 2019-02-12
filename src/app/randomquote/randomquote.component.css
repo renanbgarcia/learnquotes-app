@@ -64,10 +64,6 @@
   text-align: center;
 }
 
-/* .btn-save {
-  width: 70%;
-} */
-
 /deep/ .ngx-contextmenu li:first-child {
   border-top: none;
 }
@@ -87,4 +83,8 @@
 }
 .blockquote-footer {
   clear: both;
+}
+
+#dropdown-basic {
+  left: 50% !important;
 }

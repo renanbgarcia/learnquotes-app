@@ -1,22 +1,27 @@
-<main>
-    <div class="card">
-      <h5>Palavras por dia:</h5>
-      <div class="half">
+<main class="container-fluid">
+    <div class="row card tile">
+      <h5 class="col-12">Palavras por dia:</h5>
+      <div class="col-6">
           Sua Meta: <span class="meta">{{ userMeta }}</span>
       </div>
-      <div class="half">
+      <div class="col-6">
         Faltam: <span class="meta-faltando">{{ userMetaFaltando }}</span>
       </div>
     </div>
-    <ul class="main-list">
-      <li>Palavras</li>
-      <li>Citações</li>
-      <li>Exercitar</li>
-      <li>Perfil</li>
-      <li>Notícias</li>
-      <li>Anotações</li>
-    </ul>
-    <div id="user-graphics">
-
+    <div class="row tile">
+      <div class="col-6 card half">
+        <h5>Palavra do dia: Teste</h5>
+      </div>
+      <div class="col-6 card half">
+        <h5>Mascote</h5>
+       </div>
+      </div>
+    <div id="user-graphics" class="row tile">
+      <div class="col-6 card half">
+        teste
+      </div>
+      <div class="col-6 card half">
+        teste
+      </div>
     </div>
 </main>

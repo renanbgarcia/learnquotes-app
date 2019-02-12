@@ -8,36 +8,21 @@ main {
 
 .card {
     padding: 15px;
-    width: 100%;
     flex-direction: unset;
 }
 
-.card-body {
-    box-sizing: border-box;
-    display: flex;
-}
-
-.main-list {
-    display: flex;
-    flex-wrap: wrap;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.row {
     width: 100%;
 }
 
-.main-list li {
-    height: 80px;
-    width: 50%;
-    line-height: 80px;
-    vertical-align: middle;
-    background-color: blueviolet;
-    color: floralwhite;
+.tile {
+    height: 33%;
 }
 
-.half {
-    width: 50%;
-}
+/* .card-body {
+    box-sizing: border-box;
+    display: flex;
+} */
 
 .meta {
     display: block;
@@ -53,8 +38,8 @@ main {
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
-#user-graphics {
+/* #user-graphics {
     width: 100%;
     flex-grow: 2;
     background-color: white;
-}
+} */
