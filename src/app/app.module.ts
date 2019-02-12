@@ -14,20 +14,20 @@ import { AuthGuardService } from './services/authguard.service';
 import { ContextMenuModule } from 'ngx-contextmenu'
 
 import { AppComponent } from './app.component';
-import { RandomquoteComponent } from './randomquote/randomquote.component';
-import { SpinnerComponent } from './spinner/spinner.component';
-import { LoginComponent } from './login/login.component';
-import { MockComponent } from './mock/mock.component';
-import { UserprofileComponent } from './userprofile/userprofile.component';
-import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { RandomquoteComponent } from './components/randomquote/randomquote.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { LoginComponent } from './components/login/login.component';
+import { MockComponent } from './components/mock/mock.component';
+import { UserprofileComponent } from './components/userprofile/userprofile.component';
+import { UnauthorizedComponent } from './components/unauthorized/unauthorized.component';
 import { AuthorizerComponent } from './authorizer/authorizer.component';
 import { ModalContentComponent } from './modal/lOutmodal';
-import { UserinfoComponent } from './userprofile/userinfo/userinfo.component';
+import { UserinfoComponent } from './components/userprofile/userinfo/userinfo.component';
 import { HighlightTextDirective } from './directives/highlight-text.directive';
 import { SplitWordsDirective } from './directives/split-words.directive'
-import { VocabComponent } from './vocab/vocab.component';
-import { TrainingComponent } from './training/training.component';
-import { FlashcardsHomeComponent } from './flashcards-home/flashcards-home.component';
+import { VocabComponent } from './components/vocab/vocab.component';
+import { TrainingComponent } from './components/training/training.component';
+import { StartComponent } from './components/start/start.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
