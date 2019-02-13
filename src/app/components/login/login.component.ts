@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { MzIconMdiModule } from 'ngx-materialize';
 
 @Component({
   selector: 'app-login',
@@ -8,9 +9,9 @@ import { environment } from '../../../environments/environment';
 })
 export class LoginComponent implements OnInit {
 
-  url = environment.ENDPOINT;
+  url = environment.GOOGLE_AUTH_ENDPOINT;
   urlHTML =  `<a href='${this.url}/auth/google?client=localhost:4200'>
-              <span class="fa fa-google"></span>
+                <i mz-icon [icon="'google'"]></i>
               | Entrar com o Google!
               </a>`
 

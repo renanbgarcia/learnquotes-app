@@ -6,60 +6,21 @@ main {
 
 header {
     text-align: center;
-    /* height: 100vh;
-    padding: 10vh; */
     z-index: 2;
 }
 
 h1 {
     font-family: 'Jua', sans-serif;
-    /* color: azure; */
-    font-size: 3em;
 }
 
 h2 {
     font-family: 'Oswald', sans-serif;
-    /* color: azure; */
 }
 
-/deep/ a {
-  color: #fff;
-}
-
-/deep/ a:hover {
-    text-decoration: none;
-    color: #fff;
-}
-
-#login-box {
-    margin: auto;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 20px;
-    border-radius: 30px;
-    width: 300px;
-    height: 400px;
-    background-color: #fff;
-}
-
-#login-box a{
-    color: white;
-    width: 150px;
-}
-
-.title {
-  display: flex;
-  align-self: flex-start;
-}
-
-.btn-login {
-    background-color: rgb(235, 125, 125);
-    border: solid 3px rgb(108, 211, 125);
-}
-
-.btn-login:hover {
-    background-color: rgb(108, 211, 125);
+.position-top {
+  position: absolute;
+  top: 50px;
+  z-index: 500;
 }
 
 /*Clouds animation*/

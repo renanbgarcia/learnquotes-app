@@ -1,13 +1,12 @@
-<main>
-  <header id="login-box" class="container-fluid">
-    <div id="title">
-      <h1>LingoTreno</h1>
-      <h2>Acesse com o Google!</h2>
-    </div>
-    <div class="">
-      <button class="btn btn-login" [innerHTML]="urlHTML"></button>
-    </div>
-  </header>
+<main class="d-flex justify-content-center">
+  <mz-card class="position-top container center-align">
+    <mz-card-content>
+        <h2>LingoTreno</h2>
+        <h4>Acesse com o Google!</h4>
+        <hr>
+        <a mz-button href="{{ url }}" class="light-blue"><i mz-icon-mdi [icon]="'google'" [align]="'left'"></i>Entre com o Google</a>
+    </mz-card-content>
+  </mz-card>
 
   <div id="background-wrap">
     <div class="x1">

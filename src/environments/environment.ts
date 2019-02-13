@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  ENDPOINT: 'http://localhost:3000'
+  ENDPOINT: 'http://localhost:3000',
+  GOOGLE_AUTH_ENDPOINT: 'http://localhost:3000/auth/google'
 };
 
 /*

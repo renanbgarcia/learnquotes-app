@@ -12,6 +12,10 @@ import { RouterModule, Routes, CanActivate } from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuardService } from './services/authguard.service';
 import { ContextMenuModule } from 'ngx-contextmenu';
+import { MzIconMdiModule } from 'ngx-materialize';
+import { MzCardModule } from 'ngx-materialize';
+import { MzButtonModule } from 'ngx-materialize';
+import { MzNavbarModule } from 'ngx-materialize';
 
 import { AppComponent } from './app.component';
 import { RandomquoteComponent } from './components/randomquote/randomquote.component';
@@ -78,7 +82,10 @@ const appRoutes: Routes = [
     ContextMenuModule.forRoot(),
     TabsModule.forRoot(),
     PopoverModule.forRoot(),
-
+    MzIconMdiModule,
+    MzCardModule,
+    MzButtonModule,
+    MzNavbarModule
   ],
   providers: [AuthGuardService, AuthorizerComponent, VocabComponent],
   bootstrap: [AppComponent],

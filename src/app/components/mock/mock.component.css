@@ -12,10 +12,10 @@
   color: blueviolet
 }
 
-:host ::ng-deep a {
+/* :host ::ng-deep a {
   color: rgb(71, 32, 107);
   text-decoration: none;
-}
+} */
 
 .fa-1x {
   font-size: 1.5rem;
