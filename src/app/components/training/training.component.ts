@@ -3,6 +3,8 @@ import { Flashcards } from '../../games/flashcards/flashcards';
 import { GetUserInfo } from './../../services/getUserInfo.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute} from '@angular/router';
+import { filter } from 'rxjs-compat/operator/filter';
 
 @Component({
   selector: 'app-training',
@@ -11,6 +13,8 @@ import { environment } from 'src/environments/environment';
 })
 export class TrainingComponent implements OnInit {
 
+  sessionQuantity;
+  sessionLanguage;
   userWords = [];
   flashcards;
   currentCard = { word: '', word_id: '', meaning: '', index: 0 };
@@ -20,15 +24,24 @@ export class TrainingComponent implements OnInit {
   doShowTranslation: Boolean = false;
   wordTranslation = 'loading';
 
-  constructor(private getInfo: GetUserInfo, private http: HttpClient) {   }
+  constructor(private getInfo: GetUserInfo, private http: HttpClient, private activatedRoute: ActivatedRoute) {   }
 
   ngOnInit() {
+    this.getWordsList();
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.sessionQuantity = params.sessionQuantity;
+      this.sessionLanguage = params.sessionLanguage;
+    });
     this.setDeck().then(() => this.deck = this.flashcards.deck)
     .then(() => { this.currentCard.word = this.deck[0].word;
       console.log(this.deck[0]);
                   this.currentCard.index = 0;
                   this.currentCard.meaning = this.deck[0].meaning;
                   this.currentCard.word_id = this.deck[0]._id }); // Select first card of the deck to show
+  }
+       
+  getWordsList() {
+    this.getInfo.getUserWords().map((wordList) => this.userWords = wordList).subscribe((wordlist) => console.log(wordlist))
   }
 
   /**

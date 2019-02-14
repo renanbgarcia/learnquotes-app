@@ -8,15 +8,19 @@
     <form action="" class="form col-md-6">
       <div class="form-group">
           <label for="cards-number">Quantidade de palavras:</label>
-          <input (change)="getNumber(e)" class="form-control" name="cards-number" type="number" step="5">
+          <select class="form-control" name="cards-number" id="number">
+            <option value="10" selected>10</option>
+            <option value="20">20</option>
+            <option value="50">50</option>
+          </select>
           <label for="language">Lingua:</label>
-          <select (change)="getLanguage()" class="form-control" name="language" id="language">
-            <option value="en">Inglês</option>
+          <select class="form-control" name="language" id="language">
+            <option value="en" selected>Inglês</option>
             <option value="fr">Francês</option>
             <option value="any">Todas</option>
           </select>
       </div>
-        <input [routerLink]="['/home/training/flashcards/play']" class="btn btn-primary" type="button" value="Começar">
+        <input (click)="navigateToPlay()" class="btn btn-primary" type="button" value="Começar">
     </form>
   </div>
 </main>
