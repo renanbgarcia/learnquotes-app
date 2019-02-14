@@ -42,7 +42,19 @@ export class TrainingComponent implements OnInit {
        
   getWordsList() {
     this.getInfo.getUserWords().map((wordList) => this.userWords = wordList).subscribe((wordlist) => console.log(wordlist))
+    //ordenar por prioridade
+    //pegar só a quantitade que o usuario quer
   }
+
+  //pegar o campo nextRevision das palavras
+  //se a data do campo for maior ou igual a data atual, colar a carta pra frente no deck
+  //se tiver menos cartas do que o número escolhido pelo usuario, repetir cartas
+  //senão colocar as cartas no banco de cartas a fazer
+  //  
+
+  //fazer o serviço Flashcards controlar a fila de cartas com suas datas, !!!!!!!!
+  //sendo chamado já na home para verificar o número de cartas na fila.
+  //
 
   /**
    * Create a shuffled deck with the user words.
