@@ -35,24 +35,7 @@ export class MockComponent implements OnInit {
   constructor( private http: HttpClient,
     private getuserinfo: GetUserInfo,
     private modalService: BsModalService,
-    private router: Router) { 
-
-    router.events.subscribe((val: any) => {
-      switch (val.url){
-        case "/home/randomquote":
-          document.body.style.background = '#DFBFFE';
-          break;
-        case "/home":
-          document.body.style.background = '#bfdffe';
-          break;
-        case "/home/profile":
-          document.body.style.background = '#FEBFF2';
-          break;
-        case "/home/vocabulario":
-          document.body.style.background = '#DFFEBF';
-      }
-    });
-  }
+    private router: Router) { }
 
   ngOnInit() {
     this.getuserinfo.getUserPhoto().subscribe((photo) => this.userPhoto.next(photo));

@@ -6,11 +6,6 @@ main {
     align-items: center;
 }
 
-.card {
-    padding: 15px;
-    flex-direction: unset;
-}
-
 .row {
     width: 100%;
 }
@@ -18,11 +13,6 @@ main {
 .tile {
     height: 33%;
 }
-
-/* .card-body {
-    box-sizing: border-box;
-    display: flex;
-} */
 
 .meta {
     display: block;
@@ -37,9 +27,3 @@ main {
     color: rgb(255, 67, 53);
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
-
-/* #user-graphics {
-    width: 100%;
-    flex-grow: 2;
-    background-color: white;
-} */

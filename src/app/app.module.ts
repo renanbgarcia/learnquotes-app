@@ -16,6 +16,7 @@ import { MzIconMdiModule } from 'ngx-materialize';
 import { MzCardModule } from 'ngx-materialize';
 import { MzButtonModule } from 'ngx-materialize';
 import { MzNavbarModule } from 'ngx-materialize';
+import { MzTabModule } from 'ngx-materialize'
 
 import { AppComponent } from './app.component';
 import { RandomquoteComponent } from './components/randomquote/randomquote.component';
@@ -32,6 +33,7 @@ import { SplitWordsDirective } from './directives/split-words.directive'
 import { VocabComponent } from './components/vocab/vocab.component';
 import { TrainingComponent } from './components/training/training.component';
 import { FlashcardsHomeComponent } from './flashcards-home/flashcards-home.component';
+import { StartComponent } from './components/start/start.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -45,6 +47,7 @@ const appRoutes: Routes = [
       { path: 'vocabulario', component: VocabComponent },
       { path: 'training/flashcards/play', component: TrainingComponent },
       { path: 'training/flashcards/start', component: FlashcardsHomeComponent },
+      { path: 'start', component: StartComponent }
     ]
 }
 ];
@@ -66,7 +69,8 @@ const appRoutes: Routes = [
     SplitWordsDirective,
     VocabComponent,
     TrainingComponent,
-    FlashcardsHomeComponent
+    FlashcardsHomeComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,
@@ -85,7 +89,8 @@ const appRoutes: Routes = [
     MzIconMdiModule,
     MzCardModule,
     MzButtonModule,
-    MzNavbarModule
+    MzNavbarModule,
+    MzTabModule
   ],
   providers: [AuthGuardService, AuthorizerComponent, VocabComponent],
   bootstrap: [AppComponent],
