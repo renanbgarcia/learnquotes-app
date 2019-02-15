@@ -55,6 +55,7 @@ export class RandomquoteComponent implements OnInit {
   quotes = '';
   bState = 'active';
   toBounce = true;
+  showAudioControls = false;
   isTextNew = false;
   showAlert: boolean = false;
   clickedWord: any;
@@ -129,6 +130,7 @@ export class RandomquoteComponent implements OnInit {
       this.randomservice.getRes()
     }
     this.audioSource.next('');
+    this.showAudioControls = false;
   }
 
   changeLanguage(lang): void {
@@ -175,6 +177,7 @@ export class RandomquoteComponent implements OnInit {
     const audiop: any = document.getElementById("quoteAudio");
     audiop.autoplay = true;
     audiop.load();
+    this.showAudioControls = true;
   }
 
   saveKeys(event: any) {

@@ -1,65 +1,69 @@
 <main>
-  <tabset [justified]="true" customClass="tabs">
-    <tab heading="Palavras">
-        <!-- <h2>Palavras</h2> -->
-        <div class="container-form">
-          <div class="form-group" id="search-area">
-            <label><i class="fas fa-search"></i>: </label>
-            <input class="form-control search-input" (keyup)="registerWordK($event)" type="text" name="keywords">
-          <select class="form-control" (change)="verifyWordFilter()" id="filter-estados">
-            <option value="0" selected>Todos estados</option>
-            <option value="1">Descohecida</option>
-            <option value="2">Já vista</option>
-            <option value="3">Familiar</option>
-            <option value="4">Conhecida</option>
-            <option value="5">Aprendida</option>
-          </select>
+  <mz-tab
+    [fixedTabWidth]="'true'"
+    [swipeable]="'true'"
+  >
+    <mz-tab-item
+      [active]="'true'"
+      [label]="'Tab 1'"
+    >
+    <div class="container-form">
+        <div class="form-group" id="search-area">
+          <label><i class="fas fa-search"></i>: </label>
+          <input class="form-control search-input" (keyup)="registerWordK($event)" type="text" name="keywords">
+        <select class="form-control" (change)="verifyWordFilter()" id="filter-estados">
+          <option value="0" selected>Todos estados</option>
+          <option value="1">Descohecida</option>
+          <option value="2">Já vista</option>
+          <option value="3">Familiar</option>
+          <option value="4">Conhecida</option>
+          <option value="5">Aprendida</option>
+        </select>
+        </div>
+      </div>
+
+      <div class="container">
+        <table>
+          <thead>
+            <tr>
+              <th scope="col">Palavra</th>
+              <th scope="col">Significado</th>
+              <th scope="col">Estado</th>
+              <th class="close-btn">  </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr [hidden]="!word.show || word.howKnown != filterState.getValue() && filterState.getValue() != '0'" *ngFor="let word of this.userWords.getValue()">
+              <td>{{ word.word }}</td><td>{{word.meaning}}</td>
+              <td [ngSwitch]="word.howKnown">
+                <span *ngSwitchCase="5" class="badge badge-primary">Aprendida  </span>
+                <span *ngSwitchCase="1" class="badge badge-secondary">Desconhecida  </span>
+                <span *ngSwitchCase="4" class="badge badge-success">Conhecida  </span>
+                <span *ngSwitchCase="2" class="badge badge-danger">Já vista  </span>
+                <span *ngSwitchCase="3"class="badge badge-warning">Familiar  </span>
+              </td>
+              <td class="close-btn">
+                <!-- <i (click)="deleteWord(word)" class="fas fa-times-circle close-btn"></i> -->
+                <i (click)="openOptions(word)" class="fas fa-2x fa-pen-square option-btn"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </mz-tab-item>
+    <mz-tab-item [label]="'Tab 2'">
+        <div class="form-group" id="search-area-quotes">
+            <label>Buscar:</label>
+            <input class="form-control search-input" (keyup)="registerQuoteK($event)" type="text">
           </div>
-        </div>
-
-        <div class="container">
-          <table>
-            <thead>
-              <tr>
-                <th scope="col">Palavra</th>
-                <th scope="col">Significado</th>
-                <th scope="col">Estado</th>
-                <th class="close-btn">  </th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr [hidden]="!word.show || word.howKnown != filterState.getValue() && filterState.getValue() != '0'" *ngFor="let word of this.userWords.getValue()">
-                <td>{{ word.word }}</td><td>{{word.meaning}}</td>
-                <td [ngSwitch]="word.howKnown">
-                  <span *ngSwitchCase="5" class="badge badge-primary">Aprendida  </span>
-                  <span *ngSwitchCase="1" class="badge badge-secondary">Desconhecida  </span>
-                  <span *ngSwitchCase="4" class="badge badge-success">Conhecida  </span>
-                  <span *ngSwitchCase="2" class="badge badge-danger">Já vista  </span>
-                  <span *ngSwitchCase="3"class="badge badge-warning">Familiar  </span>
-                </td>
-                <td class="close-btn">
-                  <!-- <i (click)="deleteWord(word)" class="fas fa-times-circle close-btn"></i> -->
-                  <i (click)="openOptions(word)" class="fas fa-2x fa-pen-square option-btn"></i>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
-        </div>
-    </tab>
-    <tab heading="Citações">
-      <!-- <h2>Citações</h2> -->
-      <div class="form-group" id="search-area-quotes">
-        <label>Buscar:</label>
-        <input class="form-control search-input" (keyup)="registerQuoteK($event)" type="text">
-      </div>
-      <div class="container quote-container">
-        <div *ngFor="let quote of userQuotes.getValue()">
-          <div *ngIf="quote.show"><p>{{ quote.quote }}</p><i (click)="deleteQuote(quote)" class="fas fa-times-circle close-btn"></i></div>
-          <hr *ngIf="quote.show">
-        </div>
-      </div>
-    </tab>
-  </tabset>
+          <div class="container quote-container">
+            <div *ngFor="let quote of userQuotes.getValue()">
+              <div *ngIf="quote.show"><p>{{ quote.quote }}</p><i (click)="deleteQuote(quote)" class="fas fa-times-circle close-btn"></i></div>
+              <hr *ngIf="quote.show">
+            </div>
+          </div>
+    </mz-tab-item>
+  </mz-tab>
 
 </main>

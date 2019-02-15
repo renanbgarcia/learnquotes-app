@@ -44,15 +44,18 @@
       <div class="card">
         <div class="card-header">
           <div class="flex margin-bot">
-            <h3 id="titulo">Citação!</h3><span class="badge badge-secondary">{{ usingLang }}</span> <ng-template #popTemplate>{{this.quoteTranslation.getValue()}}</ng-template>
-            <button (click)="getTranslation()" type="button" class="btn btn-right btn-margin"
-                    [popover]="popTemplate" containerClass="translationPopover">Trad
+            <h3 id="titulo">Citação!</h3><span class="badge deep-purple lighten-4 text-white">{{ usingLang }}</span> <ng-template #popTemplate>{{this.quoteTranslation.getValue()}}</ng-template>
+            <button (click)="getTranslation()" type="button" class="btn-floating btn-small waves-effect waves-light"
+                    [popover]="popTemplate" containerClass="translationPopover">
+              <i mz-icon-mdi [icon]="'translate'"></i>
             </button>
-            <button class="btn btn-right" (click)="getQuoteAudio()">Ouvir</button>
+            <button class="btn-floating btn-small waves-effect waves-light" (click)="getQuoteAudio()">
+              <i mz-icon-mdi [icon]="'volume-high'"></i>
+            </button>
           </div>
           <div>
             <!-- Controle do audio -->
-            <audio controls id="quoteAudio">
+            <audio [hidden]="!showAudioControls" controls id="quoteAudio">
               <source src="{{ audioSource.getValue() }}" type="audio/mp3">
             </audio>
           <!-- Fim controle do audio -->
