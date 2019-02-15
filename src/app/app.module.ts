@@ -16,6 +16,7 @@ import { MzIconMdiModule } from 'ngx-materialize';
 import { MzCardModule } from 'ngx-materialize';
 import { MzButtonModule } from 'ngx-materialize';
 import { MzNavbarModule } from 'ngx-materialize';
+import { FlashcardsService } from './services/flashcards.service'; 
 
 import { AppComponent } from './app.component';
 import { RandomquoteComponent } from './components/randomquote/randomquote.component';
@@ -87,7 +88,7 @@ const appRoutes: Routes = [
     MzButtonModule,
     MzNavbarModule
   ],
-  providers: [AuthGuardService, AuthorizerComponent, VocabComponent],
+  providers: [AuthGuardService, AuthorizerComponent, VocabComponent, FlashcardsService],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalContentComponent,
