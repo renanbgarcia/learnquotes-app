@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Flashcards } from '../../games/flashcards/flashcards';
 import { GetUserInfo } from './../../services/getUserInfo.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { ActivatedRoute} from '@angular/router';
+import { filter } from 'rxjs-compat/operator/filter';
+import { FlashcardsService } from 'src/app/services/flashcards.service';
 
 @Component({
   selector: 'app-training',
@@ -11,6 +13,8 @@ import { environment } from 'src/environments/environment';
 })
 export class TrainingComponent implements OnInit {
 
+  sessionQuantity;
+  sessionLanguage;
   userWords = [];
   flashcards;
   currentCard = { word: '', word_id: '', meaning: '', index: 0 };
@@ -20,16 +24,43 @@ export class TrainingComponent implements OnInit {
   doShowTranslation: Boolean = false;
   wordTranslation = 'loading';
 
-  constructor(private getInfo: GetUserInfo, private http: HttpClient) {   }
+  constructor(private getInfo: GetUserInfo, 
+              private http: HttpClient,
+              private activatedRoute: ActivatedRoute,
+              private Flashcards: FlashcardsService) {   }
 
   ngOnInit() {
-    this.setDeck().then(() => this.deck = this.flashcards.deck)
+    //this.getWordsList();
+    this.Flashcards.getTodayCards();
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.sessionQuantity = params.sessionQuantity;
+      this.sessionLanguage = params.sessionLanguage;
+    });
+/*     this.setDeck().then(() => this.deck = this.flashcards.deck)
     .then(() => { this.currentCard.word = this.deck[0].word;
       console.log(this.deck[0]);
                   this.currentCard.index = 0;
                   this.currentCard.meaning = this.deck[0].meaning;
-                  this.currentCard.word_id = this.deck[0]._id }); // Select first card of the deck to show
+                  this.currentCard.word_id = this.deck[0]._id }); */ // Select first card of the deck to show
   }
+       
+  getWordsList() {
+    this.getInfo.getUserWords().map((wordList) => this.userWords = wordList).subscribe((wordlist) => console.log(wordlist))
+    //ordenar por prioridade
+    //pegar só a quantitade que o usuario quer
+  }
+
+  //adicionar e-factor e nextReview como campos das palavras
+
+  //pegar o campo nextRevision das palavras
+  //se a data do campo for maior ou igual a data atual, colar a carta pra frente no deck
+  //se tiver menos cartas do que o número escolhido pelo usuario, repetir cartas
+  //senão colocar as cartas no banco de cartas a fazer
+  //  
+
+  //fazer o serviço Flashcards controlar a fila de cartas com suas datas, !!!!!!!!
+  //sendo chamado já na home para verificar o número de cartas na fila.
+  //
 
   /**
    * Create a shuffled deck with the user words.

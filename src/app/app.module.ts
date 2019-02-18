@@ -21,6 +21,7 @@ import { MzInputModule } from 'ngx-materialize';
 import { MzSelectModule } from 'ngx-materialize';
 import { MzBadgeModule } from 'ngx-materialize';
 import { MzDropdownModule } from 'ngx-materialize';
+import { FlashcardsService } from './services/flashcards.service'; 
 
 import { AppComponent } from './app.component';
 import { RandomquoteComponent } from './components/randomquote/randomquote.component';
@@ -100,7 +101,7 @@ const appRoutes: Routes = [
     MzBadgeModule,
     MzDropdownModule
   ],
-  providers: [AuthGuardService, AuthorizerComponent, VocabComponent],
+  providers: [AuthGuardService, AuthorizerComponent, VocabComponent, FlashcardsService],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalContentComponent,

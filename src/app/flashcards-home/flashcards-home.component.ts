@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+  import { from } from 'rxjs';
 
 @Component({
   selector: 'app-flashcards-home',
@@ -10,17 +12,23 @@ export class FlashcardsHomeComponent implements OnInit {
   cardsNumber;
   language;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  getNumber(e) {
-    this.cardsNumber = e.target.value;
+  navigateToPlay() {
+    this.getNumber();
+    this.getLanguage();
+    this.router.navigate(['/home/training/flashcards/play'], { queryParams: { sessionQuantity: this.cardsNumber, sessionLanguage: this.language } });
   }
 
-  getLanguage(e) {
-    this.language = e.target.value;
+  getNumber() {
+    this.cardsNumber = (<HTMLInputElement>document.getElementById("number")).value;
+  }
+
+  getLanguage() {
+    this.language = (<HTMLInputElement>document.getElementById("language")).value;
   }
 
 }
