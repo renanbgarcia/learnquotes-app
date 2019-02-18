@@ -4,16 +4,15 @@
   
   <div class="">
     <div class="btn-group" dropdown>
-      <!-- <button class="btn btn-primary btn-margin" (@buttonAtt.done)="bounce()" [@buttonAtt]="this.bState" (click)="getAnotherQuote()">Citação</button> -->
       <button class="btn btn-top btn-primary" (click)="getAnotherQuote()">Citação</button>
       <button id="button-basic" dropdownToggle type="button" class="btn btn-top btn-primary dropdown-toggle" aria-controls="dropdown-basic">
         Língua
         <span class="caret"></span>
       </button>
       <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-        <button role="menuitem" class="dropdown-item" (click)="changeLanguage('en')">Inglês</button>
-        <button role="menuitem" class="dropdown-item" (click)="changeLanguage('fr')">Francês</button>
-      </ul>
+          <button role="menuitem" class="dropdown-item" (click)="changeLanguage('en')">Inglês</button>
+          <button role="menuitem" class="dropdown-item" (click)="changeLanguage('fr')">Francês</button>
+        </ul>
       <button class="btn btn-top btn-primary" (click)="insertQuote()">Salvar citação</button>
     </div>
   </div>

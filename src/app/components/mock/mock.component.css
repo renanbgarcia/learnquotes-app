@@ -1,6 +1,7 @@
 .app-container {
-  min-height: 100vh;
+  min-height: calc(100vh - 126px);
   background-color: #bb56ff;
+  overflow: hidden;
 }
 
 :host ::ng-deep li {

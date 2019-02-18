@@ -2,10 +2,7 @@
     <button mz-button class="transparent ml-3 waves-effect waves-light white-text text-white" [flat]="'true'" (click)="toggleState()">
       <i mz-icon-mdi [icon]="'menu'"></i>
     </button>
-
-    <mz-navbar-item-container [align]="'right'">
-        <div class="mr-3">Bem vindo(a) {{userName.getValue()}}</div>
-    </mz-navbar-item-container>
+    <div class="right mr-3">Bem vindo(a) {{userName.getValue()}}</div>
   </mz-navbar>
 
 <div class="app-container" style="text-align:center">

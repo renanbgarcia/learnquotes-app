@@ -6,7 +6,33 @@ main {
     height: 40vh;
 }
 
-.container {
+/* label color */
+.input-field label {
+color: #fff;
+}
+/* label focus color */
+.input-field input[type=text]:focus + label {
+color: #fff;
+}
+/* label focus color */
+input::placeholder {
+    color: #fff !important;
+    opacity: 1 !important;
+    }
+/* label underline focus color */
+.input-field input[type=text]:focus {
+border-bottom: 1px solid #fff;
+box-shadow: 0 1px 0 0 #fff;
+}
+
+.word-form-container {
+    height: 120px;
+}
+.table-container {
+    height: calc(100vh - 294px);
+    overflow-y: scroll;
+}
+/* .container {
     padding: 0;
     height: calc(100vh - 280px);
     width: 90%;
@@ -14,19 +40,20 @@ main {
     overflow: auto;
     border: solid rgb(180, 147, 231) 2px;
     box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.445);
-}
-
+} */
+/* 
 .container-form {
   margin: auto;
-  margin-top: 15px;
   padding: 0 !important;
   width: 90%;
 }
-
+*/
 .quote-container {
   padding: 15px;
+  height: calc(100vh - 183px);
+  overflow-y: scroll;
 }
-
+/*
 :host /deep/ table {
     width: 100% !important;
 }
@@ -54,24 +81,25 @@ table th {
 
 .option-btn:hover, .close-btn:hover {
     color: #41aed1;
-}
+} */
 
-#filter-estados {
+/* #filter-estados {
     display: inline-block !important;
     width: 35%;
     margin-left: 4px;
-}
+} */
 
 .search-input {
     display: inline-block !important;
-    width: 55%;
+    width: 80% !important;
     margin-left: 4px;
 }
 
 #search-area-quotes {
   margin-top: 15px;
+  height: 51px;
 }
-
+/*
 :host /deep/ a.nav-link.active {
     background-color: #DFFEBF;
     color: rgb(180, 147, 231);
@@ -86,4 +114,4 @@ table th {
 
 :host /deep/ .tab-container {
     height: 100%;
-}
+} */
