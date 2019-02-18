@@ -23,6 +23,10 @@ h2 {
   z-index: 500;
 }
 
+.line-height {
+  line-height: 100%;
+}
+
 /*Clouds animation*/
 
 #background-wrap {
