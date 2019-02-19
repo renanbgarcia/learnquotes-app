@@ -41,11 +41,12 @@ export class VocabComponent implements OnInit {
       this.userQuotes.next(quotes) });
   }
 
-  getWords() {
+  public getWords() {
     this.getInfo.getUserWords().subscribe((word) => { console.log(word);
       this.userWords.next(word);
       this.preShowWords(word);
       });
+      console.log("getwords chamado")
   }
 
   registerQuoteK(e) {
@@ -99,6 +100,13 @@ export class VocabComponent implements OnInit {
     this.modalRef.content.action.take(1).subscribe((value) => {
       console.log(value); this.userWords.next(value); this.preShowWords(value);
       });
+  }
+
+  deleteWord(word) {
+    if (window.confirm("Realmente quer deletar essa palavra?")) {
+      this.http.post(`${environment.ENDPOINT}/api/delete/word`, { id: localStorage.getItem('user'), word_id: word._id }).subscribe((res) => { console.log(res); this.getWords()});
+      this.getWords();
+    }
   }
 
   deleteQuote(quote) {

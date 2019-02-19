@@ -70,7 +70,7 @@ export class TrainingComponent implements OnInit {
   setDeck() {
     const dealer = new Promise((resolve, reject) => {
       this.getInfo.getUserWords().map((wordList) => this.userWords = wordList)
-      .map(() => this.flashcards = new Flashcards(this.userWords))
+      /* .map(() => this.flashcards = new Flashcards(this.userWords)) */
       .map(() => this.flashcards.shuffle())
       .subscribe(() => resolve());
     });

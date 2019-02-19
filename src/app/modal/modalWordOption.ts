@@ -1,7 +1,7 @@
 import { VocabComponent } from '../components/vocab/vocab.component';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Component, ApplicationRef, EventEmitter, Output } from '@angular/core';
+import { Component, ApplicationRef, EventEmitter, Output, NgZone } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
 import { GetUserInfo } from '../services/getUserInfo.service';
 import { environment } from 'src/environments/environment';
@@ -35,7 +35,7 @@ import { environment } from 'src/environments/environment';
         </select>
       </div>
     </form>
-      <button class="btn btn-warning" (click)="deleteWord()">Deletar Palavra</button>
+      <button mz-button class="btn btn-warning" (click)="deleteWord()">Deletar Palavra</button>
       <button class="btn btn-success btn-margin" (click)="updateWord()">Confirmar</button>
     </div>
     </div>
@@ -55,7 +55,9 @@ export class ModalWordOptionComponent {
 
     constructor(private modalref: BsModalRef,
                 private http: HttpClient,
-                private getInfo: GetUserInfo,) { }
+                private getInfo: GetUserInfo,
+                private vocab: VocabComponent,
+                private zone: NgZone) { }
 
 
   getFirstTime() {
@@ -65,17 +67,19 @@ export class ModalWordOptionComponent {
   }
 
   deleteWord() {
-    if (window.confirm("Realmente quer deletar essa palavra?")) {
+/*     if (window.confirm("Realmente quer deletar essa palavra?")) { */
       this.http.post(`${environment.ENDPOINT}/api/delete/word`, { id: localStorage.getItem('user'), word_id: this.word._id }).subscribe((res) => { console.log(res); this.getWords()});
       this.modalref.hide();
       this.getWords();
-    }
+/*     } */
   }
 
   getWords() {
     this.getInfo.getUserWords().subscribe((word) => { console.log(word);
       this.action.emit(word);
       });
+      
+      console.log("getwords 2 chamado")
   }
 
   updateWord() {

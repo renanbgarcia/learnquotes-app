@@ -3,18 +3,18 @@
   <p>Língua: <span class="badge">{{ this.sessionLanguage }}</span></p>
   <div class="card">
     <div class="card-body">
-        <button class="btn btn-secondary" (click)="this.showMeaning()" >Significado</button>
-        <button class="btn btn-secondary" (click)="this.showTranslation()" >Tradução</button>
-        <h5 class="card-title">Palavra</h5>
+        <button mz-button class="teal deep-purple-text text-lighten-1 btn-small waves-effect waves-light" (click)="this.showMeaning()">Significado</button>
+<!--         <button class="btn btn-secondary" (click)="this.showMeaning()" >Significado</button>
+ -->        <button class="btn-floating btn-small waves-effect waves-light" (click)="this.showTranslation()" ><i mz-icon-mdi [icon]="'translate'"></i></button>
         <h1>{{ this.currentCard.word }}</h1>
-        <h3 *ngIf="this.doShowMeaning">{{ this.currentCard.meaning }}</h3>
-        <h3 *ngIf="this.doShowTranslation">{{ this.wordTranslation }}</h3>
+        <h4 *ngIf="this.doShowMeaning">{{ this.currentCard.meaning }}</h4>
+        <h4 *ngIf="this.doShowTranslation">{{ this.wordTranslation }}</h4>
     </div>
     <div class="card-header">
-      <button class="btn btn-primary" (click)="chooseWordState(2)">Já vista</button>
-      <button class="btn btn-primary" (click)="chooseWordState(3)">Familiar</button>
-      <button class="btn btn-primary" (click)="chooseWordState(4)">Conhecida</button>
-      <button class="btn btn-primary" (click)="chooseWordState(5)">Aprendida</button>
+      <button mz-button class="waves-effect waves-light" (click)="chooseWordState(2)">Já vista</button>
+      <button mz-button class="waves-effect waves-light" (click)="chooseWordState(3)">Familiar</button>
+      <button mz-button class="waves-effect waves-light" (click)="chooseWordState(4)">Conhecida</button>
+      <button mz-button class="waves-effect waves-light" (click)="chooseWordState(5)">Aprendida</button>
     </div>
     <button class="btn btn-danger">Finalizar</button>
   </div>
