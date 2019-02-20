@@ -40,7 +40,10 @@ export function getPopoverConfig(): PopoverConfig {
 })
 export class RandomquoteComponent implements OnInit {
 
-  constructor(private randomservice: RandomquoteService, private http: HttpClient, private el: ElementRef, private contextMenuService: ContextMenuService) { }
+  constructor(private randomservice: RandomquoteService,
+              private http: HttpClient,
+              private el: ElementRef,
+              private contextMenuService: ContextMenuService) { }
 
   quoteText: string = this.randomservice.quote.getValue().text;
   treatedQuoteText: String;
@@ -61,6 +64,8 @@ export class RandomquoteComponent implements OnInit {
   clickedWord: any;
   meaning: String;
   howKnown: any;
+
+  Materialize: any;
 
 
   ngOnInit() {

@@ -3,7 +3,6 @@ import { GetUserInfo } from './../../services/getUserInfo.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute} from '@angular/router';
-import { filter } from 'rxjs-compat/operator/filter';
 import { FlashcardsService } from 'src/app/services/flashcards.service';
 
 @Component({

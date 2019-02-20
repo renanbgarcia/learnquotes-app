@@ -20,6 +20,7 @@ import { MzTabModule } from 'ngx-materialize';
 import { MzInputModule } from 'ngx-materialize';
 import { MzSelectModule } from 'ngx-materialize';
 import { MzBadgeModule } from 'ngx-materialize';
+import { MzToastModule } from 'ngx-materialize';
 import { FlashcardsService } from './services/flashcards.service'; 
 
 import { AppComponent } from './app.component';
@@ -98,6 +99,7 @@ const appRoutes: Routes = [
     MzInputModule,
     MzSelectModule,
     MzBadgeModule,
+    MzToastModule,
   ],
   providers: [AuthGuardService, AuthorizerComponent, VocabComponent, FlashcardsService],
   bootstrap: [AppComponent],

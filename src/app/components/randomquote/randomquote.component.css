@@ -88,3 +88,8 @@
 #dropdown-basic {
   left: 50% !important;
 }
+
+.dropdown-item {
+  height: 70px;
+  margin-bottom: solid 1px rgb(233, 88, 113);
+}

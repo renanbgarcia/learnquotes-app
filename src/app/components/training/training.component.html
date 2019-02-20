@@ -1,11 +1,15 @@
 <main>
-  <p>Número de palavras: {{ this.sessionQuantity }}</p>
-  <p>Língua: <span class="badge">{{ this.sessionLanguage }}</span></p>
+  <mz-card>
+    <mz-card-content>
+      <p>Palavras: <span class="chip">{{ this.sessionQuantity }}</span></p>
+      <p>Língua: <span class="chip">{{ this.sessionLanguage }}</span></p>
+    </mz-card-content>
+  </mz-card>
+
   <div class="card">
     <div class="card-body">
-        <button mz-button class="teal deep-purple-text text-lighten-1 btn-small waves-effect waves-light" (click)="this.showMeaning()">Significado</button>
-<!--         <button class="btn btn-secondary" (click)="this.showMeaning()" >Significado</button>
- -->        <button class="btn-floating btn-small waves-effect waves-light" (click)="this.showTranslation()" ><i mz-icon-mdi [icon]="'translate'"></i></button>
+        <button class="btn-floating deep-purple-text text-lighten-1 btn-small waves-effect waves-light" (click)="this.showMeaning()"><i mz-icon-mdi [icon]="'lightbulb-outline'"></i></button>
+        <button class="btn-floating btn-small waves-effect waves-light" (click)="this.showTranslation()" ><i mz-icon-mdi [icon]="'translate'"></i></button>
         <h1>{{ this.currentCard.word }}</h1>
         <h4 *ngIf="this.doShowMeaning">{{ this.currentCard.meaning }}</h4>
         <h4 *ngIf="this.doShowTranslation">{{ this.wordTranslation }}</h4>

@@ -4,16 +4,16 @@
   
   <div class="">
     <div class="btn-group" dropdown>
-      <button class="btn btn-top btn-primary" (click)="getAnotherQuote()">Citação</button>
-      <button id="button-basic" dropdownToggle type="button" class="btn btn-top btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+      <button class="btn btn-top btn-primary waves-effect waves-light" (click)="getAnotherQuote()">Citação</button>
+      <button id="button-basic" dropdownToggle type="button" class="btn btn-top btn-primary dropdown-toggle waves-effect waves-light" aria-controls="dropdown-basic">
         Língua
         <span class="caret"></span>
       </button>
-      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
-          <button role="menuitem" class="dropdown-item" (click)="changeLanguage('en')">Inglês</button>
-          <button role="menuitem" class="dropdown-item" (click)="changeLanguage('fr')">Francês</button>
+      <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu waves-effect waves-light" role="menu" aria-labelledby="button-basic">
+          <button role="menuitem" class="dropdown-item waves-effect waves-light" (click)="changeLanguage('en')">Inglês</button>
+          <button role="menuitem" class="dropdown-item waves-effect waves-light" (click)="changeLanguage('fr')">Francês</button>
         </ul>
-      <button class="btn btn-top btn-primary" (click)="insertQuote()">Salvar citação</button>
+      <button class="btn btn-top btn-primary waves-effect waves-light" (click)="insertQuote()">Salvar citação</button>
     </div>
   </div>
     <div class="">
@@ -35,7 +35,7 @@
             <option value="5">5-Aprendida</option>
           </select>
           <br>
-          <button class="btn btn-success btn-save" (click)='insertWord()'>Salvar</button>
+          <button mz-button class="btn btn-success btn-save waves-effect waves-light" (click)='insertWord()'>Salvar</button>
         </div>
       </ng-template>
     </context-menu>
@@ -57,7 +57,7 @@
             <audio [hidden]="!showAudioControls" controls id="quoteAudio">
               <source src="{{ audioSource.getValue() }}" type="audio/mp3">
             </audio>
-          <!-- Fim controle do audio -->
+            <!-- Fim controle do audio -->
           </div>
         </div>
         <app-spinner *ngIf="showSpin" ></app-spinner>

@@ -98,7 +98,7 @@ export class VocabComponent implements OnInit {
     const initialState = { word: word }
     this.modalRef = this.modalService.show(ModalWordOptionComponent, { initialState });
     this.modalRef.content.action.take(1).subscribe((value) => {
-      console.log(value); this.userWords.next(value); this.preShowWords(value);
+      console.log(value); this.userWords.next(value); this.getWords(); this.preShowWords(value);
       });
   }
 
