@@ -38,7 +38,18 @@ export class FlashcardsService {
 
     constructor(private getInfo: GetUserInfo) {
         getInfo.getUserWords().map((wordList) => console.log(wordList)).subscribe((wordlist) => this.deck = wordlist);
-        this.todayDeck = this.getTodayCards();
+    }
+
+    /**
+     * Shuffle the cards array. Uses fisher-yates-shuffle package.
+     * @link https://www.npmjs.com/package/fisher-yates-shuffle
+     */
+    public getCards(cardsQuantity) {
+        return this.getInfo.getUserWords()
+        .map((wordList) => {console.log(wordList); return wordList})
+        .map((wordlist) => {this.deck = wordlist; return wordlist})
+        .map((wordlist) => this.getTodayCards(wordlist, cardsQuantity))
+        .map(() => this.shuffle());
     }
 
     /**
@@ -46,12 +57,10 @@ export class FlashcardsService {
      * @link https://www.npmjs.com/package/fisher-yates-shuffle
      */
     public shuffle() {
-        const shuffledDeck = Shuffle(this.deck);
-        this.setDeck(shuffledDeck);
-    }
-    
-    private setDeck(newdeck) {
-        this.deck = newdeck;
+        const shuffledDeck = Shuffle(this.todayDeck);
+        this.todayDeck = shuffledDeck;
+        console.log(this.todayDeck);
+        return shuffledDeck;
     }
 
     /**
@@ -59,8 +68,10 @@ export class FlashcardsService {
      * @returns Array
      * Coloca as cartas por ordem de data e r etorna as cartas com data de review para o dia atual
      */
-    public getTodayCards() {
-        this.fakeDeck.sort((a, b) => {
+    public getTodayCards(cards, cardsQuantity) {
+        console.log(cards);
+        console.log(this.deck)
+        cards.sort((a, b) => {
             let aDate = new Date(a.nextReview);
             let bDate = new Date(b.nextReview);
             if (aDate > bDate) {
@@ -69,10 +80,20 @@ export class FlashcardsService {
                 return -1;
             }
         });
-        console.log(this.fakeDeck);
-        const todayCards = this.fakeDeck.filter(this.isDueToday);
-        console.log(todayCards);
-        return todayCards;
+        console.log(cards);
+        let todayCards = cards.filter(this.isDueToday);
+        let newtodayCards = todayCards.slice(0, cardsQuantity); // Permanece só o ´numero de cartas desejado
+        
+        /*Se as cartas devidas para o dia forem menos
+        do que a quantidade escolhida pelo usuário,
+        pega todas as cartas */
+        if (todayCards.length < cardsQuantity) {
+            newtodayCards = cards.slice(0, cardsQuantity);
+        }
+        console.log(newtodayCards);
+        console.log(cardsQuantity);
+        this.todayDeck = newtodayCards
+        return newtodayCards;
     }
 
     /**
