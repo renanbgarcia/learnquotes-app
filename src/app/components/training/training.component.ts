@@ -80,7 +80,7 @@ export class TrainingComponent implements OnInit {
   }
 
   getWordTranslation() {
-    this.http.post('/api/translate', { word: this.currentCard.word }).subscribe((res: {transl: string}) => {console.log(res.transl);this.wordTranslation = res.transl});
+    this.http.post(`${environment.ENDPOINT}/api/translate`, { word: this.currentCard.word }).subscribe((res: {transl: string}) => {console.log(res.transl);this.wordTranslation = res.transl});
   }
 
   showMeaning() {
