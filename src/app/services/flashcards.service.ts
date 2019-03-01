@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 const Shuffle = require('fisher-yates-shuffle');
 import { GetUserInfo } from './getUserInfo.service';
+import { CompileMetadataResolver } from '@angular/compiler';
 
 @Injectable({
     providedIn: 'root',
@@ -9,6 +10,7 @@ export class FlashcardsService {
 
     public deck;
     public todayDeck;
+    public language;
     public fakeDeck = [
         {nextReview: '2019-02-15T16:38:08.395Z',_id: "5c1185e0cbfa5e2b7eb5fe11", word: "ghgh", meaning: "lkguyy  uyyuk", howKnown: "4"},
         {nextReview: '2019-02-12T16:38:08.395Z',_id: "5c1185e3cbfa5e2b7eb5fe12", word: "fghfgh", meaning: "ffffffffffffffffffffff", howKnown: "2"},
@@ -38,6 +40,10 @@ export class FlashcardsService {
 
     constructor(private getInfo: GetUserInfo) {
         getInfo.getUserWords().map((wordList) => console.log(wordList)).subscribe((wordlist) => this.deck = wordlist);
+    }
+
+    setCardsLanguage(language) {
+        this.language = language;
     }
 
     /**
@@ -70,8 +76,15 @@ export class FlashcardsService {
      */
     public getTodayCards(cards, cardsQuantity) {
         console.log(cards);
-        console.log(this.deck)
-        cards.sort((a, b) => {
+        console.log(this.deck);
+        let ncards;
+        if (this.language != "any") {
+            ncards = cards.filter(this.filterByLanguage(this.language));
+        } else {
+            ncards = cards;
+        }
+        console.log(ncards);
+        ncards.sort((a, b) => {
             let aDate = new Date(a.nextReview);
             let bDate = new Date(b.nextReview);
             if (aDate > bDate) {
@@ -80,20 +93,26 @@ export class FlashcardsService {
                 return -1;
             }
         });
-        console.log(cards);
-        let todayCards = cards.filter(this.isDueToday);
+        let todayCards = ncards.filter(this.isDueToday);
         let newtodayCards = todayCards.slice(0, cardsQuantity); // Permanece só o ´numero de cartas desejado
         
         /*Se as cartas devidas para o dia forem menos
         do que a quantidade escolhida pelo usuário,
         pega todas as cartas */
         if (todayCards.length < cardsQuantity) {
-            newtodayCards = cards.slice(0, cardsQuantity);
+            newtodayCards = ncards.slice(0, cardsQuantity);
         }
         console.log(newtodayCards);
         console.log(cardsQuantity);
         this.todayDeck = newtodayCards
         return newtodayCards;
+    }
+
+    filterByLanguage(lang) {
+        return function(word) {
+            console.log(word.lang + " - " + lang)
+            return word.lang === lang;
+        }
     }
 
     /**

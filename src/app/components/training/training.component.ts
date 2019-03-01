@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GetUserInfo } from './../../services/getUserInfo.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import { FlashcardsService } from 'src/app/services/flashcards.service';
 
 @Component({
@@ -26,14 +26,17 @@ export class TrainingComponent implements OnInit {
   constructor(private getInfo: GetUserInfo, 
               private http: HttpClient,
               private activatedRoute: ActivatedRoute,
-              private Flashcards: FlashcardsService) {   }
+              private Flashcards: FlashcardsService,
+              private router: Router) {   }
 
   ngOnInit() {
 
     this.activatedRoute.queryParams.subscribe((params) => {
       this.sessionQuantity = params.sessionQuantity;
       this.sessionLanguage = params.sessionLanguage;
+      this.Flashcards.setCardsLanguage(params.sessionLanguage);
     });
+    console.log(this.Flashcards.language);
     this.Flashcards.getCards(this.sessionQuantity)
     .subscribe((deck) => {
       this.deck = deck;

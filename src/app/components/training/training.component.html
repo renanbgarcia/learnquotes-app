@@ -1,7 +1,7 @@
 <main>
   <mz-card>
     <mz-card-content>
-      <p>Palavras: <span class="chip">{{ this.sessionQuantity }}</span></p>
+      <p>Palavras: <span class="chip">{{ this.currentCard.index + 1 }}/{{ this.sessionQuantity }}</span></p>
       <p>Língua: <span class="chip">{{ this.sessionLanguage }}</span></p>
     </mz-card-content>
   </mz-card>
@@ -12,10 +12,11 @@
           <mz-collection-header>
             <h1><button class="btn-floating btn-small waves-effect waves-light" (click)="this.showMeaning()"><i mz-icon-mdi [icon]="'lightbulb-outline'"></i></button>
             {{ this.currentCard.word }}
-            <button class="btn-floating btn-small waves-effect waves-light" (click)="this.showTranslation()" ><i mz-icon-mdi [icon]="'translate'"></i></button></h1>
+            <!-- <button class="btn-floating btn-small waves-effect waves-light" (click)="this.showTranslation()" ><i mz-icon-mdi [icon]="'translate'"></i></button> -->
+            </h1>
           </mz-collection-header>
           <mz-collection-item>Significado: <span *ngIf="this.doShowMeaning">{{ this.currentCard.meaning }}</span></mz-collection-item>
-          <mz-collection-item>Tradução: <span *ngIf="this.doShowTranslation">{{ this.wordTranslation }}</span></mz-collection-item>
+          <!-- <mz-collection-item>Tradução: <span *ngIf="this.doShowTranslation">{{ this.wordTranslation }}</span></mz-collection-item> -->
         </mz-collection>
     </div>
     <div class="card-header">
@@ -24,6 +25,6 @@
       <button mz-button class="waves-effect waves-light" (click)="chooseWordState(4)">Conhecida</button>
       <button mz-button class="waves-effect waves-light" (click)="chooseWordState(5)">Aprendida</button>
     </div>
-    <button mz-button class="btn btn-danger">Finalizar</button>
+    <button mz-button class="btn btn-danger" (click)="this.router.navigate(['home/training/flashcards/start'])">Finalizar</button>
   </div>
 </main>
