@@ -1,4 +1,3 @@
-import { VocabComponent } from '../components/vocab/vocab.component';
 import { HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Component, ApplicationRef, EventEmitter, Output, NgZone } from '@angular/core';
@@ -56,7 +55,6 @@ export class ModalWordOptionComponent {
     constructor(private modalref: BsModalRef,
                 private http: HttpClient,
                 private getInfo: GetUserInfo,
-                private vocab: VocabComponent,
                 private zone: NgZone) { }
 
 

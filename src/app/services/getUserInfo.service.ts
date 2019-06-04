@@ -9,7 +9,6 @@ import { environment } from 'src/environments/environment';
 })
 export class GetUserInfo {
 
-
     constructor(private http: HttpClient) { }
 
     getUser() {
@@ -49,4 +48,36 @@ export class GetUserInfo {
     setUserScore(score: number) {
         return this.http.post(`${environment.ENDPOINT}/api/setuserinfo`, { id: localStorage.getItem('user'), type: 'score', info: score });
     }
+
+    setMeta(userMetaField) {
+        return this.http.post(`${environment.ENDPOINT}/api/set/meta`, {meta: userMetaField, id: localStorage.getItem('user')});
+    }
+    
+    getMeta() {
+        return this.http.post(`${environment.ENDPOINT}/api/get/meta`, {id: localStorage.getItem('user')});
+    }
+
+/*     getLearnedToday() {
+        return this.http.post(`${environment.ENDPOINT}/api/get/learnedToday`, {id: localStorage.getItem('user')});
+    } */
+    
+
+    getLearnedToday() {
+       return this.getUserWords().map((words) => {
+          console.log(words);
+          let counter = 0;
+          let today = new Date();
+          today.setHours(0,0,0,0);
+          for (let word of words) {
+            let data = new Date(word.lastHowKnown)
+            console.log(data);
+            if (word.howKnown === "5" && data > today) {
+              counter++;
+              console.log(data + " - " + today);
+            }
+          }
+          console.log(counter);
+          return counter;
+        })
+      }
 }

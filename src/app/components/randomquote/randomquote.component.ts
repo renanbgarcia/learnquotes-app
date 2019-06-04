@@ -3,7 +3,7 @@ import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { RandomquoteService } from '../../services/randomquote.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { AlertModule  } from 'ngx-bootstrap/alert';
-import * as textVersion from "textversionjs";
+import * as textVersion from 'textversionjs';
 import { ContextMenuComponent } from '../../../../node_modules/ngx-contextmenu';
 import { ContextMenuService } from 'ngx-contextmenu';
 import { BehaviorSubject } from 'rxjs';
@@ -51,16 +51,16 @@ export class RandomquoteComponent implements OnInit {
   wordTranslation =  new BehaviorSubject('Carregando...');
   audioSource = new BehaviorSubject('');
   words: string[];
-  quoteSource: string = '';
-  usingLang: string = this.randomservice.lang.getValue()
-  showSpin: boolean = false;
-  showQuote: boolean = true;
+  quoteSource = '';
+  usingLang: string = this.randomservice.lang.getValue();
+  showSpin = false;
+  showQuote = true;
   quotes = '';
   bState = 'active';
   toBounce = true;
   showAudioControls = false;
   isTextNew = false;
-  showAlert: boolean = false;
+  showAlert = false;
   clickedWord: any;
   meaning: String;
   howKnown: any;
@@ -69,7 +69,7 @@ export class RandomquoteComponent implements OnInit {
 
 
   ngOnInit() {
-    let that = this;
+    const that = this;
     this.randomservice.quote.subscribe(
       function (x) {
         if (x.text.length > 4) {
@@ -87,12 +87,12 @@ export class RandomquoteComponent implements OnInit {
       }
     )
     this.getLang();
-    console.log("mudou");
+    console.log('mudou');
   }
 
   treatQuote() {
 
-    let config = {
+    const config = {
       linkProcess: function(href, linkText){
           return linkText;
       }
@@ -100,11 +100,11 @@ export class RandomquoteComponent implements OnInit {
 
     let text = textVersion(this.quoteText, config);
 
-    text = text.replace(/&#160;/g, ''); //Tira esse negócio que aparece as vezes na citação
-    console.log('textoo = '+ text);
+    text = text.replace(/&#160;/g, ''); // Tira esse negócio que aparece as vezes na citação
+    console.log('textoo = ' + text);
     this.treatedQuoteText = text;
 
-    let words = text.split(' ');
+    const words = text.split(' ');
     this.words = words;
   }
 

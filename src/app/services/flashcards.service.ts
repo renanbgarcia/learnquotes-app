@@ -75,7 +75,7 @@ export class FlashcardsService {
      * Coloca as cartas por ordem de data e r etorna as cartas com data de review para o dia atual
      */
     public getTodayCards(cards, cardsQuantity) {
-        console.log(cards);
+        console.log(cardsQuantity);
         console.log(this.deck);
         let ncards;
         if (this.language != "any") {
@@ -94,13 +94,13 @@ export class FlashcardsService {
             }
         });
         let todayCards = ncards.filter(this.isDueToday);
-        let newtodayCards = todayCards.slice(0, cardsQuantity); // Permanece só o ´numero de cartas desejado
+        let newtodayCards = todayCards.slice(0, cardsQuantity - 1); // Permanece só o ´numero de cartas desejado
         
         /*Se as cartas devidas para o dia forem menos
         do que a quantidade escolhida pelo usuário,
         pega todas as cartas */
         if (todayCards.length < cardsQuantity) {
-            newtodayCards = ncards.slice(0, cardsQuantity);
+            newtodayCards = ncards.slice(0, cardsQuantity - 1);
         }
         console.log(newtodayCards);
         console.log(cardsQuantity);

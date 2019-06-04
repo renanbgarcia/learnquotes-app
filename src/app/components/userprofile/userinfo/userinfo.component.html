@@ -1,10 +1,26 @@
 <div class="card head">
   <img class="img-thumb img-circle img-fluid" src="{{ userPhoto.getValue() }}" />
   <h4>{{userName.getValue()}}</h4>
-  <p>Nível: {{ userLevel.getValue() }}</p>
-  <p>Pontos: {{ userScore.getValue() }}</p>
-  <p>Citações: {{ quoteCount.getValue() }}</p>
-  <button (click)="putScore()"></button>
+  <h5>Status</h5>
+  <div class="row">
+    <div class="col-6">
+      <span>Nível: {{ userLevel.getValue() }}</span><br>
+      <span>Pontos: {{ userScore.getValue() }}</span>
+    </div>
+    <div class="col-6">
+      <span>Citações: {{ quoteCount.getValue() }}</span><br>
+      <span>Palavras: {{ userWordsCount }}</span>
+    </div>
+  </div>
+
+  <hr>
+  <h5>Meta</h5>
+  <span>Definir Meta(palavras por dia): {{ actualMeta.getValue() }}</span>
+  <input id="metaInput" (change)="updateMetaField($event)" type="number"/>
+  <button class="btn btn-secondary" (click)="setMeta()">Definir</button>
+  <hr>
+  <span>Palavras aprendidas hoje: {{ wordsLearnedToday }}</span>
+  <span>Palavras a aprender: {{ wordsStillDue }}</span>
 
 </div>
 

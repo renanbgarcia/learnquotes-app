@@ -22,7 +22,9 @@ import { MzSelectModule } from 'ngx-materialize';
 import { MzBadgeModule } from 'ngx-materialize';
 import { MzToastModule } from 'ngx-materialize';
 import { MzCollectionModule } from 'ngx-materialize';
-import { FlashcardsService } from './services/flashcards.service'; 
+import { MzModalModule } from 'ngx-materialize';
+import { MzModalService } from 'ngx-materialize';
+import { FlashcardsService } from './services/flashcards.service';
 
 import { AppComponent } from './app.component';
 import { RandomquoteComponent } from './components/randomquote/randomquote.component';
@@ -35,7 +37,7 @@ import { AuthorizerComponent } from './authorizer/authorizer.component';
 import { ModalContentComponent } from './modal/lOutmodal';
 import { UserinfoComponent } from './components/userprofile/userinfo/userinfo.component';
 import { HighlightTextDirective } from './directives/highlight-text.directive';
-import { SplitWordsDirective } from './directives/split-words.directive'
+import { SplitWordsDirective } from './directives/split-words.directive';
 import { VocabComponent } from './components/vocab/vocab.component';
 import { TrainingComponent } from './components/training/training.component';
 import { FlashcardsHomeComponent } from './flashcards-home/flashcards-home.component';
@@ -46,7 +48,7 @@ const appRoutes: Routes = [
   { path: 'authorizer', component: AuthorizerComponent},
   { path: '401', component: UnauthorizedComponent},
   {
-    path: 'home', component: MockComponent, //canActivate: [AuthGuardService],
+    path: 'home', component: MockComponent, // canActivate: [AuthGuardService],
     children: [
       { path: 'profile', component: UserprofileComponent},
       { path: 'randomquote', component: RandomquoteComponent },
@@ -76,7 +78,7 @@ const appRoutes: Routes = [
     VocabComponent,
     TrainingComponent,
     FlashcardsHomeComponent,
-    StartComponent
+    StartComponent,
   ],
   imports: [
     BrowserModule,
@@ -101,13 +103,14 @@ const appRoutes: Routes = [
     MzSelectModule,
     MzBadgeModule,
     MzToastModule,
-    MzCollectionModule
+    MzCollectionModule,
+    MzModalModule,
   ],
   providers: [AuthGuardService, AuthorizerComponent, VocabComponent, FlashcardsService],
   bootstrap: [AppComponent],
   entryComponents: [
     ModalContentComponent,
-    ModalWordOptionComponent
+    ModalWordOptionComponent,
   ],
 })
 export class AppModule { }

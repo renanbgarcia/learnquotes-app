@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '../../../../../node_modules/@angular/router';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-userinfo',
@@ -17,6 +18,11 @@ export class UserinfoComponent implements OnInit {
   userScore = new BehaviorSubject(0);
   userQuotes = new BehaviorSubject(['loading']);
   quoteCount = new BehaviorSubject(0);
+  userWordsCount;
+  userMetaField;
+  actualMeta = new BehaviorSubject(0);
+  wordsStillDue;
+  wordsLearnedToday;
 
   constructor(private http: HttpClient, private getuserinfo: GetUserInfo, private router: Router) { }
 
@@ -27,12 +33,33 @@ export class UserinfoComponent implements OnInit {
     this.getuserinfo.getUserScore().subscribe((score) => this.userScore.next(score));
     this.getuserinfo.getUserQuotes().subscribe((quotes) => { console.log(quotes); this.userQuotes.next(quotes)});
     this.getuserinfo.getUserQuotesCount().subscribe((length) => this.quoteCount.next(length.count));
+    this.getuserinfo.getUserWords().subscribe((words) => this.userWordsCount = words.length);
+    this.getStillDue();
+    this.learnedToday();
+    this.getMeta();
+/*     this.getuserinfo.getLearnedToday().subscribe((res) => console.log(res)); */
   }
 
-  putScore() {
-    this.getuserinfo.setUserScore(25).subscribe((res) => {
-      console.log(res); this.router.navigateByUrl('/home', { skipLocationChange: true }).then(() =>
-        this.router.navigate(["/home/profile"]));}); ///teste navega pra outrarota e volta para recarregar pontos atual na tela
+  setMeta() {
+    this.getuserinfo.setMeta(this.userMetaField).subscribe((res) => {console.log(res); this.getMeta()});
+    let sel = document.querySelector("#metaInput");
+    console.log(sel);
   }
 
+  getMeta() {
+    this.getuserinfo.getMeta().subscribe((res) => {console.log(res);this.actualMeta.next(res.meta)});
+  }
+
+  updateMetaField(e) {
+    this.userMetaField = e.target.value;
+  }
+
+  learnedToday() {
+    this.getuserinfo.getLearnedToday().subscribe((learned) => this.wordsLearnedToday = learned);
+  }
+
+  getStillDue() {
+    this.getuserinfo.getLearnedToday().subscribe((learned) => this.getuserinfo.getMeta()
+                                      .subscribe((res) => this.wordsStillDue = res.meta - learned)));
+  }
 }
