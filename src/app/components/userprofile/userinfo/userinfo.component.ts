@@ -21,8 +21,9 @@ export class UserinfoComponent implements OnInit {
   userWordsCount;
   userMetaField;
   actualMeta = new BehaviorSubject(0);
-  wordsStillDue;
+  wordsStillDue = new BehaviorSubject(0);
   wordsLearnedToday;
+  rangeValue = new BehaviorSubject(10);
 
   constructor(private http: HttpClient, private getuserinfo: GetUserInfo, private router: Router) { }
 
@@ -37,7 +38,10 @@ export class UserinfoComponent implements OnInit {
     this.getStillDue();
     this.learnedToday();
     this.getMeta();
-/*     this.getuserinfo.getLearnedToday().subscribe((res) => console.log(res)); */
+  }
+
+  showRangeValue(e) {
+    this.rangeValue.next(e.target.value);
   }
 
   setMeta() {
@@ -47,7 +51,7 @@ export class UserinfoComponent implements OnInit {
   }
 
   getMeta() {
-    this.getuserinfo.getMeta().subscribe((res) => {console.log(res);this.actualMeta.next(res.meta)});
+    this.getuserinfo.getMeta().subscribe((res: any) => {console.log(res);this.actualMeta.next(res.meta)});
   }
 
   updateMetaField(e) {
@@ -60,6 +64,6 @@ export class UserinfoComponent implements OnInit {
 
   getStillDue() {
     this.getuserinfo.getLearnedToday().subscribe((learned) => this.getuserinfo.getMeta()
-                                      .subscribe((res) => this.wordsStillDue = res.meta - learned)));
+                                      .subscribe((res) => {this.wordsStillDue.next(this.actualMeta.getValue() - learned)}));
   }
 }

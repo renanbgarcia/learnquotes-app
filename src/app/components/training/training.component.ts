@@ -71,7 +71,15 @@ export class TrainingComponent implements OnInit {
       this.hideTranslation();
     } else if ((deckLength < this.sessionQuantity) && (this.currentCount < this.sessionQuantity - 1)){
       this.currentCard.index = 0;
-      this.nextCard();
+      //this.nextCard();
+      console.log(this.deck + " - " + index);
+      this.currentCard.word = this.deck[0].word;
+      this.currentCard.index = index;
+      this.currentCard.word_id = this.deck[0]._id;
+      this.currentCard.meaning = this.deck[0].meaning;
+      this.currentCount++;
+      this.hideMeaning();
+      this.hideTranslation();
     } else {
       this.router.navigate(['home/training/flashcards/start']);
     }

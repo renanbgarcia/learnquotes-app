@@ -14,13 +14,13 @@
   </div>
 
   <hr>
-  <h5>Meta</h5>
-  <span>Definir Meta(palavras por dia): {{ actualMeta.getValue() }}</span>
-  <input id="metaInput" (change)="updateMetaField($event)" type="number"/>
-  <button class="btn btn-secondary" (click)="setMeta()">Definir</button>
+  <h5>Meta: {{ actualMeta.getValue() }}</h5>
+  <span>Definir Meta(palavras por dia): {{ rangeValue.getValue() }}</span>
+  <input id="metaInput" (change)="updateMetaField($event); showRangeValue($event)" type="range" step="10" max="50" min="10" value="10"/>
+  <button class="btn btn-secondary" (click)="setMeta(); getStillDue()">Definir</button>
   <hr>
   <span>Palavras aprendidas hoje: {{ wordsLearnedToday }}</span>
-  <span>Palavras a aprender: {{ wordsStillDue }}</span>
+  <span>Palavras a aprender: {{ wordsStillDue.getValue() }}</span>
 
 </div>
 
