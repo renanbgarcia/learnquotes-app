@@ -101,6 +101,7 @@ export class VocabComponent implements OnInit {
     this.modalRef.content.action.take(1).subscribe((value) => {
       console.log(value); this.userWords.next(value); this.getWords(); this.preShowWords(value);
       });
+    this.modalRef.content.closeBtnName = 'Close';
   }
 
   deleteWord(word) {

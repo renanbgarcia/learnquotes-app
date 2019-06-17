@@ -42,6 +42,7 @@ import { VocabComponent } from './components/vocab/vocab.component';
 import { TrainingComponent } from './components/training/training.component';
 import { FlashcardsHomeComponent } from './flashcards-home/flashcards-home.component';
 import { StartComponent } from './components/start/start.component';
+import { LessonsComponent } from './components/lessons/lessons.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
@@ -55,7 +56,8 @@ const appRoutes: Routes = [
       { path: 'vocabulario', component: VocabComponent },
       { path: 'training/flashcards/play', component: TrainingComponent },
       { path: 'training/flashcards/start', component: FlashcardsHomeComponent },
-      { path: 'start', component: StartComponent }
+      { path: 'start', component: StartComponent },
+      { path: 'lessons/:age/:lang/:author/:lesson', component: LessonsComponent }
     ]
 }
 ];
@@ -79,6 +81,7 @@ const appRoutes: Routes = [
     TrainingComponent,
     FlashcardsHomeComponent,
     StartComponent,
+    LessonsComponent,
   ],
   imports: [
     BrowserModule,

@@ -72,7 +72,6 @@ export class TrainingComponent implements OnInit {
     } else if ((deckLength < this.sessionQuantity) && (this.currentCount < this.sessionQuantity - 1)){
       this.currentCard.index = 0;
       //this.nextCard();
-      console.log(this.deck + " - " + index);
       this.currentCard.word = this.deck[0].word;
       this.currentCard.index = index;
       this.currentCard.word_id = this.deck[0]._id;

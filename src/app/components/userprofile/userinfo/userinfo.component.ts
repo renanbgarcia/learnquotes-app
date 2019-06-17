@@ -45,9 +45,9 @@ export class UserinfoComponent implements OnInit {
   }
 
   setMeta() {
-    this.getuserinfo.setMeta(this.userMetaField).subscribe((res) => {console.log(res); this.getMeta()});
-    let sel = document.querySelector("#metaInput");
-    console.log(sel);
+    this.getuserinfo.setMeta(this.userMetaField).subscribe((res) => {console.log(res); /*this.getMeta()*/});
+/*     let sel = document.querySelector("#metaInput");
+    console.log(sel); */
   }
 
   getMeta() {

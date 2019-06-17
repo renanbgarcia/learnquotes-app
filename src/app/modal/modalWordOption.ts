@@ -9,21 +9,17 @@ import { environment } from 'src/environments/environment';
 @Component({
     selector: 'modal-word-option',
     template: `
-  <div class="container-fluid text-center">
-    <div class="modal-header">
-      Editar
-    </div>
+
     <div class="modal-body">
-    <form class="form">
-      <div class="form-group">
+      <div class="row">
         <label>Palavra: </label>
         <input class="form-control" type="text" value="{{word.word}}" id="word-edit">
       </div>
-      <div class="form-group">
+      <div class="row">
         <label>Significado: </label>
         <input class="form-control" type="text"  value="{{word.meaning}}" id="meaning-edit">
       </div>
-      <div class="form-group">
+      <div class="row">
         <label>Estado: </label>
         <select class="form-control" id="state-edit">
           <option [selected]="word.howKnown == '1'" value="1">1-Desconhecida</option>
@@ -33,13 +29,17 @@ import { environment } from 'src/environments/environment';
           <option [selected]="word.howKnown == '5'" value="5">5-Aprendida</option>
         </select>
       </div>
-    </form>
-      <button mz-button class="btn btn-warning" (click)="deleteWord()">Deletar Palavra</button>
-      <button class="btn btn-success btn-margin" (click)="updateWord()">Confirmar</button>
+      <div class="row">
+        <button mz-button class="btn btn-warning col s6" (click)="deleteWord()">Deletar Palavra</button>
+        <button class="btn btn-secondary btn-margin col s6" (click)="this.modalref.hide();">Cancelar</button>
+      </div>
+      <div class="row">
+        <button class="btn btn-success btn-margin col s12" (click)="updateWord()">Confirmar</button>
+      </div>
     </div>
-    </div>
+
   `,
-  styles: ['.btn-margin { margin-left: 5px; }']
+  styles: [`.btn-margin { margin-left: 5px !important;}`]
 })
 
 export class ModalWordOptionComponent {
