@@ -1,6 +1,6 @@
 # LingoTreno
 
-Esse é um projeto que eu fiz para começar a aprender Angular e typescript, além de fundamentos de Back-End com
+Esse é um projeto que eu fiz para começar a aprender Angular, além de fundamentos de Back-End com
 Node.js e express.js, criando uma REST API que serve o back-end do aplicativo.
 
 ***Agora o backend é uma API Restful separada. Anteriormente era a API que servia o front.
@@ -10,15 +10,9 @@ Eu comecei tentando fazer um web aplicativo que gera citaões aleatórias, agora
 expandir as funcionalidades para fazer um aplicativo de aprendizagem de idiomas usando a geração de
 citaões em diversas línguas.
 
+Atualmente apesar de não terminado, está funcional.
+O usuário pode logar, salvar citações, palavras, modificar palavras, e praticar com flashcards.
 
-## Como rodar
+Ele pode ser acessado até dia 21 de Julho de 2019 (depois os serviços do Google do qual ele depende deixarão de funcionar - Conta grátis...)
 
-- Baixe ou clone o repositório.
-
-- Você vai precisar ter o NPM, gerenciador de pacotes do Node.js instalado.
-
-- Instale o angularCLI com `npm install @angular/cli`
-
-- Instale as dependências do projeto com `npm install`
-
-- Execute: `ng serve` ( a API LingoAPI deverá estar rodando também ).
+[http://barretogarcia.com.br/lingotreino/]
