@@ -2,8 +2,6 @@ import { Router } from '@angular/router';
 import { Component } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal';
  
-/* This is a component which we pass in modal*/
- 
 @Component({
   selector: 'modal-content',
   template: `
@@ -27,6 +25,5 @@ export class ModalContentComponent {
         localStorage.clear();
         this.modalref.hide();
         this.router.navigate(['/']);
-        console.log('deslogado');
     }
 }

@@ -3,7 +3,6 @@ import { BehaviorSubject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '../../../../../node_modules/@angular/router';
-import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-userinfo',
@@ -25,7 +24,7 @@ export class UserinfoComponent implements OnInit {
   wordsLearnedToday;
   rangeValue = new BehaviorSubject(10);
 
-  constructor(private http: HttpClient, private getuserinfo: GetUserInfo, private router: Router) { }
+  constructor(private getuserinfo: GetUserInfo) { }
 
   ngOnInit() {
     this.getuserinfo.getUserPhoto().subscribe((photo) => this.userPhoto.next(photo));
@@ -45,13 +44,11 @@ export class UserinfoComponent implements OnInit {
   }
 
   setMeta() {
-    this.getuserinfo.setMeta(this.userMetaField).subscribe((res) => {console.log(res); /*this.getMeta()*/});
-/*     let sel = document.querySelector("#metaInput");
-    console.log(sel); */
+    this.getuserinfo.setMeta(this.userMetaField).subscribe();
   }
 
   getMeta() {
-    this.getuserinfo.getMeta().subscribe((res: any) => {console.log(res);this.actualMeta.next(res.meta)});
+    this.getuserinfo.getMeta().subscribe((res: any) => {console.log(res); this.actualMeta.next(res.meta)});
   }
 
   updateMetaField(e) {
@@ -63,7 +60,8 @@ export class UserinfoComponent implements OnInit {
   }
 
   getStillDue() {
-    this.getuserinfo.getLearnedToday().subscribe((learned) => this.getuserinfo.getMeta()
-                                      .subscribe((res) => {this.wordsStillDue.next(this.actualMeta.getValue() - learned)}));
+    this.getuserinfo.getLearnedToday()
+                    .subscribe((learned) => this.getuserinfo.getMeta()
+                    .subscribe((res) => {this.wordsStillDue.next(this.actualMeta.getValue() - learned)}));
   }
 }

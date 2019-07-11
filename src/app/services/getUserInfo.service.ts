@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
 import 'rxjs-compat';
 import { environment } from 'src/environments/environment';
 
@@ -55,12 +54,7 @@ export class GetUserInfo {
     
     getMeta() {
         return this.http.post(`${environment.ENDPOINT}/api/get/meta`, {id: localStorage.getItem('user')});
-    }
-
-/*     getLearnedToday() {
-        return this.http.post(`${environment.ENDPOINT}/api/get/learnedToday`, {id: localStorage.getItem('user')});
-    } */
-    
+    }    
 
     getLearnedToday() {
        return this.getUserWords().map((words) => {
@@ -69,7 +63,7 @@ export class GetUserInfo {
           let today = new Date();
           today.setHours(0,0,0,0);
           for (let word of words) {
-            let data = new Date(word.lastHowKnown)
+            let data = new Date(word.lastHowKnown);
             console.log(data);
             if (word.howKnown === "5" && data > today) {
               counter++;

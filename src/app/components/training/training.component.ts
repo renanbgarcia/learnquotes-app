@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { GetUserInfo } from './../../services/getUserInfo.service';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { ActivatedRoute, Router} from '@angular/router';
 import { FlashcardsService } from 'src/app/services/flashcards.service';
-import { MzModalService } from 'ngx-materialize';
 
 @Component({
   selector: 'app-training',
@@ -71,7 +69,6 @@ export class TrainingComponent implements OnInit {
       this.hideTranslation();
     } else if ((deckLength < this.sessionQuantity) && (this.currentCount < this.sessionQuantity - 1)){
       this.currentCard.index = 0;
-      //this.nextCard();
       this.currentCard.word = this.deck[0].word;
       this.currentCard.index = index;
       this.currentCard.word_id = this.deck[0]._id;

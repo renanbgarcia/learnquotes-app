@@ -10,7 +10,8 @@ import { MzIconMdiModule } from 'ngx-materialize';
 export class LoginComponent implements OnInit {
 
   url = environment.GOOGLE_AUTH_ENDPOINT;
-  urlHTML =  `<a href='${this.url}/auth/google?client=localhost:4200'>
+  client = environment.CLIENT;
+  urlHTML =  `<a href='${this.url}/auth/google?client=${this.client}'>
                 <i mz-icon [icon="'google'"]></i>
               | Entrar com o Google!
               </a>`

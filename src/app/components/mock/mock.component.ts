@@ -1,9 +1,7 @@
 import { GetUserInfo } from './../../services/getUserInfo.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { ModalContentComponent } from '../../modal/lOutmodal'
 
@@ -32,10 +30,7 @@ export class MockComponent implements OnInit {
   userPhoto = new BehaviorSubject('');
   modalRef: any;
   
-  constructor( private http: HttpClient,
-    private getuserinfo: GetUserInfo,
-    private modalService: BsModalService,
-    private router: Router) { }
+  constructor(private getuserinfo: GetUserInfo, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.getuserinfo.getUserPhoto().subscribe((photo) => this.userPhoto.next(photo));

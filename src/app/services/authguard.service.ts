@@ -9,7 +9,6 @@ export class AuthGuardService implements CanActivate {
     constructor(public auth: AuthService, public router: Router) { }
 
     canActivate(): any {
-        console.log('AuthGuard#canActivate called');
         this.auth.isAuthenticated().subscribe((res: any) => {
              if ( res.auth !== 'Authenticated' ) {
                 console.log(res);

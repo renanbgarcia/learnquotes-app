@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, ElementRef, ViewChild, Input } from '@angular/core';
 import { RandomquoteService } from '../../services/randomquote.service';
 import { trigger, state, style, animate, transition } from '@angular/animations';
-import { AlertModule  } from 'ngx-bootstrap/alert';
 import * as textVersion from 'textversionjs';
 import { ContextMenuComponent } from '../../../../node_modules/ngx-contextmenu';
 import { ContextMenuService } from 'ngx-contextmenu';
@@ -22,27 +21,13 @@ export function getPopoverConfig(): PopoverConfig {
   selector: 'app-randomquote',
   templateUrl: './randomquote.component.html',
   styleUrls: ['./randomquote.component.css'],
-  providers: [{ provide: PopoverConfig, useFactory: getPopoverConfig }],
-  animations: [
-    trigger('buttonAtt', [
-      state('inactive', style({
-        // transform: 'scale(1)',
-        backgroundColor: 'red'
-      })),
-      state('active', style({
-        // transform: 'scale(1.2)',
-        backgroundColor: 'orange'
-      })),
-      transition('inactive => active', animate('300ms ease-in')),
-      transition('active => inactive', animate('300ms ease-out'))
-    ])
-  ]
+  providers: [{ provide: PopoverConfig, useFactory: getPopoverConfig }]
 })
+
 export class RandomquoteComponent implements OnInit {
 
   constructor(private randomservice: RandomquoteService,
               private http: HttpClient,
-              private el: ElementRef,
               private contextMenuService: ContextMenuService) { }
 
   quoteText: string = this.randomservice.quote.getValue().text;

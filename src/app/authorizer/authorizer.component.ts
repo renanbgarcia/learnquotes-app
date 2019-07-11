@@ -11,11 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class AuthorizerComponent implements OnInit {
 
-  //userName = new BehaviorSubject('User');
-  //userPhoto = new BehaviorSubject('https://lh3.googleusercontent.com/-DXYA5kcy7Rw/AAAAAAAAAAI/AAAAAAAAAAA/AAnnY7pLWsK3YRuyMInFqx3P6tamKmJtog/mo/photo.jpg?sz=50');
-
   token = new BehaviorSubject('inicial');
-  //user: any;
 
   constructor(private authorize: AuthGuardService,
              private http: HttpClient,
@@ -40,11 +36,6 @@ export class AuthorizerComponent implements OnInit {
   }
 
   getUser() {
-    // return this.http.get(`${environment.ENDPOINT}/api/user`).map((res: any) => {
-    //   localStorage.setItem('user', res.user);
-    //   console.log(res);
-    //   return res;
-    // });
 
     return this.route.queryParams.map((params) => {
       console.log(params['user']);
@@ -67,41 +58,7 @@ export class AuthorizerComponent implements OnInit {
       }
     }).subscribe(() => {
       this.authorize.canActivate();
-      //localStorage.setItem('token', this.token.getValue());
       this.getUser().subscribe(() => {this.router.navigateByUrl('/home')});
-      // const httpOptions = {
-      //   headers: new HttpHeaders({
-      //     'Authorization': 'Bearer ' + this.token.getValue()
-      //   })
-      // };
-      // this.http.get('/api/auth', httpOptions).subscribe((res: { auth: string, user: any }) => {
-      //   localStorage.setItem('user', res.user);
-      // });
-      //this.router.navigateByUrl('/home');
       });
-      // const httpOptions = {
-      //   headers: new HttpHeaders({
-      //     'Authorization': 'Bearer ' + this.token.getValue()
-      //   })
-      // };
-      // return this.http.get('/api/auth', httpOptions);
-
     }
-    //)
-    // .subscribe((auth) => auth.subscribe((res: any) => {
-    //   console.log(res);
-    //   if (res.auth == 'Authenticated') {
-    //     //this.token = res.token;
-    //     console.log(this.token.getValue());
-    //     localStorage.setItem('token', this.token.getValue());
-    //     //localStorage.setItem('user', JSON.stringify(res.user));
-    //     //this.getUser();
-    //     this.router.navigateByUrl('/home')
-    //   } else {
-    //     console.log('n auth');
-    //     this.router.navigate(['/401']);
-    //   }
-    // }));
-  //}
-
 }
