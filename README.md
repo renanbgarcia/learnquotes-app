@@ -14,5 +14,3 @@ Atualmente apesar de não terminado, está funcional.
 O usuário pode logar, salvar citações, palavras, modificar palavras, e praticar com flashcards.
 
 Ele pode ser acessado até dia 21 de Julho de 2019 (depois os serviços do Google do qual ele depende deixarão de funcionar - Conta grátis...)
-
-[http://barretogarcia.com.br/lingotreino/]
